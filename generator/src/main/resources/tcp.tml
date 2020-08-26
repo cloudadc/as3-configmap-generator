@@ -1,0 +1,29 @@
+        "REPLACEMENT_TENANT_NAME": {
+          "class": "Tenant",
+          "REPLACEMENT_APP_NAME": {
+            "class": "Application",
+            "template": "generic",
+            "REPLACEMENT_VS_NAME": {
+              "class": "Service_L4",
+              "virtualAddresses": [
+                "REPLACEMENT_VS_IPADDR"
+              ],
+              "virtualPort": 80,
+              "persistenceMethods": [],
+              "pool": "REPLACEMENT_POOL_NAME"
+            },
+            "REPLACEMENT_POOL_NAME": {
+              "class": "Pool",
+              "monitors": [
+                "tcp"
+              ],
+              "loadBalancingMode": "least-connections-member",
+              "minimumMembersActive": 0,
+              "members": [
+              {
+                "servicePort": REPLACEMENT_SERVICE_PORT,
+                "serverAddresses": []
+              }
+              ]
+            }
+          }

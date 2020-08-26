@@ -1,0 +1,56 @@
+        "REPLACEMENT_TENANT_NAME": {
+          "class": "Tenant",
+          "REPLACEMENT_APP_NAME": {
+            "class": "Application",
+            "template": "generic",
+            "REPLACEMENT_VS_NAME": {
+              "class": "Service_HTTP",
+              "virtualAddresses": [
+                "REPLACEMENT_VS_IPADDR"
+              ],
+              "virtualPort": 80,
+              "profileHTTP": {
+                "use": "http_X-Forwarded-For"
+              },
+              "persistenceMethods": [{
+                "use": "cookie_encryption"
+              }],
+              "pool": "REPLACEMENT_POOL_NAME"
+            },
+            "cookie_encryption": {
+              "class": "Persist",
+              "persistenceMethod": "cookie",
+              "encrypt": true,
+              "cookieMethod": "insert",
+              "passphrase": {
+                "ciphertext": "a3RjeGZ5Z2Q=",
+                "protected": "eyJhbGciOiJkaXIiLCJlbmMiOiJub25lIn0="
+              }
+            },
+            "http_X-Forwarded-For": {
+              "class": "HTTP_Profile",
+              "xForwardedFor": true
+            },
+            "custom_http_monitor": {
+              "class": "Monitor",
+              "monitorType": "http",
+              "send": "GET REPLACEMENT_HEALTHCHECK_PATH HTTP/1.1\r\nHost:f5.monitor.com\r\n\r\n",
+              "interval": 5,
+              "timeout": 16,
+              "receive": "REPLACEMENT_HEALTHCHECK_EXPECTED"
+            },
+            "REPLACEMENT_POOL_NAME": {
+              "class": "Pool",
+              "monitors": [{
+                "use": "custom_http_monitor"
+              }],
+              "loadBalancingMode": "least-connections-member",
+              "minimumMembersActive": 0,
+              "members": [
+              {
+                "servicePort": REPLACEMENT_SERVICE_PORT,
+                "serverAddresses": []
+              }
+              ]
+            }
+          }

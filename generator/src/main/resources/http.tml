@@ -1,0 +1,48 @@
+        "REPLACEMENT_TENANT_NAME": {
+          "class": "Tenant",
+          "REPLACEMENT_APP_NAME": {
+            "class": "Application",
+            "template": "generic",
+            "REPLACEMENT_VS_NAME": {
+              "class": "Service_HTTP",
+              "virtualAddresses": [
+                "REPLACEMENT_VS_IPADDR"
+              ],
+              "virtualPort": 80,
+              "profileHTTP": {
+                "use": "http_X-Forwarded-For"
+              },
+              "persistenceMethods": [{
+                "use": "cookie_encryption"
+              }],
+              "pool": "REPLACEMENT_POOL_NAME"
+            },
+            "cookie_encryption": {
+              "class": "Persist",
+              "persistenceMethod": "cookie",
+              "encrypt": true,
+              "cookieMethod": "insert",
+              "passphrase": {
+                "ciphertext": "a3RjeGZ5Z2Q=",
+                "protected": "eyJhbGciOiJkaXIiLCJlbmMiOiJub25lIn0="
+              }
+            },
+            "http_X-Forwarded-For": {
+              "class": "HTTP_Profile",
+              "xForwardedFor": true
+            },
+            "REPLACEMENT_POOL_NAME": {
+              "class": "Pool",
+              "monitors": [
+                "http"
+              ],
+              "loadBalancingMode": "least-connections-member",
+              "minimumMembersActive": 0,
+              "members": [
+              {
+                "servicePort": REPLACEMENT_SERVICE_PORT,
+                "serverAddresses": []
+              }
+              ]
+            }
+          }
