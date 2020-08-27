@@ -1,0 +1,31 @@
+          "REPLACEMENT_APP_NAME": {
+            "class": "Application",
+            "template": "generic",
+            "REPLACEMENT_VS_NAME": {
+              "class": "Service_L4",
+              "iRules": ["REPLACEMENT_CANARY_IRULES"],
+              "virtualAddresses": [
+                "REPLACEMENT_VS_IPADDR"
+              ],
+              "virtualPort": REPLACEMENT_VS_PORT,
+              "persistenceMethods": []
+            },
+            "REPLACEMENT_POOL_NAME": {
+              "class": "Pool",
+              "monitors": [
+                "tcp"
+              ],
+              "loadBalancingMode": "least-connections-member",
+              "minimumMembersActive": 0,
+              "members": [
+              {
+                "servicePort": REPLACEMENT_SERVICE_PORT,
+                "serverAddresses": []
+              }
+              ]
+            },
+            "REPLACEMENT_CANARY_IRULES": {
+              "class": "iRule",
+              "iRule": "when CLIENT_ACCEPTED {\n  if {[expr {[expr {0xffffffff & [crc32 [IP::client_addr]]}] % 100}] < REPLACEMENT_CANARY_RATIO_RATE} {\n    pool REPLACEMENT_CANARY_SVC_NEW \n    } else {\n    pool REPLACEMENT_CANARY_SVC_OLD \n   }\n}" 
+            }
+          }

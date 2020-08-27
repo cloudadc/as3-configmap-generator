@@ -1,7 +1,5 @@
 package io.github.cloudadc.controller;
 
-import static io.github.cloudadc.controller.Utils.generate;
-
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -15,18 +13,34 @@ import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
 import org.springframework.util.FileCopyUtils;
 
+/**
+ * 
+ * @author ksong
+ *
+ */
 public class Utils {
 	
 	static final String VERSION = "0.0.1";
+	
 	static final String AS3_VERSION = "3.19.0";
+	
 	static final String CIS_VERSION = "2.1.0";
 	
 	static final String UNDERSCORE = "_";
+	
 	static final String COMMA = ",";
+	
 	static final String NEWLINE = "\n";
+	
+	static final String SLASH = "/";
+	
 	static final String POOL = "pool";
+	
 	static final String VS = "vs";
+	
 	static final String APP = "app";
+	
+	static final String IRULES = "irules";
 	
 	static final String REPLACEMENT_NAMESPACE = "REPLACEMENT_NAMESPACE";
 	
@@ -52,9 +66,54 @@ public class Utils {
 	
 	static final String REPLACEMENT_HEALTHCHECK_EXPECTED = "REPLACEMENT_HEALTHCHECK_EXPECTED";
 	
+	static final String REPLACEMENT_CANARY_IRULES = "REPLACEMENT_CANARY_IRULES";
+	
+	static final String REPLACEMENT_CANARY_URL_PATH = "REPLACEMENT_CANARY_URL_PATH";
+	
+	static final String REPLACEMENT_CANARY_SVC_NEW = "REPLACEMENT_CANARY_SVC_NEW";
+	
+	static final String REPLACEMENT_CANARY_SVC_OLD = "REPLACEMENT_CANARY_SVC_OLD";
+	
+	static final String REPLACEMENT_CANARY_HEADER_KEY = "REPLACEMENT_CANARY_HEADER_KEY";
+	
+	static final String REPLACEMENT_CANARY_HEADER_VALUE = "REPLACEMENT_CANARY_HEADER_VALUE";
+	
+	static final String REPLACEMENT_CANARY_COOKIE_KEY = "REPLACEMENT_CANARY_COOKIE_KEY";
+	
+	static final String REPLACEMENT_CANARY_COOKIE_VALUE = "REPLACEMENT_CANARY_COOKIE_VALUE";
+	
+	static final String REPLACEMENT_CANARY_SOURCEADDR_IP = "REPLACEMENT_CANARY_SOURCEADDR_IP";
+	
+	static final String REPLACEMENT_CANARY_SOURCEADDR_NET = "REPLACEMENT_CANARY_SOURCEADDR_NET";
+	
+	static final String REPLACEMENT_CANARY_RATIO_RATE = "REPLACEMENT_CANARY_RATIO_RATE";
+	
 	static Map<String, ArrayList<GeneratorApp>> cmMap = new HashMap<>();
 	
-	public static String generate(String cluster, String namespace, String service, int port, String vsIP, int vsPort, String path, String expected, boolean isCanary, String header, String app, String footer) throws IOException {
+	public static String generate(
+			String cluster, 
+			String namespace, 
+			String service, 
+			int port, 
+			String vsIP, 
+			int vsPort, 
+			String path, 
+			String expected, 
+			String v2_cluster, 
+			String v2_namespace, 
+			String v2_service, 
+			int v2_port, 
+			String canaryURL,
+			String httpHeader,
+			String httpHeaderValue,
+			String cookieKey,
+			String cookieValue,
+			String sourceAddrIP,
+			String sourceAddrNet,
+			int ratio,
+			String header, 
+			String app, 
+			String footer) throws IOException {
 		
 		String start = load(header);
 		start = start.replaceAll(REPLACEMENT_CONFIGMAP_NAME, cm_name(namespace));
@@ -69,9 +128,32 @@ public class Utils {
 		content = content.replaceAll(REPLACEMENT_VS_PORT, String.valueOf(vsPort));
 		content = content.replaceAll(REPLACEMENT_SERVICE_PORT, String.valueOf(port));
 		content = content.replaceAll(REPLACEMENT_POOL_NAME, pool(namespace, service, port));		
-		if(expected != null && path != null) {
+		if(expected != null && expected.length() > 0 && path != null && path.length() > 0) {
 			content = content.replaceAll(REPLACEMENT_HEALTHCHECK_PATH, path);
 			content = content.replaceAll(REPLACEMENT_HEALTHCHECK_EXPECTED, expected);
+		}
+		
+		if(v2_cluster != null && v2_namespace != null && v2_service != null && v2_port > 0) {
+			
+			content = content.replaceAll(REPLACEMENT_CANARY_IRULES, irules_name(namespace, service));
+			content = content.replaceAll(REPLACEMENT_CANARY_SVC_NEW, format(v2_cluster, v2_namespace, v2_service, v2_port));
+			content = content.replaceAll(REPLACEMENT_CANARY_SVC_OLD, format(cluster, namespace, service, port));
+			
+			if(canaryURL != null && canaryURL.length() > 0) {
+				content = content.replaceAll(REPLACEMENT_CANARY_URL_PATH, canaryURL);
+			} else if(httpHeader != null && httpHeader.length() > 0 && httpHeaderValue != null && httpHeaderValue.length() > 0) {
+				content = content.replaceAll(REPLACEMENT_CANARY_HEADER_KEY, httpHeader);
+				content = content.replaceAll(REPLACEMENT_CANARY_HEADER_VALUE, httpHeaderValue);
+			} else if (cookieKey != null && cookieKey.length() > 0 && cookieValue != null && cookieValue.length() > 0) {
+				content = content.replaceAll(REPLACEMENT_CANARY_COOKIE_KEY, cookieKey);
+				content = content.replaceAll(REPLACEMENT_CANARY_COOKIE_VALUE, cookieValue);
+			} else if (sourceAddrIP != null && sourceAddrIP.length() > 0 && sourceAddrNet != null && sourceAddrNet.length() > 0) {
+				content = content.replaceAll(REPLACEMENT_CANARY_SOURCEADDR_IP, sourceAddrIP);
+				content = content.replaceAll(REPLACEMENT_CANARY_SOURCEADDR_NET, sourceAddrNet);
+			} else if (ratio > 0) {
+				content = content.replaceAll(REPLACEMENT_CANARY_RATIO_RATE, String.valueOf(ratio));
+			}
+			
 		}
 				
 		ArrayList<GeneratorApp> apps = cmMap.get(tenant(cluster, namespace));
@@ -103,7 +185,7 @@ public class Utils {
 		
 		return results;
 	}
-	
+
 	private static boolean updateIfExist(ArrayList<GeneratorApp> apps, String appName, String content) {
 		for (int i = 0 ; i < apps.size() ; i++) {
 			if(apps.get(i).getAppName().equals(appName)) {
@@ -113,6 +195,10 @@ public class Utils {
 		}
 		return false;
 	}
+	
+	public static String format(String cluster, String namespace, String service, int port) {
+		return SLASH + tenant(cluster, namespace) + SLASH + app(namespace, service) + SLASH + pool(namespace, service, port);
+	}
 
 	public static String vs(String service, int port) {
 		return service + UNDERSCORE + port + UNDERSCORE + VS;
@@ -120,6 +206,10 @@ public class Utils {
 
 	public static String cm_name(String namespace) {
 		return "f5-cis-configmap-" + namespace;
+	}
+	
+	public static String irules_name(String namespace, String service) {
+		return namespace + UNDERSCORE + service + UNDERSCORE + IRULES;
 	}
 
 	public static String pool(String namespace, String service, int port) {
@@ -158,8 +248,4 @@ public class Utils {
 		
 	}
 	
-	public static void main(String[] arvs) throws IOException {
-		generate("cluster01", "test001", "app-v1-svc", 80, "192.168.5.40", 80, null, null, false, "header.tml", "http.tml", "footer.tml");
-		generate("cluster01", "test001", "app-v2-svc", 80, "192.168.5.40", 80, null, null, false, "header.tml", "http.tml", "footer.tml");
-	}
 }

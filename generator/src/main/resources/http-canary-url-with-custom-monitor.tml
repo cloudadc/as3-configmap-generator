@@ -1,0 +1,58 @@
+          "REPLACEMENT_APP_NAME": {
+            "class": "Application",
+            "template": "generic",
+            "REPLACEMENT_VS_NAME": {
+              "class": "Service_HTTP",
+              "iRules": ["REPLACEMENT_CANARY_IRULES"],
+              "virtualAddresses": [
+                "REPLACEMENT_VS_IPADDR"
+              ],
+              "virtualPort": REPLACEMENT_VS_PORT,
+              "profileHTTP": {
+                "use": "http_X-Forwarded-For"
+              },
+              "persistenceMethods": [{
+                "use": "cookie_encryption"
+              }]
+            },
+            "cookie_encryption": {
+              "class": "Persist",
+              "persistenceMethod": "cookie",
+              "encrypt": true,
+              "cookieMethod": "insert",
+              "passphrase": {
+                "ciphertext": "a3RjeGZ5Z2Q=",
+                "protected": "eyJhbGciOiJkaXIiLCJlbmMiOiJub25lIn0="
+              }
+            },
+            "http_X-Forwarded-For": {
+              "class": "HTTP_Profile",
+              "xForwardedFor": true
+            },
+            "custom_http_monitor": {
+              "class": "Monitor",
+              "monitorType": "http",
+              "send": "GET REPLACEMENT_HEALTHCHECK_PATH HTTP/1.1\r\nHost:f5.monitor.com\r\n\r\n",
+              "interval": 5,
+              "timeout": 16,
+              "receive": "REPLACEMENT_HEALTHCHECK_EXPECTED"
+            },
+            "REPLACEMENT_POOL_NAME": {
+              "class": "Pool",
+              "monitors": [{
+                "use": "custom_http_monitor"
+              }],
+              "loadBalancingMode": "least-connections-member",
+              "minimumMembersActive": 0,
+              "members": [
+              {
+                "servicePort": REPLACEMENT_SERVICE_PORT,
+                "serverAddresses": []
+              }
+              ]
+            },
+            "REPLACEMENT_CANARY_IRULES": {
+              "class": "iRule",
+              "iRule": "when HTTP_REQUEST {\n   if { [HTTP::uri] starts_with \"REPLACEMENT_CANARY_URL_PATH\" } {\n    pool REPLACEMENT_CANARY_SVC_NEW \n    } else {\n    pool REPLACEMENT_CANARY_SVC_OLD \n   }\n}" 
+            }
+          }
