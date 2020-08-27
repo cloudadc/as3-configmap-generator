@@ -1,5 +1,3 @@
-        "REPLACEMENT_TENANT_NAME": {
-          "class": "Tenant",
           "REPLACEMENT_APP_NAME": {
             "class": "Application",
             "template": "generic",
@@ -8,7 +6,7 @@
               "virtualAddresses": [
                 "REPLACEMENT_VS_IPADDR"
               ],
-              "virtualPort": 80,
+              "virtualPort": REPLACEMENT_VS_PORT,
               "profileHTTP": {
                 "use": "http_X-Forwarded-For"
               },

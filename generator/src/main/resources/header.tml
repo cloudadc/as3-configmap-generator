@@ -14,5 +14,7 @@ data:
       "persist": true,
       "declaration": {
         "class": "ADC",
-        "schemaVersion": "3.19.0",
+        "schemaVersion": "REPLACEMENT_AS3_SCHEMA_VERSION",
         "id": "REPLACEMENT_CONFIGMAP_NAME",
+        "REPLACEMENT_TENANT_NAME": {
+          "class": "Tenant",

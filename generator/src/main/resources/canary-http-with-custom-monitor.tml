@@ -1,20 +1,19 @@
           "REPLACEMENT_APP_NAME": {
             "class": "Application",
             "template": "generic",
-            "REPLACEMENT_VS_NAME": {
-              "class": "Service_L4",
-              "virtualAddresses": [
-                "REPLACEMENT_VS_IPADDR"
-              ],
-              "virtualPort": REPLACEMENT_VS_PORT,
-              "persistenceMethods": [],
-              "pool": "REPLACEMENT_POOL_NAME"
+            "custom_http_monitor": {
+              "class": "Monitor",
+              "monitorType": "http",
+              "send": "GET REPLACEMENT_HEALTHCHECK_PATH HTTP/1.1\r\nHost:f5.monitor.com\r\n\r\n",
+              "interval": 5,
+              "timeout": 16,
+              "receive": "REPLACEMENT_HEALTHCHECK_EXPECTED"
             },
             "REPLACEMENT_POOL_NAME": {
               "class": "Pool",
-              "monitors": [
-                "tcp"
-              ],
+              "monitors": [{
+                "use": "custom_http_monitor"
+              }],
               "loadBalancingMode": "least-connections-member",
               "minimumMembersActive": 0,
               "members": [

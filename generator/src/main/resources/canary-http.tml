@@ -1,19 +1,10 @@
           "REPLACEMENT_APP_NAME": {
             "class": "Application",
             "template": "generic",
-            "REPLACEMENT_VS_NAME": {
-              "class": "Service_L4",
-              "virtualAddresses": [
-                "REPLACEMENT_VS_IPADDR"
-              ],
-              "virtualPort": REPLACEMENT_VS_PORT,
-              "persistenceMethods": [],
-              "pool": "REPLACEMENT_POOL_NAME"
-            },
             "REPLACEMENT_POOL_NAME": {
               "class": "Pool",
               "monitors": [
-                "tcp"
+                "http"
               ],
               "loadBalancingMode": "least-connections-member",
               "minimumMembersActive": 0,
