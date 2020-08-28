@@ -1,0 +1,32 @@
+kind: ConfigMap
+apiVersion: v1
+metadata:
+  name: REPLACEMENT_CONFIGMAP_NAME
+  namespace: REPLACEMENT_NAMESPACE
+  labels:
+    f5type: virtual-server
+data:
+  schema: "f5schemadb://bigip-virtual-server_v0.1.7.json"
+  data: |-
+    {
+      "virtualServer": {
+        "frontend": {
+          "balance": "least-connections-member",
+          "mode": "tcp",
+          "partition": "k8s",
+          "virtualAddress": {
+            "bindAddr": "REPLACEMENT_VS_IPADDR",
+            "port": REPLACEMENT_VS_PORT
+          }
+        },
+        "backend": {
+          "serviceName": "REPLACEMENT_SERVICE_NAME",
+          "servicePort": REPLACEMENT_SERVICE_PORT,
+          "healthMonitors": [{
+            "interval": 30,
+            "timeout": 91,
+            "protocol": "tcp"
+          }]
+        }
+      }
+    }

@@ -60,6 +60,8 @@ public class Utils {
 	
 	static final String REPLACEMENT_VS_PORT = "REPLACEMENT_VS_PORT";
 	
+	static final String REPLACEMENT_SERVICE_NAME = "REPLACEMENT_SERVICE_NAME";
+	
 	static final String REPLACEMENT_SERVICE_PORT = "REPLACEMENT_SERVICE_PORT";
 	
 	static final String REPLACEMENT_HEALTHCHECK_PATH = "REPLACEMENT_HEALTHCHECK_PATH";
@@ -184,6 +186,22 @@ public class Utils {
 		results = results + NEWLINE + end;
 		
 		return results;
+	}
+	
+	public static String generateCCCL(String cluster, String namespace, String service, int port, String ip, int vsPort, String tml) throws IOException {
+		
+		String content = load(tml);
+		
+		content = content.replaceAll(REPLACEMENT_CONFIGMAP_NAME, cm_name(namespace));
+		content = content.replaceAll(REPLACEMENT_NAMESPACE, namespace);
+		
+		content = content.replaceAll(REPLACEMENT_SERVICE_NAME, service);
+		content = content.replaceAll(REPLACEMENT_SERVICE_PORT, String.valueOf(port));
+		
+		content = content.replaceAll(REPLACEMENT_VS_IPADDR, ip);
+		content = content.replaceAll(REPLACEMENT_VS_PORT, String.valueOf(vsPort));
+		
+		return content;
 	}
 
 	private static boolean updateIfExist(ArrayList<GeneratorApp> apps, String appName, String content) {
