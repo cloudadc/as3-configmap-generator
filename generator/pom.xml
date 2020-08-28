@@ -5,13 +5,13 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>2.2.5.RELEASE</version>
+		<version>2.3.3.RELEASE</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>io.github.cloudadc</groupId>
 	<artifactId>cis-as3-cm-generator</artifactId>
 	<version>0.0.1</version>
-	<name>fruits</name>
+	<name>CIS Generator</name>
 	<description>F5 CIS AS3 Configmap Generator</description>
 
 	<properties>
@@ -26,7 +26,7 @@
 		<dependency>
 		    <groupId>org.springdoc</groupId>
 			<artifactId>springdoc-openapi-ui</artifactId>
-			<version>1.2.33</version>
+			<version>1.4.4</version>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
