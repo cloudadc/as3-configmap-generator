@@ -1,0 +1,23 @@
+kind: ConfigMap
+apiVersion: v1
+metadata:
+  name: REPLACEMENT_CONFIGMAP_NAME
+  namespace: REPLACEMENT_NAMESPACE
+  labels:
+    f5type: virtual-server
+    as3: "true"
+data:
+  template: |
+    {
+      "class": "AS3",
+      "action": "deploy",
+      "persist": true,
+      "declaration": {
+        "class": "ADC",
+        "schemaVersion": "REPLACEMENT_AS3_SCHEMA_VERSION",
+        "id": "REPLACEMENT_CONFIGMAP_NAME",
+        "REPLACEMENT_TENANT_NAME": {
+          "class": "Tenant"REPLACEMENT_TEMPLATE_APPS
+        }
+      }
+    }

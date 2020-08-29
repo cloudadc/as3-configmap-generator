@@ -1,0 +1,18 @@
+          "REPLACEMENT_APP_NAME": {
+            "class": "Application",
+            "template": "generic",
+            "REPLACEMENT_POOL_NAME": {
+              "class": "Pool",
+              "monitors": [
+                "tcp"
+              ],
+              "loadBalancingMode": "least-connections-member",
+              "minimumMembersActive": 0,
+              "members": [
+              {
+                "servicePort": REPLACEMENT_SERVICE_PORT,
+                "serverAddresses": []
+              }
+              ]
+            }
+          }

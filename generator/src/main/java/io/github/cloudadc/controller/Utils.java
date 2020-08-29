@@ -30,6 +30,8 @@ public class Utils {
 	
 	static final String COMMA = ",";
 	
+	static final String EMPTY = "";
+	
 	static final String NEWLINE = "\n";
 	
 	static final String SLASH = "/";
@@ -41,6 +43,8 @@ public class Utils {
 	static final String APP = "app";
 	
 	static final String IRULES = "irules";
+	
+	static final String CONFIGMAP_TML = "configmap.tml";
 	
 	static final String REPLACEMENT_NAMESPACE = "REPLACEMENT_NAMESPACE";
 	
@@ -90,7 +94,76 @@ public class Utils {
 	
 	static final String REPLACEMENT_CANARY_RATIO_RATE = "REPLACEMENT_CANARY_RATIO_RATE";
 	
+	static final String REPLACEMENT_TEMPLATE_APPS = "REPLACEMENT_TEMPLATE_APPS";
+	
 	static Map<String, ArrayList<GeneratorApp>> cmMap = new HashMap<>();
+	
+	public static String generate(
+			String cluster, 
+			String namespace, 
+			String service, 
+			int port, 
+			String vsIP, 
+			int vsPort, 
+			String path, 
+			String expected, 
+			String app) throws IOException {
+		
+		String content = load(app);
+				
+		content = content.replaceAll(REPLACEMENT_APP_NAME, app(namespace, service));
+		content = content.replaceAll(REPLACEMENT_VS_NAME, vs(service, vsPort));
+		content = content.replaceAll(REPLACEMENT_VS_IPADDR, vsIP);
+		content = content.replaceAll(REPLACEMENT_VS_PORT, String.valueOf(vsPort));
+		content = content.replaceAll(REPLACEMENT_SERVICE_PORT, String.valueOf(port));
+		content = content.replaceAll(REPLACEMENT_POOL_NAME, pool(namespace, service, port));		
+		if(expected != null && expected.length() > 0 && path != null && path.length() > 0) {
+			content = content.replaceAll(REPLACEMENT_HEALTHCHECK_PATH, path);
+			content = content.replaceAll(REPLACEMENT_HEALTHCHECK_EXPECTED, expected);
+		}
+		
+		// persistence
+		ArrayList<GeneratorApp> apps = cmMap.get(tenant(cluster, namespace));
+		
+		if(apps == null || apps.size() == 0) {
+			apps = new ArrayList<GeneratorApp>();
+			cmMap.put(tenant(cluster, namespace), apps);
+			apps.add(new GeneratorApp(app(namespace, service), content));
+		} else {
+			if(!updateIfExist(apps,app(namespace, service), content)) {
+				apps.add(new GeneratorApp(app(namespace, service), content));
+			}
+		}
+		
+		boolean firstAPP = true;
+		String results = "";
+		if(apps.size() > 0) {
+			results = COMMA + NEWLINE ;
+		} 
+		
+		for (int i = 0 ; i < apps.size() ; i++) {
+			if(firstAPP) {
+				firstAPP = false;
+				results = results + apps.get(i).getContent();
+			} else {
+				results = results + COMMA + NEWLINE + apps.get(i).getContent();
+			}
+		}
+		
+		
+		String template = load(CONFIGMAP_TML);
+		
+		template = template.replaceAll(REPLACEMENT_CONFIGMAP_NAME, cm_name(namespace));
+		template = template.replaceAll(REPLACEMENT_NAMESPACE, namespace);
+		template = template.replaceAll(REPLACEMENT_AS3_SCHEMA_VERSION, AS3_VERSION);
+		template = template.replaceAll(REPLACEMENT_TENANT_NAME, tenant(cluster, namespace));
+		template = template.replaceAll(REPLACEMENT_TEMPLATE_APPS, results);
+		
+		//System.out.println(NEWLINE + template);
+		
+		return template;
+		
+	}
 	
 	public static String generate(
 			String cluster, 

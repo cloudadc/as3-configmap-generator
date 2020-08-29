@@ -6,14 +6,12 @@ import java.io.IOException;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
 
 import io.swagger.v3.oas.annotations.Operation;
-import io.swagger.v3.oas.annotations.tags.Tag;
 
-@RestController
-@RequestMapping(produces = {"application/json", "application/xml", "text/plain"})
-@Tag(name = "CIS Ingress", description = "F5 CIS Ingress Sample")
+//@RestController
+//@RequestMapping(produces = {"application/json", "application/xml", "text/plain"})
+//@Tag(name = "CIS Ingress", description = "F5 CIS Ingress Sample")
 public class CISIngressGeneratorController {
 	
 	@RequestMapping(path = {"/generate/ingress/sample"}, method = {RequestMethod.GET})
