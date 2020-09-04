@@ -1,0 +1,49 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: REPLACEMENT_NAMESPACE
+  labels:
+    cis_scanner: REPLACEMENT_ZONE
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: app
+  name: app
+  namespace: REPLACEMENT_NAMESPACE
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: app
+  template:
+    metadata:
+      labels:
+        app: app
+    spec:
+      containers:
+      - image: REPLACEMENT_BACKEND_IMAGE
+        name: backend
+        ports:
+        - containerPort: 8080
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: app
+    cis.f5.com/as3-tenant: REPLACEMENT_NAMESPACE
+    cis.f5.com/as3-app: REPLACEMENT_NAMESPACE
+    cis.f5.com/as3-pool: REPLACEMENT_NAMESPACE_app_svc_pool
+  name: app-svc
+  namespace: REPLACEMENT_NAMESPACE
+spec:
+  ports:
+  - port: 80
+    protocol: TCP
+    targetPort: 8080
+  selector:
+    app: app
+  sessionAffinity: None
+  type: ClusterIP

@@ -1,0 +1,25 @@
+          "REPLACEMENT_NAMESPACE_REPLACEMENT_SVC_NAME": {
+            "class": "Application",
+            "template": "generic",
+            "app_svc_vs": {
+              "class": "Service_HTTP",
+              "persistenceMethods": [ "cookie" ],
+              "virtualAddresses": [
+                "REPLACEMENT_BIGIP_VS_IP_ADDR"
+              ],
+              "virtualPort": 80,
+              "pool": "REPLACEMENT_NAMESPACE_REPLACEMENT_SVC_NAME_pool"
+            },
+            "REPLACEMENT_NAMESPACE_REPLACEMENT_SVC_NAME_pool": {
+              "class": "Pool",
+              "monitors": [
+                "tcp"
+              ],
+              "members": [
+              {
+                "servicePort": 8080,
+                "serverAddresses": []
+              }
+              ]
+            }
+          }

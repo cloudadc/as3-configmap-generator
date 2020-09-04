@@ -1,0 +1,30 @@
+        "REPLACEMENT_NAMESPACE": {
+          "class": "Tenant",
+          "REPLACEMENT_NAMESPACE": {
+            "class": "Application",
+            "template": "generic",
+            "app_svc_vs": {
+              "class": "Service_HTTP",
+              "persistenceMethods": [ "cookie" ],
+              "virtualAddresses": [
+                "REPLACEMENT_BIGIP_VS_IP_ADDR"
+              ],
+              "snat": "self",
+              "virtualPort": 80,
+              "pool": "REPLACEMENT_NAMESPACE_app_svc_pool"
+            },
+            "REPLACEMENT_NAMESPACE_app_svc_pool": {
+              "class": "Pool",
+              "monitors": [
+                "tcp"
+              ],
+              "loadBalancingMode": "least-connections-member",
+              "members": [
+              {
+                "servicePort": 80,
+                "serverAddresses": []
+              }
+              ]
+            }
+          }
+        }
