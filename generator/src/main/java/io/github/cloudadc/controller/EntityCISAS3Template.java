@@ -1,6 +1,6 @@
 package io.github.cloudadc.controller;
 
-public enum CISAS3Template {
+public enum EntityCISAS3Template {
 	
 	HTTP_COOKIE_PERSISTENCE_LEAST_CONNECTIONS_MEMBER_HTTP_MONITOR
 

@@ -1,6 +1,6 @@
 package io.github.cloudadc.controller;
 
-public class Sample {
+public class EntitySample {
 	
 	private int id;
 	
@@ -14,7 +14,7 @@ public class Sample {
 	
 	private Boolean allow;
 
-	public Sample(int id, String name, String notes, int value, String path, Boolean allow) {
+	public EntitySample(int id, String name, String notes, int value, String path, Boolean allow) {
 		super();
 		this.id = id;
 		this.name = name;

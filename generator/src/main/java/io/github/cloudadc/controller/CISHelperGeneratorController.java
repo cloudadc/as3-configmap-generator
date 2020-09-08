@@ -19,9 +19,9 @@ public class CISHelperGeneratorController {
 	
 	@RequestMapping(path = {"/version"}, method = {RequestMethod.GET})
 	@Operation(summary = "Get version", description = "Return version")
-	public GeneratorVersion version() {
+	public EntityGeneratorVersion version() {
 		
-		GeneratorVersion version = new GeneratorVersion(VERSION);
+		EntityGeneratorVersion version = new EntityGeneratorVersion(VERSION);
 		version.setAs3Version(AS3_VERSION);
 		version.setCisVersion(CIS_VERSION);
 		
@@ -30,14 +30,14 @@ public class CISHelperGeneratorController {
 	
 	@RequestMapping(path = {"/sample"}, method = {RequestMethod.GET})
 	@Operation(summary = "Sample", description = "An methods used to API doc develoment")
-	public Sample sample(
+	public EntitySample sample(
 			@Parameter(description = "ID", required = true) int id,
 			@Parameter(description = "Name", required = true) String name,
 			@Parameter(description = "Notes", required = true, allowEmptyValue = true) String notes,
 			@Parameter(description = "Value", required = true, allowEmptyValue = true) int value,
 			@Parameter(description = "Path", required = true) String path,
 			@Parameter(description = "Allow", required = false) boolean allow) {
-		return new Sample(id, name, notes, value, path, allow);
+		return new EntitySample(id, name, notes, value, path, allow);
 	}
 	
 	@RequestMapping(path = {"/load"}, method = {RequestMethod.GET})

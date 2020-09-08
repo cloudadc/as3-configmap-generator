@@ -1,5 +1,9 @@
 package io.github.cloudadc.controller;
 
+import static io.github.cloudadc.controller.Utils.app;
+import static io.github.cloudadc.controller.Utils.pool;
+import static io.github.cloudadc.controller.Utils.tenant;
+
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -96,7 +100,59 @@ public class Utils {
 	
 	static final String REPLACEMENT_TEMPLATE_APPS = "REPLACEMENT_TEMPLATE_APPS";
 	
-	static Map<String, ArrayList<GeneratorApp>> cmMap = new HashMap<>();
+	static final String REPLACEMENT_SVC_NAME = "REPLACEMENT_SVC_NAME";
+	
+	static final String REPLACEMENT_SVC_PORT = "REPLACEMENT_SVC_PORT";
+	
+	static final String REPLACEMENT_DOCKER_IMAGE = "REPLACEMENT_DOCKER_IMAGE";
+	
+	static final String REPLACEMENT_DOCKER_CONTAINER_PORT = "REPLACEMENT_DOCKER_CONTAINER_PORT";
+	
+	static final String DOCKER_IMAGE_BACKEND = "cloudadc/backend:0.0.6";
+	
+	static final String DOCKER_IMAGE_BACKEND_PORT = "8080";
+	
+    static final String DOCKER_IMAGE_CAFE = "cloudadc/cafe:1.0";
+	
+	static final String DOCKER_IMAGE_CAFE_PORT = "8080";
+	
+    static final String DOCKER_IMAGE_ECHO = "cloudadc/echoserver:1.1";
+	
+	static final String DOCKER_IMAGE_ECHO_PORT = "8877";
+	
+	static Map<String, ArrayList<EntityGeneratorApp>> cmMap = new HashMap<>();
+	
+	public static String generate(
+			String cluster, 
+			String namespace, 
+			String service, 
+			int port, 
+			EntityK8SImage img) throws IOException {
+		
+		String ns = load("k8s.deployments.namespace.yaml");
+		ns = ns.replaceAll(REPLACEMENT_NAMESPACE, namespace);
+		
+		String app = load("k8s.deployments.app.yaml");
+		app = app.replaceAll(REPLACEMENT_NAMESPACE, namespace);
+		app = app.replaceAll(REPLACEMENT_SVC_NAME, service);
+		app = app.replaceAll(REPLACEMENT_SVC_PORT, String.valueOf(port));
+		app = app.replaceAll(REPLACEMENT_TENANT_NAME, tenant(cluster, namespace));
+		app = app.replaceAll(REPLACEMENT_APP_NAME, app(namespace, service));
+		app = app.replaceAll(REPLACEMENT_POOL_NAME, pool(namespace, service, port));
+		
+		if(img.equals(EntityK8SImage.BACKEND)) {
+			app = app.replaceAll(REPLACEMENT_DOCKER_IMAGE, DOCKER_IMAGE_BACKEND);
+			app = app.replaceAll(REPLACEMENT_DOCKER_CONTAINER_PORT, DOCKER_IMAGE_BACKEND_PORT);
+		} else if (img.equals(EntityK8SImage.CAFE)) {
+			app = app.replaceAll(REPLACEMENT_DOCKER_IMAGE, DOCKER_IMAGE_CAFE);
+			app = app.replaceAll(REPLACEMENT_DOCKER_CONTAINER_PORT, DOCKER_IMAGE_CAFE_PORT);
+		} else if (img.equals(EntityK8SImage.ECHOSERVER)) {
+			app = app.replaceAll(REPLACEMENT_DOCKER_IMAGE, DOCKER_IMAGE_ECHO);
+			app = app.replaceAll(REPLACEMENT_DOCKER_CONTAINER_PORT, DOCKER_IMAGE_ECHO_PORT);
+		}
+		
+		return ns + NEWLINE + app;
+	}
 	
 	public static String generate(
 			String cluster, 
@@ -123,15 +179,15 @@ public class Utils {
 		}
 		
 		// persistence
-		ArrayList<GeneratorApp> apps = cmMap.get(tenant(cluster, namespace));
+		ArrayList<EntityGeneratorApp> apps = cmMap.get(tenant(cluster, namespace));
 		
 		if(apps == null || apps.size() == 0) {
-			apps = new ArrayList<GeneratorApp>();
+			apps = new ArrayList<EntityGeneratorApp>();
 			cmMap.put(tenant(cluster, namespace), apps);
-			apps.add(new GeneratorApp(app(namespace, service), content));
+			apps.add(new EntityGeneratorApp(app(namespace, service), content));
 		} else {
 			if(!updateIfExist(apps,app(namespace, service), content)) {
-				apps.add(new GeneratorApp(app(namespace, service), content));
+				apps.add(new EntityGeneratorApp(app(namespace, service), content));
 			}
 		}
 		
@@ -231,15 +287,15 @@ public class Utils {
 			
 		}
 				
-		ArrayList<GeneratorApp> apps = cmMap.get(tenant(cluster, namespace));
+		ArrayList<EntityGeneratorApp> apps = cmMap.get(tenant(cluster, namespace));
 		
 		if(apps == null || apps.size() == 0) {
-			apps = new ArrayList<GeneratorApp>();
+			apps = new ArrayList<EntityGeneratorApp>();
 			cmMap.put(tenant(cluster, namespace), apps);
-			apps.add(new GeneratorApp(app(namespace, service), content));
+			apps.add(new EntityGeneratorApp(app(namespace, service), content));
 		} else {
 			if(!updateIfExist(apps,app(namespace, service), content)) {
-				apps.add(new GeneratorApp(app(namespace, service), content));
+				apps.add(new EntityGeneratorApp(app(namespace, service), content));
 			}
 		}
 		
@@ -277,7 +333,7 @@ public class Utils {
 		return content;
 	}
 
-	private static boolean updateIfExist(ArrayList<GeneratorApp> apps, String appName, String content) {
+	private static boolean updateIfExist(ArrayList<EntityGeneratorApp> apps, String appName, String content) {
 		for (int i = 0 ; i < apps.size() ; i++) {
 			if(apps.get(i).getAppName().equals(appName)) {
 				apps.get(i).setContent(content);
@@ -312,6 +368,9 @@ public class Utils {
 	}
 
 	public static String tenant(String cluster, String namespace) {
+		if(cluster == null || cluster.length() == 0) {
+			return namespace;
+		}
 		return cluster + UNDERSCORE + namespace;
 	}
 

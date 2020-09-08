@@ -1,6 +1,6 @@
 package io.github.cloudadc.controller;
 
-public class GeneratorVersion {
+public class EntityGeneratorVersion {
 	
 	private String as3Version;
 	
@@ -8,7 +8,7 @@ public class GeneratorVersion {
 	
 	private String version;
 
-	public GeneratorVersion(String version) {
+	public EntityGeneratorVersion(String version) {
 		this.version = version;
 	}
 

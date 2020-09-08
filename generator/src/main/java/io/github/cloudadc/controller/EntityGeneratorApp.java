@@ -1,12 +1,12 @@
 package io.github.cloudadc.controller;
 
-public class GeneratorApp {
+public class EntityGeneratorApp {
 	
 	private String appName;
 	
 	private String content;
 
-	public GeneratorApp(String appName, String content) {
+	public EntityGeneratorApp(String appName, String content) {
 		super();
 		this.appName = appName;
 		this.content = content;

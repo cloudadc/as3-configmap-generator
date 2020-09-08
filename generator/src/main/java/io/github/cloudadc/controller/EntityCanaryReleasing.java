@@ -1,6 +1,6 @@
 package io.github.cloudadc.controller;
 
-public enum CanaryReleasing {
+public enum EntityCanaryReleasing {
 	URL,
 	SOURCEADDR,
 	HEADER,

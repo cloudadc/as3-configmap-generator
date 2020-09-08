@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: REPLACEMENT_SVC_NAME
+  name: REPLACEMENT_SVC_NAME
+  namespace: REPLACEMENT_NAMESPACE
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: REPLACEMENT_SVC_NAME
+  strategy: {}
+  template:
+    metadata:
+      labels:
+        app: REPLACEMENT_SVC_NAME
+    spec:
+      containers:
+      - image: REPLACEMENT_DOCKER_IMAGE
+        name: REPLACEMENT_SVC_NAME
+        ports:
+        - containerPort: REPLACEMENT_DOCKER_CONTAINER_PORT
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    cis.f5.com/as3-tenant: "REPLACEMENT_TENANT_NAME"
+    cis.f5.com/as3-app: "REPLACEMENT_APP_NAME"
+    cis.f5.com/as3-pool: "REPLACEMENT_POOL_NAME"
+  name: REPLACEMENT_SVC_NAME
+  namespace: REPLACEMENT_NAMESPACE
+spec:
+  ports:
+  - port: REPLACEMENT_SVC_PORT
+    protocol: TCP
+    targetPort: REPLACEMENT_DOCKER_CONTAINER_PORT
+  selector:
+    app: REPLACEMENT_SVC_NAME
+  type: ClusterIP
