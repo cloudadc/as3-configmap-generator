@@ -7,27 +7,8 @@
                 "REPLACEMENT_VS_IPADDR"
               ],
               "virtualPort": REPLACEMENT_VS_PORT,
-              "profileHTTP": {
-                "use": "http_X-Forwarded-For"
-              },
-              "persistenceMethods": [{
-                "use": "cookie_encryption"
-              }],
+              "persistenceMethods": ["cookie"],
               "pool": "REPLACEMENT_POOL_NAME"
-            },
-            "cookie_encryption": {
-              "class": "Persist",
-              "persistenceMethod": "cookie",
-              "encrypt": true,
-              "cookieMethod": "insert",
-              "passphrase": {
-                "ciphertext": "a3RjeGZ5Z2Q=",
-                "protected": "eyJhbGciOiJkaXIiLCJlbmMiOiJub25lIn0="
-              }
-            },
-            "http_X-Forwarded-For": {
-              "class": "HTTP_Profile",
-              "xForwardedFor": true
             },
             "REPLACEMENT_POOL_NAME": {
               "class": "Pool",

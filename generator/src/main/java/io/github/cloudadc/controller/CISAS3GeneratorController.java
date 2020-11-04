@@ -42,8 +42,8 @@ public class CISAS3GeneratorController {
 		return generate(cluster, namespace, service, port, k8sImage);
 	}
 
-	@RequestMapping(path = {"/generate/http_advanced"}, method = {RequestMethod.GET})
-	@Operation(summary = "HTTP {X-Forwarded-For, cookie persistence with encryption, least-connections-member, custom health monitor}", description = "Returns F5 CIS HTTP Service Configmap")
+	@RequestMapping(path = {"/generate/http"}, method = {RequestMethod.GET})
+	@Operation(summary = "HTTP {cookie persistence, least-connections-member, custom health monitor}", description = "Returns F5 CIS HTTP Service Configmap")
 	public String generateHTTP(
 			@Parameter(description = "The name of K8S/OpenShift cluster", required = true, allowEmptyValue = true) String cluster, 
 			@Parameter(description = "The name of K8S/OpenShift namespace", required = true) String namespace, 
