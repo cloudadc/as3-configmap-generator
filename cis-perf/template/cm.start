@@ -13,7 +13,7 @@ data:
       "persist": true,
       "declaration": {
         "class": "ADC",
-        "schemaVersion": "3.18.0",
+        "schemaVersion": "3.25.0",
         "id": "cis-perf-test",
         "label": "cis_perf_test",
         "remark": "HTTP application",

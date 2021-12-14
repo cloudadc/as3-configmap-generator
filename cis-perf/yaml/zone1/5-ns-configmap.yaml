@@ -1,0 +1,259 @@
+kind: ConfigMap
+apiVersion: v1
+metadata:
+  name: cm-cistest
+  namespace: perftestzone1100
+  labels:
+    f5type: virtual-server
+    as3: "true"
+data:
+  template: |
+    {
+      "class": "AS3",
+      "action": "deploy",
+      "persist": true,
+      "declaration": {
+        "class": "ADC",
+        "schemaVersion": "3.25.0",
+        "id": "perftestzone1100",
+        "perftestzone1100": {
+          "class": "Tenant",
+          "perftestzone1100": {
+            "class": "Application",
+            "template": "generic",
+            "app_svc_vs": {
+              "class": "Service_HTTP",
+              "persistenceMethods": [ "cookie" ],
+              "virtualAddresses": [
+                "10.1.10.3"
+              ],
+              "snat": "self",
+              "virtualPort": 80,
+              "pool": "perftestzone1100_app_svc_pool"
+            },
+            "perftestzone1100_app_svc_pool": {
+              "class": "Pool",
+              "monitors": [
+                "tcp"
+              ],
+              "loadBalancingMode": "least-connections-member",
+              "members": [
+              {
+                "servicePort": 80,
+                "serverAddresses": []
+              }
+              ]
+            }
+          }
+        }
+      }
+    }
+
+---
+kind: ConfigMap
+apiVersion: v1
+metadata:
+  name: cm-cistest
+  namespace: perftestzone1101
+  labels:
+    f5type: virtual-server
+    as3: "true"
+data:
+  template: |
+    {
+      "class": "AS3",
+      "action": "deploy",
+      "persist": true,
+      "declaration": {
+        "class": "ADC",
+        "schemaVersion": "3.25.0",
+        "id": "perftestzone1101",
+        "perftestzone1101": {
+          "class": "Tenant",
+          "perftestzone1101": {
+            "class": "Application",
+            "template": "generic",
+            "app_svc_vs": {
+              "class": "Service_HTTP",
+              "persistenceMethods": [ "cookie" ],
+              "virtualAddresses": [
+                "10.1.10.4"
+              ],
+              "snat": "self",
+              "virtualPort": 80,
+              "pool": "perftestzone1101_app_svc_pool"
+            },
+            "perftestzone1101_app_svc_pool": {
+              "class": "Pool",
+              "monitors": [
+                "tcp"
+              ],
+              "loadBalancingMode": "least-connections-member",
+              "members": [
+              {
+                "servicePort": 80,
+                "serverAddresses": []
+              }
+              ]
+            }
+          }
+        }
+      }
+    }
+
+---
+kind: ConfigMap
+apiVersion: v1
+metadata:
+  name: cm-cistest
+  namespace: perftestzone1102
+  labels:
+    f5type: virtual-server
+    as3: "true"
+data:
+  template: |
+    {
+      "class": "AS3",
+      "action": "deploy",
+      "persist": true,
+      "declaration": {
+        "class": "ADC",
+        "schemaVersion": "3.25.0",
+        "id": "perftestzone1102",
+        "perftestzone1102": {
+          "class": "Tenant",
+          "perftestzone1102": {
+            "class": "Application",
+            "template": "generic",
+            "app_svc_vs": {
+              "class": "Service_HTTP",
+              "persistenceMethods": [ "cookie" ],
+              "virtualAddresses": [
+                "10.1.10.5"
+              ],
+              "snat": "self",
+              "virtualPort": 80,
+              "pool": "perftestzone1102_app_svc_pool"
+            },
+            "perftestzone1102_app_svc_pool": {
+              "class": "Pool",
+              "monitors": [
+                "tcp"
+              ],
+              "loadBalancingMode": "least-connections-member",
+              "members": [
+              {
+                "servicePort": 80,
+                "serverAddresses": []
+              }
+              ]
+            }
+          }
+        }
+      }
+    }
+
+---
+kind: ConfigMap
+apiVersion: v1
+metadata:
+  name: cm-cistest
+  namespace: perftestzone1103
+  labels:
+    f5type: virtual-server
+    as3: "true"
+data:
+  template: |
+    {
+      "class": "AS3",
+      "action": "deploy",
+      "persist": true,
+      "declaration": {
+        "class": "ADC",
+        "schemaVersion": "3.25.0",
+        "id": "perftestzone1103",
+        "perftestzone1103": {
+          "class": "Tenant",
+          "perftestzone1103": {
+            "class": "Application",
+            "template": "generic",
+            "app_svc_vs": {
+              "class": "Service_HTTP",
+              "persistenceMethods": [ "cookie" ],
+              "virtualAddresses": [
+                "10.1.10.6"
+              ],
+              "snat": "self",
+              "virtualPort": 80,
+              "pool": "perftestzone1103_app_svc_pool"
+            },
+            "perftestzone1103_app_svc_pool": {
+              "class": "Pool",
+              "monitors": [
+                "tcp"
+              ],
+              "loadBalancingMode": "least-connections-member",
+              "members": [
+              {
+                "servicePort": 80,
+                "serverAddresses": []
+              }
+              ]
+            }
+          }
+        }
+      }
+    }
+
+---
+kind: ConfigMap
+apiVersion: v1
+metadata:
+  name: cm-cistest
+  namespace: perftestzone1104
+  labels:
+    f5type: virtual-server
+    as3: "true"
+data:
+  template: |
+    {
+      "class": "AS3",
+      "action": "deploy",
+      "persist": true,
+      "declaration": {
+        "class": "ADC",
+        "schemaVersion": "3.25.0",
+        "id": "perftestzone1104",
+        "perftestzone1104": {
+          "class": "Tenant",
+          "perftestzone1104": {
+            "class": "Application",
+            "template": "generic",
+            "app_svc_vs": {
+              "class": "Service_HTTP",
+              "persistenceMethods": [ "cookie" ],
+              "virtualAddresses": [
+                "10.1.10.7"
+              ],
+              "snat": "self",
+              "virtualPort": 80,
+              "pool": "perftestzone1104_app_svc_pool"
+            },
+            "perftestzone1104_app_svc_pool": {
+              "class": "Pool",
+              "monitors": [
+                "tcp"
+              ],
+              "loadBalancingMode": "least-connections-member",
+              "members": [
+              {
+                "servicePort": 80,
+                "serverAddresses": []
+              }
+              ]
+            }
+          }
+        }
+      }
+    }
+

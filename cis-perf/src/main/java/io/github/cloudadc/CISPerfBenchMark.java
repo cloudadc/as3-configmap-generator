@@ -6,21 +6,32 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
 
-
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class CISPerfMain implements CommandLineRunner {
+public class CISPerfBenchMark implements CommandLineRunner {
+	
+	Logger log = LoggerFactory.getLogger(CISPerfBenchMark.class);
 
 	public static void main(String[] args) {
-		SpringApplication.run(CISPerfMain.class, args);
+		SpringApplication.run(CISPerfBenchMark.class, args);
 	}
 
 	@Override
 	public void run(String... args) throws Exception {
 		
+		log.info("CIS Performance Benchmark Generator Starting");
+		
+//		execute(args);
+		
+	}
+	
+	protected void execute(String[] args) throws Exception {
+
 		int count = 3;
 		String deploy = "deploy.yaml";
 		String configmap = "configmap.yaml";
@@ -29,6 +40,7 @@ public class CISPerfMain implements CommandLineRunner {
 		String net = "10.1.10.0/24";
 		int ip_start = 3;
 		boolean isSingleNamsespace = false;
+		String cisVersion = "";
 		
 		if(args.length < 2) {
 			StringBuffer sb = new StringBuffer();
@@ -56,6 +68,11 @@ public class CISPerfMain implements CommandLineRunner {
 				ingress = args[++i];
 			} else if(args[i].equals("--single")) {
 				isSingleNamsespace = Boolean.parseBoolean(args[++i]);
+			} else if(args[i].equals("--cis-version")) {
+				cisVersion = args[++i];
+				if(cisVersion.equals("2.0") || cisVersion.equals("2.1") || cisVersion.equals("2.2") || cisVersion.equals("2.3") || cisVersion.equals("2.4") || cisVersion.equals("2.5") || cisVersion.equals("2.6")) {
+					System.out.println("CIS Version is");
+				}
 			}
 
 		}
@@ -69,9 +86,11 @@ public class CISPerfMain implements CommandLineRunner {
 		boolean first = true;
 		int start = 100;
 		
-		if(isSingleNamsespace) {
+		if(cisVersion.equals("2.0")) {
 			
-			String ns = "cistest";
+		} else if(isSingleNamsespace) {
+			
+			String ns = "cistestzone1";
 			boolean firstCM = true;
 						
 		
@@ -150,7 +169,7 @@ public class CISPerfMain implements CommandLineRunner {
 					
 			for (int i = 0 ; i < count ; i ++) {
 					
-				String ns = "perftest" + String.valueOf(start + i);
+				String ns = "perftestzone1" + String.valueOf(start + i);
 				
 				if(first) {
 					first = false;
@@ -213,9 +232,8 @@ public class CISPerfMain implements CommandLineRunner {
 		
 		System.out.println("Generating K8S deployments to " + deploy);
 		System.out.println("Generating AS3 configmap to " + configmap);
-		
 	}
-	
+
 	static String getResourceFileAsString(String fileName) throws IOException {
 		
 		

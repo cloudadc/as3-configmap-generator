@@ -21,7 +21,7 @@
               "loadBalancingMode": "least-connections-member",
               "members": [
               {
-                "servicePort": 80,
+                "servicePort": 8080,
                 "serverAddresses": []
               }
               ]

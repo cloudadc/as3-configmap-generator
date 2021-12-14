@@ -1,0 +1,5999 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: perftestzone3100
+  labels:
+    cis_scanner: zone_1
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: app
+  name: app
+  namespace: perftestzone3100
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: app
+  template:
+    metadata:
+      labels:
+        app: app
+    spec:
+      containers:
+      - image: cloudadc/cafe:1.0
+        name: backend
+        ports:
+        - containerPort: 8080
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: app
+    cis.f5.com/as3-tenant: perftestzone3100
+    cis.f5.com/as3-app: perftestzone3100
+    cis.f5.com/as3-pool: perftestzone3100_app_svc_pool
+  name: app-svc
+  namespace: perftestzone3100
+spec:
+  ports:
+  - port: 80
+    protocol: TCP
+    targetPort: 8080
+  selector:
+    app: app
+  sessionAffinity: None
+  type: ClusterIP
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: perftestzone3101
+  labels:
+    cis_scanner: zone_2
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: app
+  name: app
+  namespace: perftestzone3101
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: app
+  template:
+    metadata:
+      labels:
+        app: app
+    spec:
+      containers:
+      - image: cloudadc/cafe:1.0
+        name: backend
+        ports:
+        - containerPort: 8080
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: app
+    cis.f5.com/as3-tenant: perftestzone3101
+    cis.f5.com/as3-app: perftestzone3101
+    cis.f5.com/as3-pool: perftestzone3101_app_svc_pool
+  name: app-svc
+  namespace: perftestzone3101
+spec:
+  ports:
+  - port: 80
+    protocol: TCP
+    targetPort: 8080
+  selector:
+    app: app
+  sessionAffinity: None
+  type: ClusterIP
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: perftestzone3102
+  labels:
+    cis_scanner: zone_3
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: app
+  name: app
+  namespace: perftestzone3102
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: app
+  template:
+    metadata:
+      labels:
+        app: app
+    spec:
+      containers:
+      - image: cloudadc/cafe:1.0
+        name: backend
+        ports:
+        - containerPort: 8080
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: app
+    cis.f5.com/as3-tenant: perftestzone3102
+    cis.f5.com/as3-app: perftestzone3102
+    cis.f5.com/as3-pool: perftestzone3102_app_svc_pool
+  name: app-svc
+  namespace: perftestzone3102
+spec:
+  ports:
+  - port: 80
+    protocol: TCP
+    targetPort: 8080
+  selector:
+    app: app
+  sessionAffinity: None
+  type: ClusterIP
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: perftestzone3103
+  labels:
+    cis_scanner: zone_1
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: app
+  name: app
+  namespace: perftestzone3103
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: app
+  template:
+    metadata:
+      labels:
+        app: app
+    spec:
+      containers:
+      - image: cloudadc/cafe:1.0
+        name: backend
+        ports:
+        - containerPort: 8080
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: app
+    cis.f5.com/as3-tenant: perftestzone3103
+    cis.f5.com/as3-app: perftestzone3103
+    cis.f5.com/as3-pool: perftestzone3103_app_svc_pool
+  name: app-svc
+  namespace: perftestzone3103
+spec:
+  ports:
+  - port: 80
+    protocol: TCP
+    targetPort: 8080
+  selector:
+    app: app
+  sessionAffinity: None
+  type: ClusterIP
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: perftestzone3104
+  labels:
+    cis_scanner: zone_2
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: app
+  name: app
+  namespace: perftestzone3104
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: app
+  template:
+    metadata:
+      labels:
+        app: app
+    spec:
+      containers:
+      - image: cloudadc/cafe:1.0
+        name: backend
+        ports:
+        - containerPort: 8080
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: app
+    cis.f5.com/as3-tenant: perftestzone3104
+    cis.f5.com/as3-app: perftestzone3104
+    cis.f5.com/as3-pool: perftestzone3104_app_svc_pool
+  name: app-svc
+  namespace: perftestzone3104
+spec:
+  ports:
+  - port: 80
+    protocol: TCP
+    targetPort: 8080
+  selector:
+    app: app
+  sessionAffinity: None
+  type: ClusterIP
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: perftestzone3105
+  labels:
+    cis_scanner: zone_3
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: app
+  name: app
+  namespace: perftestzone3105
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: app
+  template:
+    metadata:
+      labels:
+        app: app
+    spec:
+      containers:
+      - image: cloudadc/cafe:1.0
+        name: backend
+        ports:
+        - containerPort: 8080
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: app
+    cis.f5.com/as3-tenant: perftestzone3105
+    cis.f5.com/as3-app: perftestzone3105
+    cis.f5.com/as3-pool: perftestzone3105_app_svc_pool
+  name: app-svc
+  namespace: perftestzone3105
+spec:
+  ports:
+  - port: 80
+    protocol: TCP
+    targetPort: 8080
+  selector:
+    app: app
+  sessionAffinity: None
+  type: ClusterIP
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: perftestzone3106
+  labels:
+    cis_scanner: zone_1
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: app
+  name: app
+  namespace: perftestzone3106
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: app
+  template:
+    metadata:
+      labels:
+        app: app
+    spec:
+      containers:
+      - image: cloudadc/cafe:1.0
+        name: backend
+        ports:
+        - containerPort: 8080
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: app
+    cis.f5.com/as3-tenant: perftestzone3106
+    cis.f5.com/as3-app: perftestzone3106
+    cis.f5.com/as3-pool: perftestzone3106_app_svc_pool
+  name: app-svc
+  namespace: perftestzone3106
+spec:
+  ports:
+  - port: 80
+    protocol: TCP
+    targetPort: 8080
+  selector:
+    app: app
+  sessionAffinity: None
+  type: ClusterIP
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: perftestzone3107
+  labels:
+    cis_scanner: zone_2
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: app
+  name: app
+  namespace: perftestzone3107
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: app
+  template:
+    metadata:
+      labels:
+        app: app
+    spec:
+      containers:
+      - image: cloudadc/cafe:1.0
+        name: backend
+        ports:
+        - containerPort: 8080
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: app
+    cis.f5.com/as3-tenant: perftestzone3107
+    cis.f5.com/as3-app: perftestzone3107
+    cis.f5.com/as3-pool: perftestzone3107_app_svc_pool
+  name: app-svc
+  namespace: perftestzone3107
+spec:
+  ports:
+  - port: 80
+    protocol: TCP
+    targetPort: 8080
+  selector:
+    app: app
+  sessionAffinity: None
+  type: ClusterIP
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: perftestzone3108
+  labels:
+    cis_scanner: zone_3
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: app
+  name: app
+  namespace: perftestzone3108
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: app
+  template:
+    metadata:
+      labels:
+        app: app
+    spec:
+      containers:
+      - image: cloudadc/cafe:1.0
+        name: backend
+        ports:
+        - containerPort: 8080
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: app
+    cis.f5.com/as3-tenant: perftestzone3108
+    cis.f5.com/as3-app: perftestzone3108
+    cis.f5.com/as3-pool: perftestzone3108_app_svc_pool
+  name: app-svc
+  namespace: perftestzone3108
+spec:
+  ports:
+  - port: 80
+    protocol: TCP
+    targetPort: 8080
+  selector:
+    app: app
+  sessionAffinity: None
+  type: ClusterIP
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: perftestzone3109
+  labels:
+    cis_scanner: zone_1
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: app
+  name: app
+  namespace: perftestzone3109
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: app
+  template:
+    metadata:
+      labels:
+        app: app
+    spec:
+      containers:
+      - image: cloudadc/cafe:1.0
+        name: backend
+        ports:
+        - containerPort: 8080
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: app
+    cis.f5.com/as3-tenant: perftestzone3109
+    cis.f5.com/as3-app: perftestzone3109
+    cis.f5.com/as3-pool: perftestzone3109_app_svc_pool
+  name: app-svc
+  namespace: perftestzone3109
+spec:
+  ports:
+  - port: 80
+    protocol: TCP
+    targetPort: 8080
+  selector:
+    app: app
+  sessionAffinity: None
+  type: ClusterIP
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: perftestzone3110
+  labels:
+    cis_scanner: zone_2
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: app
+  name: app
+  namespace: perftestzone3110
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: app
+  template:
+    metadata:
+      labels:
+        app: app
+    spec:
+      containers:
+      - image: cloudadc/cafe:1.0
+        name: backend
+        ports:
+        - containerPort: 8080
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: app
+    cis.f5.com/as3-tenant: perftestzone3110
+    cis.f5.com/as3-app: perftestzone3110
+    cis.f5.com/as3-pool: perftestzone3110_app_svc_pool
+  name: app-svc
+  namespace: perftestzone3110
+spec:
+  ports:
+  - port: 80
+    protocol: TCP
+    targetPort: 8080
+  selector:
+    app: app
+  sessionAffinity: None
+  type: ClusterIP
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: perftestzone3111
+  labels:
+    cis_scanner: zone_3
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: app
+  name: app
+  namespace: perftestzone3111
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: app
+  template:
+    metadata:
+      labels:
+        app: app
+    spec:
+      containers:
+      - image: cloudadc/cafe:1.0
+        name: backend
+        ports:
+        - containerPort: 8080
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: app
+    cis.f5.com/as3-tenant: perftestzone3111
+    cis.f5.com/as3-app: perftestzone3111
+    cis.f5.com/as3-pool: perftestzone3111_app_svc_pool
+  name: app-svc
+  namespace: perftestzone3111
+spec:
+  ports:
+  - port: 80
+    protocol: TCP
+    targetPort: 8080
+  selector:
+    app: app
+  sessionAffinity: None
+  type: ClusterIP
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: perftestzone3112
+  labels:
+    cis_scanner: zone_1
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: app
+  name: app
+  namespace: perftestzone3112
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: app
+  template:
+    metadata:
+      labels:
+        app: app
+    spec:
+      containers:
+      - image: cloudadc/cafe:1.0
+        name: backend
+        ports:
+        - containerPort: 8080
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: app
+    cis.f5.com/as3-tenant: perftestzone3112
+    cis.f5.com/as3-app: perftestzone3112
+    cis.f5.com/as3-pool: perftestzone3112_app_svc_pool
+  name: app-svc
+  namespace: perftestzone3112
+spec:
+  ports:
+  - port: 80
+    protocol: TCP
+    targetPort: 8080
+  selector:
+    app: app
+  sessionAffinity: None
+  type: ClusterIP
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: perftestzone3113
+  labels:
+    cis_scanner: zone_2
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: app
+  name: app
+  namespace: perftestzone3113
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: app
+  template:
+    metadata:
+      labels:
+        app: app
+    spec:
+      containers:
+      - image: cloudadc/cafe:1.0
+        name: backend
+        ports:
+        - containerPort: 8080
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: app
+    cis.f5.com/as3-tenant: perftestzone3113
+    cis.f5.com/as3-app: perftestzone3113
+    cis.f5.com/as3-pool: perftestzone3113_app_svc_pool
+  name: app-svc
+  namespace: perftestzone3113
+spec:
+  ports:
+  - port: 80
+    protocol: TCP
+    targetPort: 8080
+  selector:
+    app: app
+  sessionAffinity: None
+  type: ClusterIP
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: perftestzone3114
+  labels:
+    cis_scanner: zone_3
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: app
+  name: app
+  namespace: perftestzone3114
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: app
+  template:
+    metadata:
+      labels:
+        app: app
+    spec:
+      containers:
+      - image: cloudadc/cafe:1.0
+        name: backend
+        ports:
+        - containerPort: 8080
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: app
+    cis.f5.com/as3-tenant: perftestzone3114
+    cis.f5.com/as3-app: perftestzone3114
+    cis.f5.com/as3-pool: perftestzone3114_app_svc_pool
+  name: app-svc
+  namespace: perftestzone3114
+spec:
+  ports:
+  - port: 80
+    protocol: TCP
+    targetPort: 8080
+  selector:
+    app: app
+  sessionAffinity: None
+  type: ClusterIP
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: perftestzone3115
+  labels:
+    cis_scanner: zone_1
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: app
+  name: app
+  namespace: perftestzone3115
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: app
+  template:
+    metadata:
+      labels:
+        app: app
+    spec:
+      containers:
+      - image: cloudadc/cafe:1.0
+        name: backend
+        ports:
+        - containerPort: 8080
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: app
+    cis.f5.com/as3-tenant: perftestzone3115
+    cis.f5.com/as3-app: perftestzone3115
+    cis.f5.com/as3-pool: perftestzone3115_app_svc_pool
+  name: app-svc
+  namespace: perftestzone3115
+spec:
+  ports:
+  - port: 80
+    protocol: TCP
+    targetPort: 8080
+  selector:
+    app: app
+  sessionAffinity: None
+  type: ClusterIP
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: perftestzone3116
+  labels:
+    cis_scanner: zone_2
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: app
+  name: app
+  namespace: perftestzone3116
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: app
+  template:
+    metadata:
+      labels:
+        app: app
+    spec:
+      containers:
+      - image: cloudadc/cafe:1.0
+        name: backend
+        ports:
+        - containerPort: 8080
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: app
+    cis.f5.com/as3-tenant: perftestzone3116
+    cis.f5.com/as3-app: perftestzone3116
+    cis.f5.com/as3-pool: perftestzone3116_app_svc_pool
+  name: app-svc
+  namespace: perftestzone3116
+spec:
+  ports:
+  - port: 80
+    protocol: TCP
+    targetPort: 8080
+  selector:
+    app: app
+  sessionAffinity: None
+  type: ClusterIP
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: perftestzone3117
+  labels:
+    cis_scanner: zone_3
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: app
+  name: app
+  namespace: perftestzone3117
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: app
+  template:
+    metadata:
+      labels:
+        app: app
+    spec:
+      containers:
+      - image: cloudadc/cafe:1.0
+        name: backend
+        ports:
+        - containerPort: 8080
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: app
+    cis.f5.com/as3-tenant: perftestzone3117
+    cis.f5.com/as3-app: perftestzone3117
+    cis.f5.com/as3-pool: perftestzone3117_app_svc_pool
+  name: app-svc
+  namespace: perftestzone3117
+spec:
+  ports:
+  - port: 80
+    protocol: TCP
+    targetPort: 8080
+  selector:
+    app: app
+  sessionAffinity: None
+  type: ClusterIP
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: perftestzone3118
+  labels:
+    cis_scanner: zone_1
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: app
+  name: app
+  namespace: perftestzone3118
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: app
+  template:
+    metadata:
+      labels:
+        app: app
+    spec:
+      containers:
+      - image: cloudadc/cafe:1.0
+        name: backend
+        ports:
+        - containerPort: 8080
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: app
+    cis.f5.com/as3-tenant: perftestzone3118
+    cis.f5.com/as3-app: perftestzone3118
+    cis.f5.com/as3-pool: perftestzone3118_app_svc_pool
+  name: app-svc
+  namespace: perftestzone3118
+spec:
+  ports:
+  - port: 80
+    protocol: TCP
+    targetPort: 8080
+  selector:
+    app: app
+  sessionAffinity: None
+  type: ClusterIP
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: perftestzone3119
+  labels:
+    cis_scanner: zone_2
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: app
+  name: app
+  namespace: perftestzone3119
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: app
+  template:
+    metadata:
+      labels:
+        app: app
+    spec:
+      containers:
+      - image: cloudadc/cafe:1.0
+        name: backend
+        ports:
+        - containerPort: 8080
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: app
+    cis.f5.com/as3-tenant: perftestzone3119
+    cis.f5.com/as3-app: perftestzone3119
+    cis.f5.com/as3-pool: perftestzone3119_app_svc_pool
+  name: app-svc
+  namespace: perftestzone3119
+spec:
+  ports:
+  - port: 80
+    protocol: TCP
+    targetPort: 8080
+  selector:
+    app: app
+  sessionAffinity: None
+  type: ClusterIP
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: perftestzone3120
+  labels:
+    cis_scanner: zone_3
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: app
+  name: app
+  namespace: perftestzone3120
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: app
+  template:
+    metadata:
+      labels:
+        app: app
+    spec:
+      containers:
+      - image: cloudadc/cafe:1.0
+        name: backend
+        ports:
+        - containerPort: 8080
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: app
+    cis.f5.com/as3-tenant: perftestzone3120
+    cis.f5.com/as3-app: perftestzone3120
+    cis.f5.com/as3-pool: perftestzone3120_app_svc_pool
+  name: app-svc
+  namespace: perftestzone3120
+spec:
+  ports:
+  - port: 80
+    protocol: TCP
+    targetPort: 8080
+  selector:
+    app: app
+  sessionAffinity: None
+  type: ClusterIP
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: perftestzone3121
+  labels:
+    cis_scanner: zone_1
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: app
+  name: app
+  namespace: perftestzone3121
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: app
+  template:
+    metadata:
+      labels:
+        app: app
+    spec:
+      containers:
+      - image: cloudadc/cafe:1.0
+        name: backend
+        ports:
+        - containerPort: 8080
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: app
+    cis.f5.com/as3-tenant: perftestzone3121
+    cis.f5.com/as3-app: perftestzone3121
+    cis.f5.com/as3-pool: perftestzone3121_app_svc_pool
+  name: app-svc
+  namespace: perftestzone3121
+spec:
+  ports:
+  - port: 80
+    protocol: TCP
+    targetPort: 8080
+  selector:
+    app: app
+  sessionAffinity: None
+  type: ClusterIP
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: perftestzone3122
+  labels:
+    cis_scanner: zone_2
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: app
+  name: app
+  namespace: perftestzone3122
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: app
+  template:
+    metadata:
+      labels:
+        app: app
+    spec:
+      containers:
+      - image: cloudadc/cafe:1.0
+        name: backend
+        ports:
+        - containerPort: 8080
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: app
+    cis.f5.com/as3-tenant: perftestzone3122
+    cis.f5.com/as3-app: perftestzone3122
+    cis.f5.com/as3-pool: perftestzone3122_app_svc_pool
+  name: app-svc
+  namespace: perftestzone3122
+spec:
+  ports:
+  - port: 80
+    protocol: TCP
+    targetPort: 8080
+  selector:
+    app: app
+  sessionAffinity: None
+  type: ClusterIP
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: perftestzone3123
+  labels:
+    cis_scanner: zone_3
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: app
+  name: app
+  namespace: perftestzone3123
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: app
+  template:
+    metadata:
+      labels:
+        app: app
+    spec:
+      containers:
+      - image: cloudadc/cafe:1.0
+        name: backend
+        ports:
+        - containerPort: 8080
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: app
+    cis.f5.com/as3-tenant: perftestzone3123
+    cis.f5.com/as3-app: perftestzone3123
+    cis.f5.com/as3-pool: perftestzone3123_app_svc_pool
+  name: app-svc
+  namespace: perftestzone3123
+spec:
+  ports:
+  - port: 80
+    protocol: TCP
+    targetPort: 8080
+  selector:
+    app: app
+  sessionAffinity: None
+  type: ClusterIP
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: perftestzone3124
+  labels:
+    cis_scanner: zone_1
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: app
+  name: app
+  namespace: perftestzone3124
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: app
+  template:
+    metadata:
+      labels:
+        app: app
+    spec:
+      containers:
+      - image: cloudadc/cafe:1.0
+        name: backend
+        ports:
+        - containerPort: 8080
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: app
+    cis.f5.com/as3-tenant: perftestzone3124
+    cis.f5.com/as3-app: perftestzone3124
+    cis.f5.com/as3-pool: perftestzone3124_app_svc_pool
+  name: app-svc
+  namespace: perftestzone3124
+spec:
+  ports:
+  - port: 80
+    protocol: TCP
+    targetPort: 8080
+  selector:
+    app: app
+  sessionAffinity: None
+  type: ClusterIP
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: perftestzone3125
+  labels:
+    cis_scanner: zone_2
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: app
+  name: app
+  namespace: perftestzone3125
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: app
+  template:
+    metadata:
+      labels:
+        app: app
+    spec:
+      containers:
+      - image: cloudadc/cafe:1.0
+        name: backend
+        ports:
+        - containerPort: 8080
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: app
+    cis.f5.com/as3-tenant: perftestzone3125
+    cis.f5.com/as3-app: perftestzone3125
+    cis.f5.com/as3-pool: perftestzone3125_app_svc_pool
+  name: app-svc
+  namespace: perftestzone3125
+spec:
+  ports:
+  - port: 80
+    protocol: TCP
+    targetPort: 8080
+  selector:
+    app: app
+  sessionAffinity: None
+  type: ClusterIP
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: perftestzone3126
+  labels:
+    cis_scanner: zone_3
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: app
+  name: app
+  namespace: perftestzone3126
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: app
+  template:
+    metadata:
+      labels:
+        app: app
+    spec:
+      containers:
+      - image: cloudadc/cafe:1.0
+        name: backend
+        ports:
+        - containerPort: 8080
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: app
+    cis.f5.com/as3-tenant: perftestzone3126
+    cis.f5.com/as3-app: perftestzone3126
+    cis.f5.com/as3-pool: perftestzone3126_app_svc_pool
+  name: app-svc
+  namespace: perftestzone3126
+spec:
+  ports:
+  - port: 80
+    protocol: TCP
+    targetPort: 8080
+  selector:
+    app: app
+  sessionAffinity: None
+  type: ClusterIP
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: perftestzone3127
+  labels:
+    cis_scanner: zone_1
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: app
+  name: app
+  namespace: perftestzone3127
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: app
+  template:
+    metadata:
+      labels:
+        app: app
+    spec:
+      containers:
+      - image: cloudadc/cafe:1.0
+        name: backend
+        ports:
+        - containerPort: 8080
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: app
+    cis.f5.com/as3-tenant: perftestzone3127
+    cis.f5.com/as3-app: perftestzone3127
+    cis.f5.com/as3-pool: perftestzone3127_app_svc_pool
+  name: app-svc
+  namespace: perftestzone3127
+spec:
+  ports:
+  - port: 80
+    protocol: TCP
+    targetPort: 8080
+  selector:
+    app: app
+  sessionAffinity: None
+  type: ClusterIP
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: perftestzone3128
+  labels:
+    cis_scanner: zone_2
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: app
+  name: app
+  namespace: perftestzone3128
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: app
+  template:
+    metadata:
+      labels:
+        app: app
+    spec:
+      containers:
+      - image: cloudadc/cafe:1.0
+        name: backend
+        ports:
+        - containerPort: 8080
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: app
+    cis.f5.com/as3-tenant: perftestzone3128
+    cis.f5.com/as3-app: perftestzone3128
+    cis.f5.com/as3-pool: perftestzone3128_app_svc_pool
+  name: app-svc
+  namespace: perftestzone3128
+spec:
+  ports:
+  - port: 80
+    protocol: TCP
+    targetPort: 8080
+  selector:
+    app: app
+  sessionAffinity: None
+  type: ClusterIP
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: perftestzone3129
+  labels:
+    cis_scanner: zone_3
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: app
+  name: app
+  namespace: perftestzone3129
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: app
+  template:
+    metadata:
+      labels:
+        app: app
+    spec:
+      containers:
+      - image: cloudadc/cafe:1.0
+        name: backend
+        ports:
+        - containerPort: 8080
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: app
+    cis.f5.com/as3-tenant: perftestzone3129
+    cis.f5.com/as3-app: perftestzone3129
+    cis.f5.com/as3-pool: perftestzone3129_app_svc_pool
+  name: app-svc
+  namespace: perftestzone3129
+spec:
+  ports:
+  - port: 80
+    protocol: TCP
+    targetPort: 8080
+  selector:
+    app: app
+  sessionAffinity: None
+  type: ClusterIP
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: perftestzone3130
+  labels:
+    cis_scanner: zone_1
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: app
+  name: app
+  namespace: perftestzone3130
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: app
+  template:
+    metadata:
+      labels:
+        app: app
+    spec:
+      containers:
+      - image: cloudadc/cafe:1.0
+        name: backend
+        ports:
+        - containerPort: 8080
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: app
+    cis.f5.com/as3-tenant: perftestzone3130
+    cis.f5.com/as3-app: perftestzone3130
+    cis.f5.com/as3-pool: perftestzone3130_app_svc_pool
+  name: app-svc
+  namespace: perftestzone3130
+spec:
+  ports:
+  - port: 80
+    protocol: TCP
+    targetPort: 8080
+  selector:
+    app: app
+  sessionAffinity: None
+  type: ClusterIP
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: perftestzone3131
+  labels:
+    cis_scanner: zone_2
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: app
+  name: app
+  namespace: perftestzone3131
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: app
+  template:
+    metadata:
+      labels:
+        app: app
+    spec:
+      containers:
+      - image: cloudadc/cafe:1.0
+        name: backend
+        ports:
+        - containerPort: 8080
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: app
+    cis.f5.com/as3-tenant: perftestzone3131
+    cis.f5.com/as3-app: perftestzone3131
+    cis.f5.com/as3-pool: perftestzone3131_app_svc_pool
+  name: app-svc
+  namespace: perftestzone3131
+spec:
+  ports:
+  - port: 80
+    protocol: TCP
+    targetPort: 8080
+  selector:
+    app: app
+  sessionAffinity: None
+  type: ClusterIP
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: perftestzone3132
+  labels:
+    cis_scanner: zone_3
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: app
+  name: app
+  namespace: perftestzone3132
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: app
+  template:
+    metadata:
+      labels:
+        app: app
+    spec:
+      containers:
+      - image: cloudadc/cafe:1.0
+        name: backend
+        ports:
+        - containerPort: 8080
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: app
+    cis.f5.com/as3-tenant: perftestzone3132
+    cis.f5.com/as3-app: perftestzone3132
+    cis.f5.com/as3-pool: perftestzone3132_app_svc_pool
+  name: app-svc
+  namespace: perftestzone3132
+spec:
+  ports:
+  - port: 80
+    protocol: TCP
+    targetPort: 8080
+  selector:
+    app: app
+  sessionAffinity: None
+  type: ClusterIP
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: perftestzone3133
+  labels:
+    cis_scanner: zone_1
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: app
+  name: app
+  namespace: perftestzone3133
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: app
+  template:
+    metadata:
+      labels:
+        app: app
+    spec:
+      containers:
+      - image: cloudadc/cafe:1.0
+        name: backend
+        ports:
+        - containerPort: 8080
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: app
+    cis.f5.com/as3-tenant: perftestzone3133
+    cis.f5.com/as3-app: perftestzone3133
+    cis.f5.com/as3-pool: perftestzone3133_app_svc_pool
+  name: app-svc
+  namespace: perftestzone3133
+spec:
+  ports:
+  - port: 80
+    protocol: TCP
+    targetPort: 8080
+  selector:
+    app: app
+  sessionAffinity: None
+  type: ClusterIP
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: perftestzone3134
+  labels:
+    cis_scanner: zone_2
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: app
+  name: app
+  namespace: perftestzone3134
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: app
+  template:
+    metadata:
+      labels:
+        app: app
+    spec:
+      containers:
+      - image: cloudadc/cafe:1.0
+        name: backend
+        ports:
+        - containerPort: 8080
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: app
+    cis.f5.com/as3-tenant: perftestzone3134
+    cis.f5.com/as3-app: perftestzone3134
+    cis.f5.com/as3-pool: perftestzone3134_app_svc_pool
+  name: app-svc
+  namespace: perftestzone3134
+spec:
+  ports:
+  - port: 80
+    protocol: TCP
+    targetPort: 8080
+  selector:
+    app: app
+  sessionAffinity: None
+  type: ClusterIP
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: perftestzone3135
+  labels:
+    cis_scanner: zone_3
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: app
+  name: app
+  namespace: perftestzone3135
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: app
+  template:
+    metadata:
+      labels:
+        app: app
+    spec:
+      containers:
+      - image: cloudadc/cafe:1.0
+        name: backend
+        ports:
+        - containerPort: 8080
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: app
+    cis.f5.com/as3-tenant: perftestzone3135
+    cis.f5.com/as3-app: perftestzone3135
+    cis.f5.com/as3-pool: perftestzone3135_app_svc_pool
+  name: app-svc
+  namespace: perftestzone3135
+spec:
+  ports:
+  - port: 80
+    protocol: TCP
+    targetPort: 8080
+  selector:
+    app: app
+  sessionAffinity: None
+  type: ClusterIP
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: perftestzone3136
+  labels:
+    cis_scanner: zone_1
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: app
+  name: app
+  namespace: perftestzone3136
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: app
+  template:
+    metadata:
+      labels:
+        app: app
+    spec:
+      containers:
+      - image: cloudadc/cafe:1.0
+        name: backend
+        ports:
+        - containerPort: 8080
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: app
+    cis.f5.com/as3-tenant: perftestzone3136
+    cis.f5.com/as3-app: perftestzone3136
+    cis.f5.com/as3-pool: perftestzone3136_app_svc_pool
+  name: app-svc
+  namespace: perftestzone3136
+spec:
+  ports:
+  - port: 80
+    protocol: TCP
+    targetPort: 8080
+  selector:
+    app: app
+  sessionAffinity: None
+  type: ClusterIP
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: perftestzone3137
+  labels:
+    cis_scanner: zone_2
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: app
+  name: app
+  namespace: perftestzone3137
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: app
+  template:
+    metadata:
+      labels:
+        app: app
+    spec:
+      containers:
+      - image: cloudadc/cafe:1.0
+        name: backend
+        ports:
+        - containerPort: 8080
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: app
+    cis.f5.com/as3-tenant: perftestzone3137
+    cis.f5.com/as3-app: perftestzone3137
+    cis.f5.com/as3-pool: perftestzone3137_app_svc_pool
+  name: app-svc
+  namespace: perftestzone3137
+spec:
+  ports:
+  - port: 80
+    protocol: TCP
+    targetPort: 8080
+  selector:
+    app: app
+  sessionAffinity: None
+  type: ClusterIP
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: perftestzone3138
+  labels:
+    cis_scanner: zone_3
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: app
+  name: app
+  namespace: perftestzone3138
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: app
+  template:
+    metadata:
+      labels:
+        app: app
+    spec:
+      containers:
+      - image: cloudadc/cafe:1.0
+        name: backend
+        ports:
+        - containerPort: 8080
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: app
+    cis.f5.com/as3-tenant: perftestzone3138
+    cis.f5.com/as3-app: perftestzone3138
+    cis.f5.com/as3-pool: perftestzone3138_app_svc_pool
+  name: app-svc
+  namespace: perftestzone3138
+spec:
+  ports:
+  - port: 80
+    protocol: TCP
+    targetPort: 8080
+  selector:
+    app: app
+  sessionAffinity: None
+  type: ClusterIP
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: perftestzone3139
+  labels:
+    cis_scanner: zone_1
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: app
+  name: app
+  namespace: perftestzone3139
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: app
+  template:
+    metadata:
+      labels:
+        app: app
+    spec:
+      containers:
+      - image: cloudadc/cafe:1.0
+        name: backend
+        ports:
+        - containerPort: 8080
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: app
+    cis.f5.com/as3-tenant: perftestzone3139
+    cis.f5.com/as3-app: perftestzone3139
+    cis.f5.com/as3-pool: perftestzone3139_app_svc_pool
+  name: app-svc
+  namespace: perftestzone3139
+spec:
+  ports:
+  - port: 80
+    protocol: TCP
+    targetPort: 8080
+  selector:
+    app: app
+  sessionAffinity: None
+  type: ClusterIP
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: perftestzone3140
+  labels:
+    cis_scanner: zone_2
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: app
+  name: app
+  namespace: perftestzone3140
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: app
+  template:
+    metadata:
+      labels:
+        app: app
+    spec:
+      containers:
+      - image: cloudadc/cafe:1.0
+        name: backend
+        ports:
+        - containerPort: 8080
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: app
+    cis.f5.com/as3-tenant: perftestzone3140
+    cis.f5.com/as3-app: perftestzone3140
+    cis.f5.com/as3-pool: perftestzone3140_app_svc_pool
+  name: app-svc
+  namespace: perftestzone3140
+spec:
+  ports:
+  - port: 80
+    protocol: TCP
+    targetPort: 8080
+  selector:
+    app: app
+  sessionAffinity: None
+  type: ClusterIP
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: perftestzone3141
+  labels:
+    cis_scanner: zone_3
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: app
+  name: app
+  namespace: perftestzone3141
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: app
+  template:
+    metadata:
+      labels:
+        app: app
+    spec:
+      containers:
+      - image: cloudadc/cafe:1.0
+        name: backend
+        ports:
+        - containerPort: 8080
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: app
+    cis.f5.com/as3-tenant: perftestzone3141
+    cis.f5.com/as3-app: perftestzone3141
+    cis.f5.com/as3-pool: perftestzone3141_app_svc_pool
+  name: app-svc
+  namespace: perftestzone3141
+spec:
+  ports:
+  - port: 80
+    protocol: TCP
+    targetPort: 8080
+  selector:
+    app: app
+  sessionAffinity: None
+  type: ClusterIP
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: perftestzone3142
+  labels:
+    cis_scanner: zone_1
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: app
+  name: app
+  namespace: perftestzone3142
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: app
+  template:
+    metadata:
+      labels:
+        app: app
+    spec:
+      containers:
+      - image: cloudadc/cafe:1.0
+        name: backend
+        ports:
+        - containerPort: 8080
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: app
+    cis.f5.com/as3-tenant: perftestzone3142
+    cis.f5.com/as3-app: perftestzone3142
+    cis.f5.com/as3-pool: perftestzone3142_app_svc_pool
+  name: app-svc
+  namespace: perftestzone3142
+spec:
+  ports:
+  - port: 80
+    protocol: TCP
+    targetPort: 8080
+  selector:
+    app: app
+  sessionAffinity: None
+  type: ClusterIP
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: perftestzone3143
+  labels:
+    cis_scanner: zone_2
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: app
+  name: app
+  namespace: perftestzone3143
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: app
+  template:
+    metadata:
+      labels:
+        app: app
+    spec:
+      containers:
+      - image: cloudadc/cafe:1.0
+        name: backend
+        ports:
+        - containerPort: 8080
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: app
+    cis.f5.com/as3-tenant: perftestzone3143
+    cis.f5.com/as3-app: perftestzone3143
+    cis.f5.com/as3-pool: perftestzone3143_app_svc_pool
+  name: app-svc
+  namespace: perftestzone3143
+spec:
+  ports:
+  - port: 80
+    protocol: TCP
+    targetPort: 8080
+  selector:
+    app: app
+  sessionAffinity: None
+  type: ClusterIP
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: perftestzone3144
+  labels:
+    cis_scanner: zone_3
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: app
+  name: app
+  namespace: perftestzone3144
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: app
+  template:
+    metadata:
+      labels:
+        app: app
+    spec:
+      containers:
+      - image: cloudadc/cafe:1.0
+        name: backend
+        ports:
+        - containerPort: 8080
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: app
+    cis.f5.com/as3-tenant: perftestzone3144
+    cis.f5.com/as3-app: perftestzone3144
+    cis.f5.com/as3-pool: perftestzone3144_app_svc_pool
+  name: app-svc
+  namespace: perftestzone3144
+spec:
+  ports:
+  - port: 80
+    protocol: TCP
+    targetPort: 8080
+  selector:
+    app: app
+  sessionAffinity: None
+  type: ClusterIP
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: perftestzone3145
+  labels:
+    cis_scanner: zone_1
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: app
+  name: app
+  namespace: perftestzone3145
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: app
+  template:
+    metadata:
+      labels:
+        app: app
+    spec:
+      containers:
+      - image: cloudadc/cafe:1.0
+        name: backend
+        ports:
+        - containerPort: 8080
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: app
+    cis.f5.com/as3-tenant: perftestzone3145
+    cis.f5.com/as3-app: perftestzone3145
+    cis.f5.com/as3-pool: perftestzone3145_app_svc_pool
+  name: app-svc
+  namespace: perftestzone3145
+spec:
+  ports:
+  - port: 80
+    protocol: TCP
+    targetPort: 8080
+  selector:
+    app: app
+  sessionAffinity: None
+  type: ClusterIP
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: perftestzone3146
+  labels:
+    cis_scanner: zone_2
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: app
+  name: app
+  namespace: perftestzone3146
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: app
+  template:
+    metadata:
+      labels:
+        app: app
+    spec:
+      containers:
+      - image: cloudadc/cafe:1.0
+        name: backend
+        ports:
+        - containerPort: 8080
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: app
+    cis.f5.com/as3-tenant: perftestzone3146
+    cis.f5.com/as3-app: perftestzone3146
+    cis.f5.com/as3-pool: perftestzone3146_app_svc_pool
+  name: app-svc
+  namespace: perftestzone3146
+spec:
+  ports:
+  - port: 80
+    protocol: TCP
+    targetPort: 8080
+  selector:
+    app: app
+  sessionAffinity: None
+  type: ClusterIP
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: perftestzone3147
+  labels:
+    cis_scanner: zone_3
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: app
+  name: app
+  namespace: perftestzone3147
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: app
+  template:
+    metadata:
+      labels:
+        app: app
+    spec:
+      containers:
+      - image: cloudadc/cafe:1.0
+        name: backend
+        ports:
+        - containerPort: 8080
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: app
+    cis.f5.com/as3-tenant: perftestzone3147
+    cis.f5.com/as3-app: perftestzone3147
+    cis.f5.com/as3-pool: perftestzone3147_app_svc_pool
+  name: app-svc
+  namespace: perftestzone3147
+spec:
+  ports:
+  - port: 80
+    protocol: TCP
+    targetPort: 8080
+  selector:
+    app: app
+  sessionAffinity: None
+  type: ClusterIP
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: perftestzone3148
+  labels:
+    cis_scanner: zone_1
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: app
+  name: app
+  namespace: perftestzone3148
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: app
+  template:
+    metadata:
+      labels:
+        app: app
+    spec:
+      containers:
+      - image: cloudadc/cafe:1.0
+        name: backend
+        ports:
+        - containerPort: 8080
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: app
+    cis.f5.com/as3-tenant: perftestzone3148
+    cis.f5.com/as3-app: perftestzone3148
+    cis.f5.com/as3-pool: perftestzone3148_app_svc_pool
+  name: app-svc
+  namespace: perftestzone3148
+spec:
+  ports:
+  - port: 80
+    protocol: TCP
+    targetPort: 8080
+  selector:
+    app: app
+  sessionAffinity: None
+  type: ClusterIP
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: perftestzone3149
+  labels:
+    cis_scanner: zone_2
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: app
+  name: app
+  namespace: perftestzone3149
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: app
+  template:
+    metadata:
+      labels:
+        app: app
+    spec:
+      containers:
+      - image: cloudadc/cafe:1.0
+        name: backend
+        ports:
+        - containerPort: 8080
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: app
+    cis.f5.com/as3-tenant: perftestzone3149
+    cis.f5.com/as3-app: perftestzone3149
+    cis.f5.com/as3-pool: perftestzone3149_app_svc_pool
+  name: app-svc
+  namespace: perftestzone3149
+spec:
+  ports:
+  - port: 80
+    protocol: TCP
+    targetPort: 8080
+  selector:
+    app: app
+  sessionAffinity: None
+  type: ClusterIP
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: perftestzone3150
+  labels:
+    cis_scanner: zone_3
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: app
+  name: app
+  namespace: perftestzone3150
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: app
+  template:
+    metadata:
+      labels:
+        app: app
+    spec:
+      containers:
+      - image: cloudadc/cafe:1.0
+        name: backend
+        ports:
+        - containerPort: 8080
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: app
+    cis.f5.com/as3-tenant: perftestzone3150
+    cis.f5.com/as3-app: perftestzone3150
+    cis.f5.com/as3-pool: perftestzone3150_app_svc_pool
+  name: app-svc
+  namespace: perftestzone3150
+spec:
+  ports:
+  - port: 80
+    protocol: TCP
+    targetPort: 8080
+  selector:
+    app: app
+  sessionAffinity: None
+  type: ClusterIP
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: perftestzone3151
+  labels:
+    cis_scanner: zone_1
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: app
+  name: app
+  namespace: perftestzone3151
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: app
+  template:
+    metadata:
+      labels:
+        app: app
+    spec:
+      containers:
+      - image: cloudadc/cafe:1.0
+        name: backend
+        ports:
+        - containerPort: 8080
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: app
+    cis.f5.com/as3-tenant: perftestzone3151
+    cis.f5.com/as3-app: perftestzone3151
+    cis.f5.com/as3-pool: perftestzone3151_app_svc_pool
+  name: app-svc
+  namespace: perftestzone3151
+spec:
+  ports:
+  - port: 80
+    protocol: TCP
+    targetPort: 8080
+  selector:
+    app: app
+  sessionAffinity: None
+  type: ClusterIP
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: perftestzone3152
+  labels:
+    cis_scanner: zone_2
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: app
+  name: app
+  namespace: perftestzone3152
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: app
+  template:
+    metadata:
+      labels:
+        app: app
+    spec:
+      containers:
+      - image: cloudadc/cafe:1.0
+        name: backend
+        ports:
+        - containerPort: 8080
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: app
+    cis.f5.com/as3-tenant: perftestzone3152
+    cis.f5.com/as3-app: perftestzone3152
+    cis.f5.com/as3-pool: perftestzone3152_app_svc_pool
+  name: app-svc
+  namespace: perftestzone3152
+spec:
+  ports:
+  - port: 80
+    protocol: TCP
+    targetPort: 8080
+  selector:
+    app: app
+  sessionAffinity: None
+  type: ClusterIP
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: perftestzone3153
+  labels:
+    cis_scanner: zone_3
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: app
+  name: app
+  namespace: perftestzone3153
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: app
+  template:
+    metadata:
+      labels:
+        app: app
+    spec:
+      containers:
+      - image: cloudadc/cafe:1.0
+        name: backend
+        ports:
+        - containerPort: 8080
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: app
+    cis.f5.com/as3-tenant: perftestzone3153
+    cis.f5.com/as3-app: perftestzone3153
+    cis.f5.com/as3-pool: perftestzone3153_app_svc_pool
+  name: app-svc
+  namespace: perftestzone3153
+spec:
+  ports:
+  - port: 80
+    protocol: TCP
+    targetPort: 8080
+  selector:
+    app: app
+  sessionAffinity: None
+  type: ClusterIP
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: perftestzone3154
+  labels:
+    cis_scanner: zone_1
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: app
+  name: app
+  namespace: perftestzone3154
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: app
+  template:
+    metadata:
+      labels:
+        app: app
+    spec:
+      containers:
+      - image: cloudadc/cafe:1.0
+        name: backend
+        ports:
+        - containerPort: 8080
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: app
+    cis.f5.com/as3-tenant: perftestzone3154
+    cis.f5.com/as3-app: perftestzone3154
+    cis.f5.com/as3-pool: perftestzone3154_app_svc_pool
+  name: app-svc
+  namespace: perftestzone3154
+spec:
+  ports:
+  - port: 80
+    protocol: TCP
+    targetPort: 8080
+  selector:
+    app: app
+  sessionAffinity: None
+  type: ClusterIP
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: perftestzone3155
+  labels:
+    cis_scanner: zone_2
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: app
+  name: app
+  namespace: perftestzone3155
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: app
+  template:
+    metadata:
+      labels:
+        app: app
+    spec:
+      containers:
+      - image: cloudadc/cafe:1.0
+        name: backend
+        ports:
+        - containerPort: 8080
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: app
+    cis.f5.com/as3-tenant: perftestzone3155
+    cis.f5.com/as3-app: perftestzone3155
+    cis.f5.com/as3-pool: perftestzone3155_app_svc_pool
+  name: app-svc
+  namespace: perftestzone3155
+spec:
+  ports:
+  - port: 80
+    protocol: TCP
+    targetPort: 8080
+  selector:
+    app: app
+  sessionAffinity: None
+  type: ClusterIP
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: perftestzone3156
+  labels:
+    cis_scanner: zone_3
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: app
+  name: app
+  namespace: perftestzone3156
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: app
+  template:
+    metadata:
+      labels:
+        app: app
+    spec:
+      containers:
+      - image: cloudadc/cafe:1.0
+        name: backend
+        ports:
+        - containerPort: 8080
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: app
+    cis.f5.com/as3-tenant: perftestzone3156
+    cis.f5.com/as3-app: perftestzone3156
+    cis.f5.com/as3-pool: perftestzone3156_app_svc_pool
+  name: app-svc
+  namespace: perftestzone3156
+spec:
+  ports:
+  - port: 80
+    protocol: TCP
+    targetPort: 8080
+  selector:
+    app: app
+  sessionAffinity: None
+  type: ClusterIP
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: perftestzone3157
+  labels:
+    cis_scanner: zone_1
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: app
+  name: app
+  namespace: perftestzone3157
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: app
+  template:
+    metadata:
+      labels:
+        app: app
+    spec:
+      containers:
+      - image: cloudadc/cafe:1.0
+        name: backend
+        ports:
+        - containerPort: 8080
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: app
+    cis.f5.com/as3-tenant: perftestzone3157
+    cis.f5.com/as3-app: perftestzone3157
+    cis.f5.com/as3-pool: perftestzone3157_app_svc_pool
+  name: app-svc
+  namespace: perftestzone3157
+spec:
+  ports:
+  - port: 80
+    protocol: TCP
+    targetPort: 8080
+  selector:
+    app: app
+  sessionAffinity: None
+  type: ClusterIP
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: perftestzone3158
+  labels:
+    cis_scanner: zone_2
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: app
+  name: app
+  namespace: perftestzone3158
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: app
+  template:
+    metadata:
+      labels:
+        app: app
+    spec:
+      containers:
+      - image: cloudadc/cafe:1.0
+        name: backend
+        ports:
+        - containerPort: 8080
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: app
+    cis.f5.com/as3-tenant: perftestzone3158
+    cis.f5.com/as3-app: perftestzone3158
+    cis.f5.com/as3-pool: perftestzone3158_app_svc_pool
+  name: app-svc
+  namespace: perftestzone3158
+spec:
+  ports:
+  - port: 80
+    protocol: TCP
+    targetPort: 8080
+  selector:
+    app: app
+  sessionAffinity: None
+  type: ClusterIP
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: perftestzone3159
+  labels:
+    cis_scanner: zone_3
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: app
+  name: app
+  namespace: perftestzone3159
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: app
+  template:
+    metadata:
+      labels:
+        app: app
+    spec:
+      containers:
+      - image: cloudadc/cafe:1.0
+        name: backend
+        ports:
+        - containerPort: 8080
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: app
+    cis.f5.com/as3-tenant: perftestzone3159
+    cis.f5.com/as3-app: perftestzone3159
+    cis.f5.com/as3-pool: perftestzone3159_app_svc_pool
+  name: app-svc
+  namespace: perftestzone3159
+spec:
+  ports:
+  - port: 80
+    protocol: TCP
+    targetPort: 8080
+  selector:
+    app: app
+  sessionAffinity: None
+  type: ClusterIP
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: perftestzone3160
+  labels:
+    cis_scanner: zone_1
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: app
+  name: app
+  namespace: perftestzone3160
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: app
+  template:
+    metadata:
+      labels:
+        app: app
+    spec:
+      containers:
+      - image: cloudadc/cafe:1.0
+        name: backend
+        ports:
+        - containerPort: 8080
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: app
+    cis.f5.com/as3-tenant: perftestzone3160
+    cis.f5.com/as3-app: perftestzone3160
+    cis.f5.com/as3-pool: perftestzone3160_app_svc_pool
+  name: app-svc
+  namespace: perftestzone3160
+spec:
+  ports:
+  - port: 80
+    protocol: TCP
+    targetPort: 8080
+  selector:
+    app: app
+  sessionAffinity: None
+  type: ClusterIP
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: perftestzone3161
+  labels:
+    cis_scanner: zone_2
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: app
+  name: app
+  namespace: perftestzone3161
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: app
+  template:
+    metadata:
+      labels:
+        app: app
+    spec:
+      containers:
+      - image: cloudadc/cafe:1.0
+        name: backend
+        ports:
+        - containerPort: 8080
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: app
+    cis.f5.com/as3-tenant: perftestzone3161
+    cis.f5.com/as3-app: perftestzone3161
+    cis.f5.com/as3-pool: perftestzone3161_app_svc_pool
+  name: app-svc
+  namespace: perftestzone3161
+spec:
+  ports:
+  - port: 80
+    protocol: TCP
+    targetPort: 8080
+  selector:
+    app: app
+  sessionAffinity: None
+  type: ClusterIP
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: perftestzone3162
+  labels:
+    cis_scanner: zone_3
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: app
+  name: app
+  namespace: perftestzone3162
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: app
+  template:
+    metadata:
+      labels:
+        app: app
+    spec:
+      containers:
+      - image: cloudadc/cafe:1.0
+        name: backend
+        ports:
+        - containerPort: 8080
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: app
+    cis.f5.com/as3-tenant: perftestzone3162
+    cis.f5.com/as3-app: perftestzone3162
+    cis.f5.com/as3-pool: perftestzone3162_app_svc_pool
+  name: app-svc
+  namespace: perftestzone3162
+spec:
+  ports:
+  - port: 80
+    protocol: TCP
+    targetPort: 8080
+  selector:
+    app: app
+  sessionAffinity: None
+  type: ClusterIP
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: perftestzone3163
+  labels:
+    cis_scanner: zone_1
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: app
+  name: app
+  namespace: perftestzone3163
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: app
+  template:
+    metadata:
+      labels:
+        app: app
+    spec:
+      containers:
+      - image: cloudadc/cafe:1.0
+        name: backend
+        ports:
+        - containerPort: 8080
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: app
+    cis.f5.com/as3-tenant: perftestzone3163
+    cis.f5.com/as3-app: perftestzone3163
+    cis.f5.com/as3-pool: perftestzone3163_app_svc_pool
+  name: app-svc
+  namespace: perftestzone3163
+spec:
+  ports:
+  - port: 80
+    protocol: TCP
+    targetPort: 8080
+  selector:
+    app: app
+  sessionAffinity: None
+  type: ClusterIP
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: perftestzone3164
+  labels:
+    cis_scanner: zone_2
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: app
+  name: app
+  namespace: perftestzone3164
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: app
+  template:
+    metadata:
+      labels:
+        app: app
+    spec:
+      containers:
+      - image: cloudadc/cafe:1.0
+        name: backend
+        ports:
+        - containerPort: 8080
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: app
+    cis.f5.com/as3-tenant: perftestzone3164
+    cis.f5.com/as3-app: perftestzone3164
+    cis.f5.com/as3-pool: perftestzone3164_app_svc_pool
+  name: app-svc
+  namespace: perftestzone3164
+spec:
+  ports:
+  - port: 80
+    protocol: TCP
+    targetPort: 8080
+  selector:
+    app: app
+  sessionAffinity: None
+  type: ClusterIP
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: perftestzone3165
+  labels:
+    cis_scanner: zone_3
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: app
+  name: app
+  namespace: perftestzone3165
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: app
+  template:
+    metadata:
+      labels:
+        app: app
+    spec:
+      containers:
+      - image: cloudadc/cafe:1.0
+        name: backend
+        ports:
+        - containerPort: 8080
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: app
+    cis.f5.com/as3-tenant: perftestzone3165
+    cis.f5.com/as3-app: perftestzone3165
+    cis.f5.com/as3-pool: perftestzone3165_app_svc_pool
+  name: app-svc
+  namespace: perftestzone3165
+spec:
+  ports:
+  - port: 80
+    protocol: TCP
+    targetPort: 8080
+  selector:
+    app: app
+  sessionAffinity: None
+  type: ClusterIP
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: perftestzone3166
+  labels:
+    cis_scanner: zone_1
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: app
+  name: app
+  namespace: perftestzone3166
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: app
+  template:
+    metadata:
+      labels:
+        app: app
+    spec:
+      containers:
+      - image: cloudadc/cafe:1.0
+        name: backend
+        ports:
+        - containerPort: 8080
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: app
+    cis.f5.com/as3-tenant: perftestzone3166
+    cis.f5.com/as3-app: perftestzone3166
+    cis.f5.com/as3-pool: perftestzone3166_app_svc_pool
+  name: app-svc
+  namespace: perftestzone3166
+spec:
+  ports:
+  - port: 80
+    protocol: TCP
+    targetPort: 8080
+  selector:
+    app: app
+  sessionAffinity: None
+  type: ClusterIP
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: perftestzone3167
+  labels:
+    cis_scanner: zone_2
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: app
+  name: app
+  namespace: perftestzone3167
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: app
+  template:
+    metadata:
+      labels:
+        app: app
+    spec:
+      containers:
+      - image: cloudadc/cafe:1.0
+        name: backend
+        ports:
+        - containerPort: 8080
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: app
+    cis.f5.com/as3-tenant: perftestzone3167
+    cis.f5.com/as3-app: perftestzone3167
+    cis.f5.com/as3-pool: perftestzone3167_app_svc_pool
+  name: app-svc
+  namespace: perftestzone3167
+spec:
+  ports:
+  - port: 80
+    protocol: TCP
+    targetPort: 8080
+  selector:
+    app: app
+  sessionAffinity: None
+  type: ClusterIP
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: perftestzone3168
+  labels:
+    cis_scanner: zone_3
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: app
+  name: app
+  namespace: perftestzone3168
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: app
+  template:
+    metadata:
+      labels:
+        app: app
+    spec:
+      containers:
+      - image: cloudadc/cafe:1.0
+        name: backend
+        ports:
+        - containerPort: 8080
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: app
+    cis.f5.com/as3-tenant: perftestzone3168
+    cis.f5.com/as3-app: perftestzone3168
+    cis.f5.com/as3-pool: perftestzone3168_app_svc_pool
+  name: app-svc
+  namespace: perftestzone3168
+spec:
+  ports:
+  - port: 80
+    protocol: TCP
+    targetPort: 8080
+  selector:
+    app: app
+  sessionAffinity: None
+  type: ClusterIP
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: perftestzone3169
+  labels:
+    cis_scanner: zone_1
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: app
+  name: app
+  namespace: perftestzone3169
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: app
+  template:
+    metadata:
+      labels:
+        app: app
+    spec:
+      containers:
+      - image: cloudadc/cafe:1.0
+        name: backend
+        ports:
+        - containerPort: 8080
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: app
+    cis.f5.com/as3-tenant: perftestzone3169
+    cis.f5.com/as3-app: perftestzone3169
+    cis.f5.com/as3-pool: perftestzone3169_app_svc_pool
+  name: app-svc
+  namespace: perftestzone3169
+spec:
+  ports:
+  - port: 80
+    protocol: TCP
+    targetPort: 8080
+  selector:
+    app: app
+  sessionAffinity: None
+  type: ClusterIP
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: perftestzone3170
+  labels:
+    cis_scanner: zone_2
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: app
+  name: app
+  namespace: perftestzone3170
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: app
+  template:
+    metadata:
+      labels:
+        app: app
+    spec:
+      containers:
+      - image: cloudadc/cafe:1.0
+        name: backend
+        ports:
+        - containerPort: 8080
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: app
+    cis.f5.com/as3-tenant: perftestzone3170
+    cis.f5.com/as3-app: perftestzone3170
+    cis.f5.com/as3-pool: perftestzone3170_app_svc_pool
+  name: app-svc
+  namespace: perftestzone3170
+spec:
+  ports:
+  - port: 80
+    protocol: TCP
+    targetPort: 8080
+  selector:
+    app: app
+  sessionAffinity: None
+  type: ClusterIP
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: perftestzone3171
+  labels:
+    cis_scanner: zone_3
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: app
+  name: app
+  namespace: perftestzone3171
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: app
+  template:
+    metadata:
+      labels:
+        app: app
+    spec:
+      containers:
+      - image: cloudadc/cafe:1.0
+        name: backend
+        ports:
+        - containerPort: 8080
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: app
+    cis.f5.com/as3-tenant: perftestzone3171
+    cis.f5.com/as3-app: perftestzone3171
+    cis.f5.com/as3-pool: perftestzone3171_app_svc_pool
+  name: app-svc
+  namespace: perftestzone3171
+spec:
+  ports:
+  - port: 80
+    protocol: TCP
+    targetPort: 8080
+  selector:
+    app: app
+  sessionAffinity: None
+  type: ClusterIP
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: perftestzone3172
+  labels:
+    cis_scanner: zone_1
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: app
+  name: app
+  namespace: perftestzone3172
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: app
+  template:
+    metadata:
+      labels:
+        app: app
+    spec:
+      containers:
+      - image: cloudadc/cafe:1.0
+        name: backend
+        ports:
+        - containerPort: 8080
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: app
+    cis.f5.com/as3-tenant: perftestzone3172
+    cis.f5.com/as3-app: perftestzone3172
+    cis.f5.com/as3-pool: perftestzone3172_app_svc_pool
+  name: app-svc
+  namespace: perftestzone3172
+spec:
+  ports:
+  - port: 80
+    protocol: TCP
+    targetPort: 8080
+  selector:
+    app: app
+  sessionAffinity: None
+  type: ClusterIP
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: perftestzone3173
+  labels:
+    cis_scanner: zone_2
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: app
+  name: app
+  namespace: perftestzone3173
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: app
+  template:
+    metadata:
+      labels:
+        app: app
+    spec:
+      containers:
+      - image: cloudadc/cafe:1.0
+        name: backend
+        ports:
+        - containerPort: 8080
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: app
+    cis.f5.com/as3-tenant: perftestzone3173
+    cis.f5.com/as3-app: perftestzone3173
+    cis.f5.com/as3-pool: perftestzone3173_app_svc_pool
+  name: app-svc
+  namespace: perftestzone3173
+spec:
+  ports:
+  - port: 80
+    protocol: TCP
+    targetPort: 8080
+  selector:
+    app: app
+  sessionAffinity: None
+  type: ClusterIP
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: perftestzone3174
+  labels:
+    cis_scanner: zone_3
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: app
+  name: app
+  namespace: perftestzone3174
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: app
+  template:
+    metadata:
+      labels:
+        app: app
+    spec:
+      containers:
+      - image: cloudadc/cafe:1.0
+        name: backend
+        ports:
+        - containerPort: 8080
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: app
+    cis.f5.com/as3-tenant: perftestzone3174
+    cis.f5.com/as3-app: perftestzone3174
+    cis.f5.com/as3-pool: perftestzone3174_app_svc_pool
+  name: app-svc
+  namespace: perftestzone3174
+spec:
+  ports:
+  - port: 80
+    protocol: TCP
+    targetPort: 8080
+  selector:
+    app: app
+  sessionAffinity: None
+  type: ClusterIP
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: perftestzone3175
+  labels:
+    cis_scanner: zone_1
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: app
+  name: app
+  namespace: perftestzone3175
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: app
+  template:
+    metadata:
+      labels:
+        app: app
+    spec:
+      containers:
+      - image: cloudadc/cafe:1.0
+        name: backend
+        ports:
+        - containerPort: 8080
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: app
+    cis.f5.com/as3-tenant: perftestzone3175
+    cis.f5.com/as3-app: perftestzone3175
+    cis.f5.com/as3-pool: perftestzone3175_app_svc_pool
+  name: app-svc
+  namespace: perftestzone3175
+spec:
+  ports:
+  - port: 80
+    protocol: TCP
+    targetPort: 8080
+  selector:
+    app: app
+  sessionAffinity: None
+  type: ClusterIP
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: perftestzone3176
+  labels:
+    cis_scanner: zone_2
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: app
+  name: app
+  namespace: perftestzone3176
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: app
+  template:
+    metadata:
+      labels:
+        app: app
+    spec:
+      containers:
+      - image: cloudadc/cafe:1.0
+        name: backend
+        ports:
+        - containerPort: 8080
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: app
+    cis.f5.com/as3-tenant: perftestzone3176
+    cis.f5.com/as3-app: perftestzone3176
+    cis.f5.com/as3-pool: perftestzone3176_app_svc_pool
+  name: app-svc
+  namespace: perftestzone3176
+spec:
+  ports:
+  - port: 80
+    protocol: TCP
+    targetPort: 8080
+  selector:
+    app: app
+  sessionAffinity: None
+  type: ClusterIP
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: perftestzone3177
+  labels:
+    cis_scanner: zone_3
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: app
+  name: app
+  namespace: perftestzone3177
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: app
+  template:
+    metadata:
+      labels:
+        app: app
+    spec:
+      containers:
+      - image: cloudadc/cafe:1.0
+        name: backend
+        ports:
+        - containerPort: 8080
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: app
+    cis.f5.com/as3-tenant: perftestzone3177
+    cis.f5.com/as3-app: perftestzone3177
+    cis.f5.com/as3-pool: perftestzone3177_app_svc_pool
+  name: app-svc
+  namespace: perftestzone3177
+spec:
+  ports:
+  - port: 80
+    protocol: TCP
+    targetPort: 8080
+  selector:
+    app: app
+  sessionAffinity: None
+  type: ClusterIP
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: perftestzone3178
+  labels:
+    cis_scanner: zone_1
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: app
+  name: app
+  namespace: perftestzone3178
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: app
+  template:
+    metadata:
+      labels:
+        app: app
+    spec:
+      containers:
+      - image: cloudadc/cafe:1.0
+        name: backend
+        ports:
+        - containerPort: 8080
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: app
+    cis.f5.com/as3-tenant: perftestzone3178
+    cis.f5.com/as3-app: perftestzone3178
+    cis.f5.com/as3-pool: perftestzone3178_app_svc_pool
+  name: app-svc
+  namespace: perftestzone3178
+spec:
+  ports:
+  - port: 80
+    protocol: TCP
+    targetPort: 8080
+  selector:
+    app: app
+  sessionAffinity: None
+  type: ClusterIP
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: perftestzone3179
+  labels:
+    cis_scanner: zone_2
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: app
+  name: app
+  namespace: perftestzone3179
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: app
+  template:
+    metadata:
+      labels:
+        app: app
+    spec:
+      containers:
+      - image: cloudadc/cafe:1.0
+        name: backend
+        ports:
+        - containerPort: 8080
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: app
+    cis.f5.com/as3-tenant: perftestzone3179
+    cis.f5.com/as3-app: perftestzone3179
+    cis.f5.com/as3-pool: perftestzone3179_app_svc_pool
+  name: app-svc
+  namespace: perftestzone3179
+spec:
+  ports:
+  - port: 80
+    protocol: TCP
+    targetPort: 8080
+  selector:
+    app: app
+  sessionAffinity: None
+  type: ClusterIP
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: perftestzone3180
+  labels:
+    cis_scanner: zone_3
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: app
+  name: app
+  namespace: perftestzone3180
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: app
+  template:
+    metadata:
+      labels:
+        app: app
+    spec:
+      containers:
+      - image: cloudadc/cafe:1.0
+        name: backend
+        ports:
+        - containerPort: 8080
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: app
+    cis.f5.com/as3-tenant: perftestzone3180
+    cis.f5.com/as3-app: perftestzone3180
+    cis.f5.com/as3-pool: perftestzone3180_app_svc_pool
+  name: app-svc
+  namespace: perftestzone3180
+spec:
+  ports:
+  - port: 80
+    protocol: TCP
+    targetPort: 8080
+  selector:
+    app: app
+  sessionAffinity: None
+  type: ClusterIP
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: perftestzone3181
+  labels:
+    cis_scanner: zone_1
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: app
+  name: app
+  namespace: perftestzone3181
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: app
+  template:
+    metadata:
+      labels:
+        app: app
+    spec:
+      containers:
+      - image: cloudadc/cafe:1.0
+        name: backend
+        ports:
+        - containerPort: 8080
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: app
+    cis.f5.com/as3-tenant: perftestzone3181
+    cis.f5.com/as3-app: perftestzone3181
+    cis.f5.com/as3-pool: perftestzone3181_app_svc_pool
+  name: app-svc
+  namespace: perftestzone3181
+spec:
+  ports:
+  - port: 80
+    protocol: TCP
+    targetPort: 8080
+  selector:
+    app: app
+  sessionAffinity: None
+  type: ClusterIP
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: perftestzone3182
+  labels:
+    cis_scanner: zone_2
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: app
+  name: app
+  namespace: perftestzone3182
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: app
+  template:
+    metadata:
+      labels:
+        app: app
+    spec:
+      containers:
+      - image: cloudadc/cafe:1.0
+        name: backend
+        ports:
+        - containerPort: 8080
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: app
+    cis.f5.com/as3-tenant: perftestzone3182
+    cis.f5.com/as3-app: perftestzone3182
+    cis.f5.com/as3-pool: perftestzone3182_app_svc_pool
+  name: app-svc
+  namespace: perftestzone3182
+spec:
+  ports:
+  - port: 80
+    protocol: TCP
+    targetPort: 8080
+  selector:
+    app: app
+  sessionAffinity: None
+  type: ClusterIP
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: perftestzone3183
+  labels:
+    cis_scanner: zone_3
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: app
+  name: app
+  namespace: perftestzone3183
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: app
+  template:
+    metadata:
+      labels:
+        app: app
+    spec:
+      containers:
+      - image: cloudadc/cafe:1.0
+        name: backend
+        ports:
+        - containerPort: 8080
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: app
+    cis.f5.com/as3-tenant: perftestzone3183
+    cis.f5.com/as3-app: perftestzone3183
+    cis.f5.com/as3-pool: perftestzone3183_app_svc_pool
+  name: app-svc
+  namespace: perftestzone3183
+spec:
+  ports:
+  - port: 80
+    protocol: TCP
+    targetPort: 8080
+  selector:
+    app: app
+  sessionAffinity: None
+  type: ClusterIP
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: perftestzone3184
+  labels:
+    cis_scanner: zone_1
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: app
+  name: app
+  namespace: perftestzone3184
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: app
+  template:
+    metadata:
+      labels:
+        app: app
+    spec:
+      containers:
+      - image: cloudadc/cafe:1.0
+        name: backend
+        ports:
+        - containerPort: 8080
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: app
+    cis.f5.com/as3-tenant: perftestzone3184
+    cis.f5.com/as3-app: perftestzone3184
+    cis.f5.com/as3-pool: perftestzone3184_app_svc_pool
+  name: app-svc
+  namespace: perftestzone3184
+spec:
+  ports:
+  - port: 80
+    protocol: TCP
+    targetPort: 8080
+  selector:
+    app: app
+  sessionAffinity: None
+  type: ClusterIP
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: perftestzone3185
+  labels:
+    cis_scanner: zone_2
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: app
+  name: app
+  namespace: perftestzone3185
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: app
+  template:
+    metadata:
+      labels:
+        app: app
+    spec:
+      containers:
+      - image: cloudadc/cafe:1.0
+        name: backend
+        ports:
+        - containerPort: 8080
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: app
+    cis.f5.com/as3-tenant: perftestzone3185
+    cis.f5.com/as3-app: perftestzone3185
+    cis.f5.com/as3-pool: perftestzone3185_app_svc_pool
+  name: app-svc
+  namespace: perftestzone3185
+spec:
+  ports:
+  - port: 80
+    protocol: TCP
+    targetPort: 8080
+  selector:
+    app: app
+  sessionAffinity: None
+  type: ClusterIP
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: perftestzone3186
+  labels:
+    cis_scanner: zone_3
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: app
+  name: app
+  namespace: perftestzone3186
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: app
+  template:
+    metadata:
+      labels:
+        app: app
+    spec:
+      containers:
+      - image: cloudadc/cafe:1.0
+        name: backend
+        ports:
+        - containerPort: 8080
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: app
+    cis.f5.com/as3-tenant: perftestzone3186
+    cis.f5.com/as3-app: perftestzone3186
+    cis.f5.com/as3-pool: perftestzone3186_app_svc_pool
+  name: app-svc
+  namespace: perftestzone3186
+spec:
+  ports:
+  - port: 80
+    protocol: TCP
+    targetPort: 8080
+  selector:
+    app: app
+  sessionAffinity: None
+  type: ClusterIP
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: perftestzone3187
+  labels:
+    cis_scanner: zone_1
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: app
+  name: app
+  namespace: perftestzone3187
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: app
+  template:
+    metadata:
+      labels:
+        app: app
+    spec:
+      containers:
+      - image: cloudadc/cafe:1.0
+        name: backend
+        ports:
+        - containerPort: 8080
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: app
+    cis.f5.com/as3-tenant: perftestzone3187
+    cis.f5.com/as3-app: perftestzone3187
+    cis.f5.com/as3-pool: perftestzone3187_app_svc_pool
+  name: app-svc
+  namespace: perftestzone3187
+spec:
+  ports:
+  - port: 80
+    protocol: TCP
+    targetPort: 8080
+  selector:
+    app: app
+  sessionAffinity: None
+  type: ClusterIP
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: perftestzone3188
+  labels:
+    cis_scanner: zone_2
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: app
+  name: app
+  namespace: perftestzone3188
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: app
+  template:
+    metadata:
+      labels:
+        app: app
+    spec:
+      containers:
+      - image: cloudadc/cafe:1.0
+        name: backend
+        ports:
+        - containerPort: 8080
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: app
+    cis.f5.com/as3-tenant: perftestzone3188
+    cis.f5.com/as3-app: perftestzone3188
+    cis.f5.com/as3-pool: perftestzone3188_app_svc_pool
+  name: app-svc
+  namespace: perftestzone3188
+spec:
+  ports:
+  - port: 80
+    protocol: TCP
+    targetPort: 8080
+  selector:
+    app: app
+  sessionAffinity: None
+  type: ClusterIP
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: perftestzone3189
+  labels:
+    cis_scanner: zone_3
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: app
+  name: app
+  namespace: perftestzone3189
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: app
+  template:
+    metadata:
+      labels:
+        app: app
+    spec:
+      containers:
+      - image: cloudadc/cafe:1.0
+        name: backend
+        ports:
+        - containerPort: 8080
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: app
+    cis.f5.com/as3-tenant: perftestzone3189
+    cis.f5.com/as3-app: perftestzone3189
+    cis.f5.com/as3-pool: perftestzone3189_app_svc_pool
+  name: app-svc
+  namespace: perftestzone3189
+spec:
+  ports:
+  - port: 80
+    protocol: TCP
+    targetPort: 8080
+  selector:
+    app: app
+  sessionAffinity: None
+  type: ClusterIP
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: perftestzone3190
+  labels:
+    cis_scanner: zone_1
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: app
+  name: app
+  namespace: perftestzone3190
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: app
+  template:
+    metadata:
+      labels:
+        app: app
+    spec:
+      containers:
+      - image: cloudadc/cafe:1.0
+        name: backend
+        ports:
+        - containerPort: 8080
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: app
+    cis.f5.com/as3-tenant: perftestzone3190
+    cis.f5.com/as3-app: perftestzone3190
+    cis.f5.com/as3-pool: perftestzone3190_app_svc_pool
+  name: app-svc
+  namespace: perftestzone3190
+spec:
+  ports:
+  - port: 80
+    protocol: TCP
+    targetPort: 8080
+  selector:
+    app: app
+  sessionAffinity: None
+  type: ClusterIP
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: perftestzone3191
+  labels:
+    cis_scanner: zone_2
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: app
+  name: app
+  namespace: perftestzone3191
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: app
+  template:
+    metadata:
+      labels:
+        app: app
+    spec:
+      containers:
+      - image: cloudadc/cafe:1.0
+        name: backend
+        ports:
+        - containerPort: 8080
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: app
+    cis.f5.com/as3-tenant: perftestzone3191
+    cis.f5.com/as3-app: perftestzone3191
+    cis.f5.com/as3-pool: perftestzone3191_app_svc_pool
+  name: app-svc
+  namespace: perftestzone3191
+spec:
+  ports:
+  - port: 80
+    protocol: TCP
+    targetPort: 8080
+  selector:
+    app: app
+  sessionAffinity: None
+  type: ClusterIP
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: perftestzone3192
+  labels:
+    cis_scanner: zone_3
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: app
+  name: app
+  namespace: perftestzone3192
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: app
+  template:
+    metadata:
+      labels:
+        app: app
+    spec:
+      containers:
+      - image: cloudadc/cafe:1.0
+        name: backend
+        ports:
+        - containerPort: 8080
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: app
+    cis.f5.com/as3-tenant: perftestzone3192
+    cis.f5.com/as3-app: perftestzone3192
+    cis.f5.com/as3-pool: perftestzone3192_app_svc_pool
+  name: app-svc
+  namespace: perftestzone3192
+spec:
+  ports:
+  - port: 80
+    protocol: TCP
+    targetPort: 8080
+  selector:
+    app: app
+  sessionAffinity: None
+  type: ClusterIP
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: perftestzone3193
+  labels:
+    cis_scanner: zone_1
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: app
+  name: app
+  namespace: perftestzone3193
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: app
+  template:
+    metadata:
+      labels:
+        app: app
+    spec:
+      containers:
+      - image: cloudadc/cafe:1.0
+        name: backend
+        ports:
+        - containerPort: 8080
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: app
+    cis.f5.com/as3-tenant: perftestzone3193
+    cis.f5.com/as3-app: perftestzone3193
+    cis.f5.com/as3-pool: perftestzone3193_app_svc_pool
+  name: app-svc
+  namespace: perftestzone3193
+spec:
+  ports:
+  - port: 80
+    protocol: TCP
+    targetPort: 8080
+  selector:
+    app: app
+  sessionAffinity: None
+  type: ClusterIP
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: perftestzone3194
+  labels:
+    cis_scanner: zone_2
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: app
+  name: app
+  namespace: perftestzone3194
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: app
+  template:
+    metadata:
+      labels:
+        app: app
+    spec:
+      containers:
+      - image: cloudadc/cafe:1.0
+        name: backend
+        ports:
+        - containerPort: 8080
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: app
+    cis.f5.com/as3-tenant: perftestzone3194
+    cis.f5.com/as3-app: perftestzone3194
+    cis.f5.com/as3-pool: perftestzone3194_app_svc_pool
+  name: app-svc
+  namespace: perftestzone3194
+spec:
+  ports:
+  - port: 80
+    protocol: TCP
+    targetPort: 8080
+  selector:
+    app: app
+  sessionAffinity: None
+  type: ClusterIP
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: perftestzone3195
+  labels:
+    cis_scanner: zone_3
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: app
+  name: app
+  namespace: perftestzone3195
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: app
+  template:
+    metadata:
+      labels:
+        app: app
+    spec:
+      containers:
+      - image: cloudadc/cafe:1.0
+        name: backend
+        ports:
+        - containerPort: 8080
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: app
+    cis.f5.com/as3-tenant: perftestzone3195
+    cis.f5.com/as3-app: perftestzone3195
+    cis.f5.com/as3-pool: perftestzone3195_app_svc_pool
+  name: app-svc
+  namespace: perftestzone3195
+spec:
+  ports:
+  - port: 80
+    protocol: TCP
+    targetPort: 8080
+  selector:
+    app: app
+  sessionAffinity: None
+  type: ClusterIP
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: perftestzone3196
+  labels:
+    cis_scanner: zone_1
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: app
+  name: app
+  namespace: perftestzone3196
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: app
+  template:
+    metadata:
+      labels:
+        app: app
+    spec:
+      containers:
+      - image: cloudadc/cafe:1.0
+        name: backend
+        ports:
+        - containerPort: 8080
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: app
+    cis.f5.com/as3-tenant: perftestzone3196
+    cis.f5.com/as3-app: perftestzone3196
+    cis.f5.com/as3-pool: perftestzone3196_app_svc_pool
+  name: app-svc
+  namespace: perftestzone3196
+spec:
+  ports:
+  - port: 80
+    protocol: TCP
+    targetPort: 8080
+  selector:
+    app: app
+  sessionAffinity: None
+  type: ClusterIP
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: perftestzone3197
+  labels:
+    cis_scanner: zone_2
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: app
+  name: app
+  namespace: perftestzone3197
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: app
+  template:
+    metadata:
+      labels:
+        app: app
+    spec:
+      containers:
+      - image: cloudadc/cafe:1.0
+        name: backend
+        ports:
+        - containerPort: 8080
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: app
+    cis.f5.com/as3-tenant: perftestzone3197
+    cis.f5.com/as3-app: perftestzone3197
+    cis.f5.com/as3-pool: perftestzone3197_app_svc_pool
+  name: app-svc
+  namespace: perftestzone3197
+spec:
+  ports:
+  - port: 80
+    protocol: TCP
+    targetPort: 8080
+  selector:
+    app: app
+  sessionAffinity: None
+  type: ClusterIP
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: perftestzone3198
+  labels:
+    cis_scanner: zone_3
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: app
+  name: app
+  namespace: perftestzone3198
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: app
+  template:
+    metadata:
+      labels:
+        app: app
+    spec:
+      containers:
+      - image: cloudadc/cafe:1.0
+        name: backend
+        ports:
+        - containerPort: 8080
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: app
+    cis.f5.com/as3-tenant: perftestzone3198
+    cis.f5.com/as3-app: perftestzone3198
+    cis.f5.com/as3-pool: perftestzone3198_app_svc_pool
+  name: app-svc
+  namespace: perftestzone3198
+spec:
+  ports:
+  - port: 80
+    protocol: TCP
+    targetPort: 8080
+  selector:
+    app: app
+  sessionAffinity: None
+  type: ClusterIP
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: perftestzone3199
+  labels:
+    cis_scanner: zone_1
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: app
+  name: app
+  namespace: perftestzone3199
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: app
+  template:
+    metadata:
+      labels:
+        app: app
+    spec:
+      containers:
+      - image: cloudadc/cafe:1.0
+        name: backend
+        ports:
+        - containerPort: 8080
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: app
+    cis.f5.com/as3-tenant: perftestzone3199
+    cis.f5.com/as3-app: perftestzone3199
+    cis.f5.com/as3-pool: perftestzone3199_app_svc_pool
+  name: app-svc
+  namespace: perftestzone3199
+spec:
+  ports:
+  - port: 80
+    protocol: TCP
+    targetPort: 8080
+  selector:
+    app: app
+  sessionAffinity: None
+  type: ClusterIP
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: perftestzone3200
+  labels:
+    cis_scanner: zone_2
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: app
+  name: app
+  namespace: perftestzone3200
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: app
+  template:
+    metadata:
+      labels:
+        app: app
+    spec:
+      containers:
+      - image: cloudadc/cafe:1.0
+        name: backend
+        ports:
+        - containerPort: 8080
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: app
+    cis.f5.com/as3-tenant: perftestzone3200
+    cis.f5.com/as3-app: perftestzone3200
+    cis.f5.com/as3-pool: perftestzone3200_app_svc_pool
+  name: app-svc
+  namespace: perftestzone3200
+spec:
+  ports:
+  - port: 80
+    protocol: TCP
+    targetPort: 8080
+  selector:
+    app: app
+  sessionAffinity: None
+  type: ClusterIP
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: perftestzone3201
+  labels:
+    cis_scanner: zone_3
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: app
+  name: app
+  namespace: perftestzone3201
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: app
+  template:
+    metadata:
+      labels:
+        app: app
+    spec:
+      containers:
+      - image: cloudadc/cafe:1.0
+        name: backend
+        ports:
+        - containerPort: 8080
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: app
+    cis.f5.com/as3-tenant: perftestzone3201
+    cis.f5.com/as3-app: perftestzone3201
+    cis.f5.com/as3-pool: perftestzone3201_app_svc_pool
+  name: app-svc
+  namespace: perftestzone3201
+spec:
+  ports:
+  - port: 80
+    protocol: TCP
+    targetPort: 8080
+  selector:
+    app: app
+  sessionAffinity: None
+  type: ClusterIP
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: perftestzone3202
+  labels:
+    cis_scanner: zone_1
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: app
+  name: app
+  namespace: perftestzone3202
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: app
+  template:
+    metadata:
+      labels:
+        app: app
+    spec:
+      containers:
+      - image: cloudadc/cafe:1.0
+        name: backend
+        ports:
+        - containerPort: 8080
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: app
+    cis.f5.com/as3-tenant: perftestzone3202
+    cis.f5.com/as3-app: perftestzone3202
+    cis.f5.com/as3-pool: perftestzone3202_app_svc_pool
+  name: app-svc
+  namespace: perftestzone3202
+spec:
+  ports:
+  - port: 80
+    protocol: TCP
+    targetPort: 8080
+  selector:
+    app: app
+  sessionAffinity: None
+  type: ClusterIP
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: perftestzone3203
+  labels:
+    cis_scanner: zone_2
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: app
+  name: app
+  namespace: perftestzone3203
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: app
+  template:
+    metadata:
+      labels:
+        app: app
+    spec:
+      containers:
+      - image: cloudadc/cafe:1.0
+        name: backend
+        ports:
+        - containerPort: 8080
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: app
+    cis.f5.com/as3-tenant: perftestzone3203
+    cis.f5.com/as3-app: perftestzone3203
+    cis.f5.com/as3-pool: perftestzone3203_app_svc_pool
+  name: app-svc
+  namespace: perftestzone3203
+spec:
+  ports:
+  - port: 80
+    protocol: TCP
+    targetPort: 8080
+  selector:
+    app: app
+  sessionAffinity: None
+  type: ClusterIP
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: perftestzone3204
+  labels:
+    cis_scanner: zone_3
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: app
+  name: app
+  namespace: perftestzone3204
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: app
+  template:
+    metadata:
+      labels:
+        app: app
+    spec:
+      containers:
+      - image: cloudadc/cafe:1.0
+        name: backend
+        ports:
+        - containerPort: 8080
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: app
+    cis.f5.com/as3-tenant: perftestzone3204
+    cis.f5.com/as3-app: perftestzone3204
+    cis.f5.com/as3-pool: perftestzone3204_app_svc_pool
+  name: app-svc
+  namespace: perftestzone3204
+spec:
+  ports:
+  - port: 80
+    protocol: TCP
+    targetPort: 8080
+  selector:
+    app: app
+  sessionAffinity: None
+  type: ClusterIP
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: perftestzone3205
+  labels:
+    cis_scanner: zone_1
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: app
+  name: app
+  namespace: perftestzone3205
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: app
+  template:
+    metadata:
+      labels:
+        app: app
+    spec:
+      containers:
+      - image: cloudadc/cafe:1.0
+        name: backend
+        ports:
+        - containerPort: 8080
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: app
+    cis.f5.com/as3-tenant: perftestzone3205
+    cis.f5.com/as3-app: perftestzone3205
+    cis.f5.com/as3-pool: perftestzone3205_app_svc_pool
+  name: app-svc
+  namespace: perftestzone3205
+spec:
+  ports:
+  - port: 80
+    protocol: TCP
+    targetPort: 8080
+  selector:
+    app: app
+  sessionAffinity: None
+  type: ClusterIP
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: perftestzone3206
+  labels:
+    cis_scanner: zone_2
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: app
+  name: app
+  namespace: perftestzone3206
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: app
+  template:
+    metadata:
+      labels:
+        app: app
+    spec:
+      containers:
+      - image: cloudadc/cafe:1.0
+        name: backend
+        ports:
+        - containerPort: 8080
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: app
+    cis.f5.com/as3-tenant: perftestzone3206
+    cis.f5.com/as3-app: perftestzone3206
+    cis.f5.com/as3-pool: perftestzone3206_app_svc_pool
+  name: app-svc
+  namespace: perftestzone3206
+spec:
+  ports:
+  - port: 80
+    protocol: TCP
+    targetPort: 8080
+  selector:
+    app: app
+  sessionAffinity: None
+  type: ClusterIP
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: perftestzone3207
+  labels:
+    cis_scanner: zone_3
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: app
+  name: app
+  namespace: perftestzone3207
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: app
+  template:
+    metadata:
+      labels:
+        app: app
+    spec:
+      containers:
+      - image: cloudadc/cafe:1.0
+        name: backend
+        ports:
+        - containerPort: 8080
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: app
+    cis.f5.com/as3-tenant: perftestzone3207
+    cis.f5.com/as3-app: perftestzone3207
+    cis.f5.com/as3-pool: perftestzone3207_app_svc_pool
+  name: app-svc
+  namespace: perftestzone3207
+spec:
+  ports:
+  - port: 80
+    protocol: TCP
+    targetPort: 8080
+  selector:
+    app: app
+  sessionAffinity: None
+  type: ClusterIP
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: perftestzone3208
+  labels:
+    cis_scanner: zone_1
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: app
+  name: app
+  namespace: perftestzone3208
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: app
+  template:
+    metadata:
+      labels:
+        app: app
+    spec:
+      containers:
+      - image: cloudadc/cafe:1.0
+        name: backend
+        ports:
+        - containerPort: 8080
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: app
+    cis.f5.com/as3-tenant: perftestzone3208
+    cis.f5.com/as3-app: perftestzone3208
+    cis.f5.com/as3-pool: perftestzone3208_app_svc_pool
+  name: app-svc
+  namespace: perftestzone3208
+spec:
+  ports:
+  - port: 80
+    protocol: TCP
+    targetPort: 8080
+  selector:
+    app: app
+  sessionAffinity: None
+  type: ClusterIP
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: perftestzone3209
+  labels:
+    cis_scanner: zone_2
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: app
+  name: app
+  namespace: perftestzone3209
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: app
+  template:
+    metadata:
+      labels:
+        app: app
+    spec:
+      containers:
+      - image: cloudadc/cafe:1.0
+        name: backend
+        ports:
+        - containerPort: 8080
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: app
+    cis.f5.com/as3-tenant: perftestzone3209
+    cis.f5.com/as3-app: perftestzone3209
+    cis.f5.com/as3-pool: perftestzone3209_app_svc_pool
+  name: app-svc
+  namespace: perftestzone3209
+spec:
+  ports:
+  - port: 80
+    protocol: TCP
+    targetPort: 8080
+  selector:
+    app: app
+  sessionAffinity: None
+  type: ClusterIP
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: perftestzone3210
+  labels:
+    cis_scanner: zone_3
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: app
+  name: app
+  namespace: perftestzone3210
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: app
+  template:
+    metadata:
+      labels:
+        app: app
+    spec:
+      containers:
+      - image: cloudadc/cafe:1.0
+        name: backend
+        ports:
+        - containerPort: 8080
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: app
+    cis.f5.com/as3-tenant: perftestzone3210
+    cis.f5.com/as3-app: perftestzone3210
+    cis.f5.com/as3-pool: perftestzone3210_app_svc_pool
+  name: app-svc
+  namespace: perftestzone3210
+spec:
+  ports:
+  - port: 80
+    protocol: TCP
+    targetPort: 8080
+  selector:
+    app: app
+  sessionAffinity: None
+  type: ClusterIP
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: perftestzone3211
+  labels:
+    cis_scanner: zone_1
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: app
+  name: app
+  namespace: perftestzone3211
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: app
+  template:
+    metadata:
+      labels:
+        app: app
+    spec:
+      containers:
+      - image: cloudadc/cafe:1.0
+        name: backend
+        ports:
+        - containerPort: 8080
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: app
+    cis.f5.com/as3-tenant: perftestzone3211
+    cis.f5.com/as3-app: perftestzone3211
+    cis.f5.com/as3-pool: perftestzone3211_app_svc_pool
+  name: app-svc
+  namespace: perftestzone3211
+spec:
+  ports:
+  - port: 80
+    protocol: TCP
+    targetPort: 8080
+  selector:
+    app: app
+  sessionAffinity: None
+  type: ClusterIP
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: perftestzone3212
+  labels:
+    cis_scanner: zone_2
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: app
+  name: app
+  namespace: perftestzone3212
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: app
+  template:
+    metadata:
+      labels:
+        app: app
+    spec:
+      containers:
+      - image: cloudadc/cafe:1.0
+        name: backend
+        ports:
+        - containerPort: 8080
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: app
+    cis.f5.com/as3-tenant: perftestzone3212
+    cis.f5.com/as3-app: perftestzone3212
+    cis.f5.com/as3-pool: perftestzone3212_app_svc_pool
+  name: app-svc
+  namespace: perftestzone3212
+spec:
+  ports:
+  - port: 80
+    protocol: TCP
+    targetPort: 8080
+  selector:
+    app: app
+  sessionAffinity: None
+  type: ClusterIP
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: perftestzone3213
+  labels:
+    cis_scanner: zone_3
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: app
+  name: app
+  namespace: perftestzone3213
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: app
+  template:
+    metadata:
+      labels:
+        app: app
+    spec:
+      containers:
+      - image: cloudadc/cafe:1.0
+        name: backend
+        ports:
+        - containerPort: 8080
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: app
+    cis.f5.com/as3-tenant: perftestzone3213
+    cis.f5.com/as3-app: perftestzone3213
+    cis.f5.com/as3-pool: perftestzone3213_app_svc_pool
+  name: app-svc
+  namespace: perftestzone3213
+spec:
+  ports:
+  - port: 80
+    protocol: TCP
+    targetPort: 8080
+  selector:
+    app: app
+  sessionAffinity: None
+  type: ClusterIP
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: perftestzone3214
+  labels:
+    cis_scanner: zone_1
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: app
+  name: app
+  namespace: perftestzone3214
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: app
+  template:
+    metadata:
+      labels:
+        app: app
+    spec:
+      containers:
+      - image: cloudadc/cafe:1.0
+        name: backend
+        ports:
+        - containerPort: 8080
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: app
+    cis.f5.com/as3-tenant: perftestzone3214
+    cis.f5.com/as3-app: perftestzone3214
+    cis.f5.com/as3-pool: perftestzone3214_app_svc_pool
+  name: app-svc
+  namespace: perftestzone3214
+spec:
+  ports:
+  - port: 80
+    protocol: TCP
+    targetPort: 8080
+  selector:
+    app: app
+  sessionAffinity: None
+  type: ClusterIP
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: perftestzone3215
+  labels:
+    cis_scanner: zone_2
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: app
+  name: app
+  namespace: perftestzone3215
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: app
+  template:
+    metadata:
+      labels:
+        app: app
+    spec:
+      containers:
+      - image: cloudadc/cafe:1.0
+        name: backend
+        ports:
+        - containerPort: 8080
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: app
+    cis.f5.com/as3-tenant: perftestzone3215
+    cis.f5.com/as3-app: perftestzone3215
+    cis.f5.com/as3-pool: perftestzone3215_app_svc_pool
+  name: app-svc
+  namespace: perftestzone3215
+spec:
+  ports:
+  - port: 80
+    protocol: TCP
+    targetPort: 8080
+  selector:
+    app: app
+  sessionAffinity: None
+  type: ClusterIP
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: perftestzone3216
+  labels:
+    cis_scanner: zone_3
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: app
+  name: app
+  namespace: perftestzone3216
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: app
+  template:
+    metadata:
+      labels:
+        app: app
+    spec:
+      containers:
+      - image: cloudadc/cafe:1.0
+        name: backend
+        ports:
+        - containerPort: 8080
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: app
+    cis.f5.com/as3-tenant: perftestzone3216
+    cis.f5.com/as3-app: perftestzone3216
+    cis.f5.com/as3-pool: perftestzone3216_app_svc_pool
+  name: app-svc
+  namespace: perftestzone3216
+spec:
+  ports:
+  - port: 80
+    protocol: TCP
+    targetPort: 8080
+  selector:
+    app: app
+  sessionAffinity: None
+  type: ClusterIP
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: perftestzone3217
+  labels:
+    cis_scanner: zone_1
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: app
+  name: app
+  namespace: perftestzone3217
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: app
+  template:
+    metadata:
+      labels:
+        app: app
+    spec:
+      containers:
+      - image: cloudadc/cafe:1.0
+        name: backend
+        ports:
+        - containerPort: 8080
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: app
+    cis.f5.com/as3-tenant: perftestzone3217
+    cis.f5.com/as3-app: perftestzone3217
+    cis.f5.com/as3-pool: perftestzone3217_app_svc_pool
+  name: app-svc
+  namespace: perftestzone3217
+spec:
+  ports:
+  - port: 80
+    protocol: TCP
+    targetPort: 8080
+  selector:
+    app: app
+  sessionAffinity: None
+  type: ClusterIP
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: perftestzone3218
+  labels:
+    cis_scanner: zone_2
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: app
+  name: app
+  namespace: perftestzone3218
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: app
+  template:
+    metadata:
+      labels:
+        app: app
+    spec:
+      containers:
+      - image: cloudadc/cafe:1.0
+        name: backend
+        ports:
+        - containerPort: 8080
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: app
+    cis.f5.com/as3-tenant: perftestzone3218
+    cis.f5.com/as3-app: perftestzone3218
+    cis.f5.com/as3-pool: perftestzone3218_app_svc_pool
+  name: app-svc
+  namespace: perftestzone3218
+spec:
+  ports:
+  - port: 80
+    protocol: TCP
+    targetPort: 8080
+  selector:
+    app: app
+  sessionAffinity: None
+  type: ClusterIP
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: perftestzone3219
+  labels:
+    cis_scanner: zone_3
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: app
+  name: app
+  namespace: perftestzone3219
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: app
+  template:
+    metadata:
+      labels:
+        app: app
+    spec:
+      containers:
+      - image: cloudadc/cafe:1.0
+        name: backend
+        ports:
+        - containerPort: 8080
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: app
+    cis.f5.com/as3-tenant: perftestzone3219
+    cis.f5.com/as3-app: perftestzone3219
+    cis.f5.com/as3-pool: perftestzone3219_app_svc_pool
+  name: app-svc
+  namespace: perftestzone3219
+spec:
+  ports:
+  - port: 80
+    protocol: TCP
+    targetPort: 8080
+  selector:
+    app: app
+  sessionAffinity: None
+  type: ClusterIP
