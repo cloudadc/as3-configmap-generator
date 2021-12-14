@@ -16,7 +16,7 @@ public class TestConfiguration {
 		Boolean res = validator.isValidCIDR("10.1.10.0/24");
 		assertTrue(res);
 		
-		res = validator.isValidCIDR("10.1.10.0/33");
+		res = validator.isValidCIDR("10.1.10.0/33");		
 		assertFalse(res);
 		
 		res = validator.isValidCIDR("10.1.10.0/23");
