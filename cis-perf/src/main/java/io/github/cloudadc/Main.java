@@ -12,19 +12,58 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+import io.github.cloudadc.config.Config;
+import io.github.cloudadc.config.ConfigBuilder;
+import io.github.cloudadc.generator.CIS20HubModeGenerator;
+import io.github.cloudadc.generator.Generator;
+
+import static io.github.cloudadc.config.CISMode.CIS_20_HUB;;
+
+
+@SuppressWarnings("unused")
 @SpringBootApplication
-public class CISPerfBenchMark implements CommandLineRunner {
+public class Main implements CommandLineRunner {
 	
-	Logger log = LoggerFactory.getLogger(CISPerfBenchMark.class);
+	Logger log = LoggerFactory.getLogger(Main.class);
 
 	public static void main(String[] args) {
-		SpringApplication.run(CISPerfBenchMark.class, args);
+		SpringApplication.run(Main.class, args);
 	}
 
 	@Override
 	public void run(String... args) throws Exception {
 		
 		log.info("CIS Performance Benchmark Generator Starting");
+				
+		Config config = ConfigBuilder.instance().load(args).build();
+		
+		Generator generator = null;
+		switch(config.getCisMode()) {
+		    case CIS_20_HUB :
+			    generator = new CIS20HubModeGenerator(config);
+			    break;
+			default:
+				generator = null;
+				break;
+		}
+		
+		
+		if(null != generator && generator.deployment().length() > 0) {
+			String deploy = "deploy.yaml";
+			log.info("Generating K8S deployments to " + deploy);
+			if (Files.exists(Paths.get(deploy))) {
+				Files.delete(Paths.get(deploy));  
+			}
+			Files.createFile(Paths.get(deploy));
+			Files.write(Paths.get(deploy), generator.deployment().getBytes(), StandardOpenOption.APPEND);
+		}
+		
+		if(null != generator && generator.configmap().length() > 0) {
+			System.out.println(generator.configmap());
+		}
+		
+		
+		
 		
 //		execute(args);
 		

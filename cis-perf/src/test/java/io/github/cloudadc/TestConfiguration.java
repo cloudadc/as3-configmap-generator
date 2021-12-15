@@ -6,12 +6,32 @@ import static org.junit.Assert.assertFalse;
 
 import org.junit.Test;
 
+import io.github.cloudadc.config.ASSchemaVersion;
+import io.github.cloudadc.config.CISMode;
+import io.github.cloudadc.config.ConfigBuilder;
+
 public class TestConfiguration {
+	
+	@Test
+	public void testASSchemaVersion () {
+		ASSchemaVersion v = ASSchemaVersion.V_3_18_0;
+		assertEquals("3.18.0", v.value());
+	}
+	
+	@Test
+	public void testCISMode() {
+		
+		CISMode[] modes = CISMode.values();
+		
+		assertEquals(2, modes.length);
+		assertEquals("CIS_20_HUB", modes[0].toString());
+		
+	}
 
 	@Test
 	public void testValidCIDR() {
 		
-		Configuration validator = Configuration.instance();
+		ConfigBuilder validator = ConfigBuilder.instance();
 		
 		Boolean res = validator.isValidCIDR("10.1.10.0/24");
 		assertTrue(res);
@@ -36,7 +56,7 @@ public class TestConfiguration {
 	@Test
 	public void testListAddressList() {
 		
-		Configuration config = Configuration.instance();
+		ConfigBuilder config = ConfigBuilder.instance();
 		
 		String[] addresses = config.addressLists("10.1.10.0/24");
 		assertEquals(addresses.length, 254);

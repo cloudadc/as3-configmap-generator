@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: REPLACEMENT_APP_NAME
+  name: REPLACEMENT_APP_NAME
+  namespace: REPLACEMENT_NAMESPACE
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: REPLACEMENT_APP_NAME
+  template:
+    metadata:
+      labels:
+        app: REPLACEMENT_APP_NAME
+    spec:
+      containers:
+      - image: REPLACEMENT_BACKEND_IMAGE
+        name: backend
+        ports:
+        - containerPort: REPLACEMENT_BACKEND_PORT
