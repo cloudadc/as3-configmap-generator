@@ -2,8 +2,8 @@
   "subnet": "10.1.10.0/24",
   "cisMode": "CIS_20_HUB",
   "as3Version": "3.18.0",
-  "appCount": 10,
-  "appPerNamespace": 4,
+  "appCount": 200,
+  "appPerNamespace": 3,
   "appImage": "cloudadc/cafe:1.0",
   "appImageContainerPort": 8080,
   "namespacePrefix": "cistest"

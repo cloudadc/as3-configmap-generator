@@ -59,7 +59,13 @@ public class Main implements CommandLineRunner {
 		}
 		
 		if(null != generator && generator.configmap().length() > 0) {
-			System.out.println(generator.configmap());
+			String cm = "cm.yaml";
+			log.info("Generating K8S configmap to " + cm);
+			if (Files.exists(Paths.get(cm))) {
+				Files.delete(Paths.get(cm));  
+			}
+			Files.createFile(Paths.get(cm));
+			Files.write(Paths.get(cm), generator.configmap().getBytes(), StandardOpenOption.APPEND);
 		}
 		
 		

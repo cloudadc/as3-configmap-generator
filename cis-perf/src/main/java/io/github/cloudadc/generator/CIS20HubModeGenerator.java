@@ -30,6 +30,8 @@ public class CIS20HubModeGenerator extends AbstractGenerator {
 		String app_deployment = load("app.deployment");
 		String app_service = load("app.service");
 		String hub_content = load("cis-2.0-hub.content");
+		String hub_content_start = load("cis-2.0-hub.content.start");
+		String hub_content_end = load("cis-2.0-hub.content_end");
 
 		boolean isFirst = true;
 		for (int i = 0 ; i < config.getAppCount() ; i ++) {
@@ -37,6 +39,17 @@ public class CIS20HubModeGenerator extends AbstractGenerator {
 			String ns = config.getNamespacePrefix() + (i +1);
 			String nsContent = app_namespace.replaceAll("REPLACEMENT_NAMESPACE", ns).replaceAll("REPLACEMENT_ZONE", "cistest");
 			deploymentBuffer.append(nsContent).append("\n").append("---").append("\n");
+			
+			if(isFirst) {
+				isFirst = false;
+			} else {
+				configmapBuffer.append(",").append("\n");
+			}
+			
+			String cm_start = hub_content_start.replaceAll("REPLACEMENT_NAMESPACE", ns);
+			configmapBuffer.append(cm_start);
+			
+			boolean isAppFirst = true;
 			for (int j = 0 ; j < config.getAppPerNamespace() ; j ++) {
 				i++;
 				String app = "app-" + (j+1);
@@ -52,8 +65,8 @@ public class CIS20HubModeGenerator extends AbstractGenerator {
 						               .replaceAll("REPLACEMENT_APP_NAME", app)
 						               .replaceAll("REPLACEMENT_BACKEND_PORT", String.valueOf(config.getAppImageContainerPort()))
 						               .replaceAll("REPLACEMENT_APP_VS_IP", config.ip());
-				if(isFirst) {
-					isFirst = false;
+				if(isAppFirst) {
+					isAppFirst = false;
 				} else {
 					configmapBuffer.append(",").append("\n");
 				}
@@ -63,6 +76,7 @@ public class CIS20HubModeGenerator extends AbstractGenerator {
 					break;
 				}
 			}
+			configmapBuffer.append("\n").append(hub_content_end);
 			i--;
 		}
 	}
