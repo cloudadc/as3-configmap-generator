@@ -1,3 +1,19 @@
 = What's this
 
+F5 Application Services 3 Extension Configmap Generator provide toolsets that generate configmap yaml, which used by F5 CIS AS3.
+
+== How to use
+
+[source, bash]
+.*Build & Run*
+----
+cd generator/ && mvn clean install
+java -jar target/cis-as3-cm-generator-0.0.1.jar
+----
+
+*Access the API Doc*
+
+http://localhost:8080/swagger-ui.html
+~                                     
+
 
