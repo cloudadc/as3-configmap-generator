@@ -1,0 +1,27 @@
+          "REPLACEMENT_APP_NAME": {
+            "class": "Application",
+            "template": "generic",
+            "app_svc_vs": {
+              "class": "Service_HTTP",
+              "persistenceMethods": [ "cookie" ],
+              "virtualAddresses": [
+                "REPLACEMENT_APP_VS_IP"
+              ],
+              "snat": "self",
+              "virtualPort": 80,
+              "pool": "REPLACEMENT_APP_NAME_app_svc_pool"
+            },
+            "REPLACEMENT_APP_NAME_app_svc_pool": {
+              "class": "Pool",
+              "monitors": [
+                "tcp"
+              ],
+              "loadBalancingMode": "least-connections-member",
+              "members": [
+              {
+                "servicePort": REPLACEMENT_BACKEND_PORT,
+                "serverAddresses": []
+              }
+              ]
+            }
+          }

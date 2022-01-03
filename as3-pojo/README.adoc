@@ -1,0 +1,12 @@
+= What's this
+
+F5 AS3 Java Pojo which convert from F5 AS3 Schema. Refer to https://github.com/F5Networks/f5-appsvcs-extension/tree/master/schema for more details of F5 AS3.
+
+== How to generate Pojo?
+
+[source, bash]
+----
+mvn package -Pgenerate-pojo
+----
+
+this will generate pojo code to `target/generated-sources/jsonschema2pojo/` folder.
