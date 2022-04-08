@@ -7,7 +7,7 @@ import static org.junit.Assert.assertFalse;
 import org.junit.Test;
 
 import io.github.cloudadc.config.ASSchemaVersion;
-import io.github.cloudadc.config.CISMode;
+import io.github.cloudadc.config.Mode;
 import io.github.cloudadc.config.ConfigBuilder;
 
 public class TestConfiguration {
@@ -21,10 +21,9 @@ public class TestConfiguration {
 	@Test
 	public void testCISMode() {
 		
-		CISMode[] modes = CISMode.values();
+		Mode[] modes = Mode.values();
 		
-		assertEquals(2, modes.length);
-		assertEquals("CIS_20_HUB", modes[0].toString());
+		assertEquals(3, modes.length);
 		
 	}
 

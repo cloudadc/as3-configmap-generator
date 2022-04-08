@@ -4,11 +4,17 @@ public class Config {
 	
 	private String[] addresses;
 	
+	private String[] memberAddresses;
+	
 	private Integer cursor = Integer.valueOf(0);
+	
+	private Integer memberCursor = Integer.valueOf(0);
 	
 	private String subnet;
 	
-	private CISMode cisMode;
+	private String memberSubnet;
+	
+	private Mode mode;
 	
 	private String as3Version;
 	
@@ -26,11 +32,12 @@ public class Config {
 		super();
 	}
 
-	public Config(String subnet, CISMode cisMode, String as3Version, Integer appCount, Integer appPerNamespace,
+	public Config(String subnet, String memberSubnet, Mode mode, String as3Version, Integer appCount, Integer appPerNamespace,
 	        String appImage, Integer appImageContainerPort, String namespacePrefix) {
 		super();
 		this.subnet = subnet;
-		this.cisMode = cisMode;
+		this.memberSubnet = memberSubnet;
+		this.mode = mode;
 		this.as3Version = as3Version;
 		this.appCount = appCount;
 		this.appPerNamespace = appPerNamespace;
@@ -47,12 +54,20 @@ public class Config {
 		this.subnet = subnet;
 	}
 
-	public CISMode getCisMode() {
-		return cisMode;
+	public String getMemberSubnet() {
+		return memberSubnet;
 	}
 
-	public void setCisMode(CISMode cisMode) {
-		this.cisMode = cisMode;
+	public void setMemberSubnet(String memberSubnet) {
+		this.memberSubnet = memberSubnet;
+	}
+
+	public Mode getMode() {
+		return mode;
+	}
+
+	public void setMode(Mode mode) {
+		this.mode = mode;
 	}
 
 	public String getAs3Version() {
@@ -107,6 +122,18 @@ public class Config {
 		return addresses[cursor++];
 	}
 	
+	public String[] getMemberAddresses() {
+		return memberAddresses;
+	}
+
+	public void setMemberAddresses(String[] memberAddresses) {
+		this.memberAddresses = memberAddresses;
+	}
+	
+	public String memberIp() {
+		return memberAddresses[memberCursor++];
+	}
+
 	public Integer cursor() {
 		return this.cursor;
 	}

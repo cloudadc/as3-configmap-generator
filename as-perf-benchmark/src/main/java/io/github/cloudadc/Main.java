@@ -14,10 +14,11 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import io.github.cloudadc.config.Config;
 import io.github.cloudadc.config.ConfigBuilder;
+import io.github.cloudadc.generator.AS3Generator;
 import io.github.cloudadc.generator.CIS20HubModeGenerator;
 import io.github.cloudadc.generator.Generator;
 
-import static io.github.cloudadc.config.CISMode.CIS_20_HUB;;
+import static io.github.cloudadc.config.Mode.CIS_20_HUB;;
 
 
 @SuppressWarnings("unused")
@@ -38,10 +39,13 @@ public class Main implements CommandLineRunner {
 		Config config = ConfigBuilder.instance().load(args).build();
 		
 		Generator generator = null;
-		switch(config.getCisMode()) {
+		switch(config.getMode()) {
 		    case CIS_20_HUB :
 			    generator = new CIS20HubModeGenerator(config);
 			    break;
+		    case AS_318 :
+		    	generator = new AS3Generator(config);
+		    	break;
 			default:
 				generator = null;
 				break;
@@ -49,32 +53,30 @@ public class Main implements CommandLineRunner {
 		
 		
 		if(null != generator && generator.deployment().length() > 0) {
-			String deploy = "deploy.yaml";
-			log.info("Generating K8S deployments to " + deploy);
-			if (Files.exists(Paths.get(deploy))) {
-				Files.delete(Paths.get(deploy));  
-			}
-			Files.createFile(Paths.get(deploy));
-			Files.write(Paths.get(deploy), generator.deployment().getBytes(), StandardOpenOption.APPEND);
+			generate("deploy.yaml", generator.deployment());			
 		}
 		
 		if(null != generator && generator.configmap().length() > 0) {
-			String cm = "cm.yaml";
-			log.info("Generating K8S configmap to " + cm);
-			if (Files.exists(Paths.get(cm))) {
-				Files.delete(Paths.get(cm));  
-			}
-			Files.createFile(Paths.get(cm));
-			Files.write(Paths.get(cm), generator.configmap().getBytes(), StandardOpenOption.APPEND);
+			generate("cm.yaml", generator.configmap());	
 		}
 		
-		
-		
-		
-//		execute(args);
+		if(null != generator && generator.as3().length() > 0) {
+			generate("declaration.json", generator.as3());	
+			String cm = "declaration.json";
+		}
 		
 	}
 	
+	private void generate(String name, String content) throws IOException {
+
+		log.info("Generating to " + name);
+		if (Files.exists(Paths.get(name))) {
+			Files.delete(Paths.get(name));  
+		}
+		Files.createFile(Paths.get(name));
+		Files.write(Paths.get(name), content.getBytes(), StandardOpenOption.APPEND);
+	}
+
 	protected void execute(String[] args) throws Exception {
 
 		int count = 3;

@@ -1,0 +1,8 @@
+{
+  "class": "AS3",
+  "action": "deploy",
+  "persist": true,
+  "declaration": {
+    "class": "ADC",
+    "schemaVersion": "REPLACEMENT_AS3_VERSION",
+    "id": "REPLACEMENT_AS3_ID",

@@ -1,0 +1,32 @@
+    "REPLACEMENT_AS3_TENANT": {
+      "class": "Tenant",
+      "REPLACEMENT_AS3_APP": {
+        "class": "Application",
+        "template": "generic",
+        "app_svc_vs": {
+          "class": "Service_HTTP",
+          "persistenceMethods": [
+            "cookie"
+          ],
+          "virtualAddresses": [
+            "REPLACEMENT_AS3_VS_IP"
+          ],
+          "snat": "self",
+          "virtualPort": 80,
+          "pool": "REPLACEMENT_AS3_APP_pool"
+        },
+        "REPLACEMENT_AS3_APP_pool": {
+          "class": "Pool",
+          "monitors": [
+            "tcp"
+          ],
+          "loadBalancingMode": "least-connections-member",
+          "members": [
+            {
+              "servicePort": 8080,
+              "serverAddresses": ["REPLACEMENT_AS3_MEMBER_IP"]
+            }
+          ]
+        }
+      }
+    }

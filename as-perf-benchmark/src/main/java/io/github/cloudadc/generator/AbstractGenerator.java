@@ -15,11 +15,14 @@ public abstract class AbstractGenerator implements Generator {
 	
 	protected StringBuffer ingressBuffer;
 	
+	protected StringBuffer as3Buffer;
+	
 	public AbstractGenerator(Config config) {
 		this.config = config;
 		this.deploymentBuffer = new StringBuffer();
 		this.configmapBuffer = new StringBuffer();
 		this.ingressBuffer = new StringBuffer();
+		this.as3Buffer = new StringBuffer();
 		try {
 			generateHeader();
 			generateContent();
@@ -58,6 +61,11 @@ public abstract class AbstractGenerator implements Generator {
 	@Override
 	public String ingress() {
 		return this.ingressBuffer.toString();
+	}
+
+	@Override
+	public String as3() {
+		return this.as3Buffer.toString();
 	}
 
 	public abstract void generateHeader() throws IOException;

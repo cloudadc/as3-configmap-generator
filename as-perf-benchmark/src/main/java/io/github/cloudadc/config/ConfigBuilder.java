@@ -72,6 +72,11 @@ public class ConfigBuilder {
 			throw new InvalidConfigExcaption("Configuration is not valid, 'subnet' defined addresses less than the app count 'appCount'");
 		}
 		
+		this.config.setMemberAddresses(this.addressLists(this.config.getMemberSubnet()));
+		if(this.config.getMemberAddresses().length < this.config.getAppCount()) {
+			throw new InvalidConfigExcaption("Configuration is not valid, 'memberSubnet' defined addresses less than the app count 'appCount'");
+		}
+		
 		if(this.config.getAppPerNamespace() > this.config.getAppCount()) {
 			throw new InvalidConfigExcaption("Configuration is not valid, app per namespace should less than the app count");
 		}
