@@ -15,10 +15,10 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import io.github.cloudadc.config.Config;
 import io.github.cloudadc.config.ConfigBuilder;
 import io.github.cloudadc.generator.AS3Generator;
-import io.github.cloudadc.generator.CIS20HubModeGenerator;
+import io.github.cloudadc.generator.CISHubModeGenerator;
 import io.github.cloudadc.generator.Generator;
 
-import static io.github.cloudadc.config.Mode.CIS_20_HUB;;
+import static io.github.cloudadc.config.Mode.CIS_20_AS_318_HUB;;;
 
 
 @SuppressWarnings("unused")
@@ -40,8 +40,11 @@ public class Main implements CommandLineRunner {
 		
 		Generator generator = null;
 		switch(config.getMode()) {
-		    case CIS_20_HUB :
-			    generator = new CIS20HubModeGenerator(config);
+		    case CIS_20_AS_318_HUB :
+			    generator = new CISHubModeGenerator(config);
+			    break;
+		    case CIS_280_AS_330_HUB:
+		    	generator = new CISHubModeGenerator(config);
 			    break;
 		    case AS_318 :
 		    	generator = new AS3Generator(config);

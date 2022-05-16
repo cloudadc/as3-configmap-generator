@@ -4,7 +4,9 @@ public enum Mode {
 	
 	AS_318,
 	
-	CIS_20_HUB,
+	CIS_280_AS_330_HUB,
+	
+	CIS_20_AS_318_HUB,
 	
 	CIS_21_NAMESPACE_LABEL;
 

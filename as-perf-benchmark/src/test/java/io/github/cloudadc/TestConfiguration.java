@@ -23,7 +23,7 @@ public class TestConfiguration {
 		
 		Mode[] modes = Mode.values();
 		
-		assertEquals(3, modes.length);
+		assertEquals(4, modes.length);
 		
 	}
 

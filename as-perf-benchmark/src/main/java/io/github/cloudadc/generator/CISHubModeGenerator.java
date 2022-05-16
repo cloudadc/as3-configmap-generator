@@ -7,11 +7,11 @@ import java.io.IOException;
 import io.github.cloudadc.config.Config;
 
 
-public class CIS20HubModeGenerator extends AbstractGenerator {
+public class CISHubModeGenerator extends AbstractGenerator {
 	
 	
 
-	public CIS20HubModeGenerator(Config config) {
+	public CISHubModeGenerator(Config config) {
 		super(config);
 	}
 

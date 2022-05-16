@@ -1,10 +1,10 @@
 {
   "subnet": "10.10.10.0/24",
   "memberSubnet": "10.10.20.0/24",
-  "mode": "AS_318",
-  "as3Version": "3.18.0",
-  "appCount": 50,
-  "appPerNamespace": 1,
+  "mode": "CIS_280_AS_330_HUB",
+  "as3Version": "3.30.0",
+  "appCount": 3,
+  "appPerNamespace": 2,
   "appImage": "cloudadc/cafe:1.0",
   "appImageContainerPort": 8080,
   "namespacePrefix": "cistest"

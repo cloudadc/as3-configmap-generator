@@ -16,7 +16,9 @@ public enum ASSchemaVersion {
 	
     V_3_24_0("3.24.0"),
 	
-	V_3_25_0("3.25.0");
+	V_3_25_0("3.25.0"),
+	
+	V_3_30_0("3.30.0");
 	
 	String version;
 	
