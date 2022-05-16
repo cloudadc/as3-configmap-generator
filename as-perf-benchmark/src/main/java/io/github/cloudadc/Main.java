@@ -46,6 +46,9 @@ public class Main implements CommandLineRunner {
 		    case CIS_280_AS_330_HUB:
 		    	generator = new CISHubModeGenerator(config);
 			    break;
+		    case CIS_281_AS_330_HUB:
+		    	generator = new CISHubModeGenerator(config);
+			    break;
 		    case AS_318 :
 		    	generator = new AS3Generator(config);
 		    	break;
@@ -68,6 +71,7 @@ public class Main implements CommandLineRunner {
 			String cm = "declaration.json";
 		}
 		
+		log.info("CIS Performance Benchmark Generator End");
 	}
 	
 	private void generate(String name, String content) throws IOException {
