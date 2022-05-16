@@ -1,6 +1,6 @@
-package io.github.cloudadc.controller;
+package io.github.cloudadc.kubernetes.loader.controller;
 
-import static io.github.cloudadc.controller.Utils.*;
+import static io.github.cloudadc.kubernetes.loader.utils.Utils.*;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import io.github.cloudadc.kubernetes.loader.model.EntityK8SImage;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -21,8 +22,8 @@ import io.swagger.v3.oas.annotations.tags.Tag;
  */
 @RestController
 @RequestMapping(produces = {"text/plain", "application/json"})
-@Tag(name = "CIS AS3 Configmap - Deployment", description = "F5 CIS AS3 Configmap Generator API")
-public class CISAS3GeneratorController {
+@Tag(name = "Kubernetes AS3 Loader", description = "Load F5 BIG-IP AS3 template to Kubernetes Configmap")
+public class F5AS3LoaderController {
 	
 	@RequestMapping(path = {"/generate/deployments"}, method = {RequestMethod.GET})
 	@Operation(summary = "Generate K8S/OpenShift Deployment YAML", description = "Returns Deployment YAML")

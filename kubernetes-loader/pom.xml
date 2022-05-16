@@ -9,10 +9,10 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>io.github.cloudadc</groupId>
-    <artifactId>cis-as3-cm-generator</artifactId>
+    <artifactId>kubernetes-as3-loader</artifactId>
     <version>0.0.1</version>
-    <name>CIS Generator</name>
-    <description>F5 CIS AS3 Configmap Generator</description>
+    <name>Kubernetes AS3 Loader</name>
+    <description>Load F5 BIG-IP AS3 template to Kubernetes Configmap</description>
 
     <properties>
         <java.version>11</java.version>

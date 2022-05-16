@@ -1,6 +1,6 @@
-package io.github.cloudadc.controller;
+package io.github.cloudadc.kubernetes.loader.controller;
 
-import static io.github.cloudadc.controller.Utils.generate;
+import static io.github.cloudadc.kubernetes.loader.utils.Utils.generate;
 
 import java.io.IOException;
 
@@ -12,9 +12,9 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.tags.Tag;
 
-@RestController
-@RequestMapping(produces = {"text/plain"})
-@Tag(name = "CIS AS3 Configmap - Canary Releasing", description = "F5 CIS AS3 Configmap Generator API")
+//@RestController
+//@RequestMapping(produces = {"text/plain"})
+//@Tag(name = "CIS AS3 Configmap - Canary Releasing", description = "F5 CIS AS3 Configmap Generator API")
 public class CISAS3CanaryGeneratorController {
 	
 	@RequestMapping(path = {"/generate/httpCanaryURL"}, method = {RequestMethod.GET})

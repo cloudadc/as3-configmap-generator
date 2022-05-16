@@ -1,4 +1,4 @@
-package io.github.cloudadc.controller;
+package io.github.cloudadc.kubernetes.loader.model;
 
 public enum EntityCISAS3Template {
 	

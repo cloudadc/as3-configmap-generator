@@ -1,4 +1,4 @@
-package io.github.cloudadc;
+package io.github.cloudadc.kubernetes.loader;
 
 import io.swagger.v3.oas.models.Components;
 import io.swagger.v3.oas.models.OpenAPI;
@@ -9,6 +9,6 @@ import org.springframework.context.annotation.Configuration;
 public class OpenApiConfig {
   public OpenAPI customOpenAPI() {
     return (new OpenAPI()).components(new Components())
-      .info((new Info()).title("AS3 Configmap Generator API").description("F5 Container Ingress Service AS3 Configmap Generator"));
+      .info((new Info()).title("Kubernetes AS3 Loader").description("Load F5 BIG-IP AS3 template to Kubernetes Configmap"));
   }
 }

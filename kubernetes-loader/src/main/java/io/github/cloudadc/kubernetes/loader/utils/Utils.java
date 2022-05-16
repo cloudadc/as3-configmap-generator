@@ -1,8 +1,5 @@
-package io.github.cloudadc.controller;
+package io.github.cloudadc.kubernetes.loader.utils;
 
-import static io.github.cloudadc.controller.Utils.app;
-import static io.github.cloudadc.controller.Utils.pool;
-import static io.github.cloudadc.controller.Utils.tenant;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -16,6 +13,9 @@ import java.util.Map;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
 import org.springframework.util.FileCopyUtils;
+
+import io.github.cloudadc.kubernetes.loader.model.EntityGeneratorApp;
+import io.github.cloudadc.kubernetes.loader.model.EntityK8SImage;
 
 /**
  * 
