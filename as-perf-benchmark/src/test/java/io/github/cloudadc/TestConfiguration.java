@@ -14,8 +14,8 @@ public class TestConfiguration {
 	
 	@Test
 	public void testASSchemaVersion () {
-		ASSchemaVersion v = ASSchemaVersion.V_3_18_0;
-		assertEquals("3.18.0", v.value());
+		ASSchemaVersion v = ASSchemaVersion.V_3_30_0;
+		assertEquals("3.30.0", v.value());
 	}
 	
 	@Test
@@ -23,7 +23,7 @@ public class TestConfiguration {
 		
 		Mode[] modes = Mode.values();
 		
-		assertEquals(4, modes.length);
+		assertEquals(5, modes.length);
 		
 	}
 
