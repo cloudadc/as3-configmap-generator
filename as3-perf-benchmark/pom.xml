@@ -9,7 +9,7 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>io.github.cloudadc</groupId>
-	<artifactId>as-perf-benchmark</artifactId>
+	<artifactId>as3-perf-benchmark</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>consuming-rest</name>
 	<description>Demo project for Spring Boot</description>
