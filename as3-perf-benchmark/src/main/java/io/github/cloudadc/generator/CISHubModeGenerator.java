@@ -36,7 +36,8 @@ public class CISHubModeGenerator extends AbstractGenerator {
 		boolean isFirst = true;
 		for (int i = 0 ; i < config.getAppCount() ; i ++) {
 		
-			String ns = config.getNamespacePrefix() + (i +1);
+			String ns = config.getNamespacePrefix() + appendpre((i +1));
+			
 			String nsContent = app_namespace.replaceAll(REPLACEMENT_NAMESPACE, ns).replaceAll(REPLACEMENT_ZONE, "cistest");
 			deploymentBuffer.append(nsContent).append("\n").append("---").append("\n");
 			
@@ -79,6 +80,17 @@ public class CISHubModeGenerator extends AbstractGenerator {
 			configmapBuffer.append("\n").append(hub_content_end);
 			i--;
 		}
+	}
+
+	private String appendpre(int value) {
+		String result = "";
+		String str = String.valueOf(value);
+		for (int i = 0 ; i < (3 - str.length()) ; i ++) {
+			result += "0";
+		}
+		
+		
+		return result + str;
 	}
 
 	@Override

@@ -44,13 +44,35 @@ public class ConfigBuilder {
 			throw new RuntimeException("Either pass 'config.json' via args, or put to app home");
 		}
 		
+		String conf = null;
+		Integer appCount =0;
+		Integer appPerNamespace = 0 ;
+		String deployFile = null;
+		String configmapFile = null;
+		
+		for (int i = 0 ; i < args.length ; i ++) {
+			if(args[i].equals("-c") || args[i].equals("--config")) {
+				conf = args[++i];
+			} else if(args[i].equals("--appCount")) {
+				appCount = Integer.parseInt(args[++i]);
+			} else if(args[i].equals("--appPerNamespace")) {
+				appPerNamespace = Integer.parseInt(args[++i]);
+			} else if(args[i].equals("--deployFile")) {
+				deployFile = args[++i];
+			} else if(args[i].equals("--configmapFile")) {
+				configmapFile = args[++i];
+			}
+		}
+		
 		String config;
 		try {
-			config = getResourceFileAsString("config.json");
-			
-			if(args.length >= 1) {
-				config = getResourceFileAsString(args[0]);
+			if(conf != null) {
+				config = getResourceFileAsString(conf);
+			} else {
+				config = getResourceFileAsString("config.json");
 			}
+			
+			
 		} catch (IOException e) {
 			throw new InvalidConfigExcaption(e);
 		}
@@ -101,6 +123,23 @@ public class ConfigBuilder {
 		if(this.config.getNamespacePrefix().length() < 4) {
 			this.config.setNamespacePrefix("cistest");
 		}
+		
+		if(appCount > 0) {
+			this.config.setAppCount(appCount);
+		}
+		
+		if(appPerNamespace > 0) {
+			this.config.setAppPerNamespace(appPerNamespace);
+		}
+		
+		if(deployFile != null) {
+			this.config.setDeployFile(deployFile);
+		}
+		 
+		if(configmapFile != null) {
+			this.config.setConfigmapFile(configmapFile);
+		}
+		
 		
 		
 		return this;

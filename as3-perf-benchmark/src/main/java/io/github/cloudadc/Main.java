@@ -59,11 +59,11 @@ public class Main implements CommandLineRunner {
 		
 		
 		if(null != generator && generator.deployment().length() > 0) {
-			generate("deploy.yaml", generator.deployment());			
+			generate(config.getDeployFile(), generator.deployment());			
 		}
 		
 		if(null != generator && generator.configmap().length() > 0) {
-			generate("cm.yaml", generator.configmap());	
+			generate(config.getConfigmapFile(), generator.configmap());	
 		}
 		
 		if(null != generator && generator.as3().length() > 0) {

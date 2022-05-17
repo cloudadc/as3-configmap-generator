@@ -28,12 +28,16 @@ public class Config {
 	
 	private String namespacePrefix;
 	
+	private String deployFile;
+	
+	private String configmapFile;
+	
 	public Config() {
 		super();
 	}
 
 	public Config(String subnet, String memberSubnet, Mode mode, String as3Version, Integer appCount, Integer appPerNamespace,
-	        String appImage, Integer appImageContainerPort, String namespacePrefix) {
+	        String appImage, Integer appImageContainerPort, String namespacePrefix, String deployFile, String configmapFile) {
 		super();
 		this.subnet = subnet;
 		this.memberSubnet = memberSubnet;
@@ -44,6 +48,8 @@ public class Config {
 		this.appImage = appImage;
 		this.appImageContainerPort = appImageContainerPort;
 		this.namespacePrefix = namespacePrefix;
+		this.deployFile = deployFile;
+		this.configmapFile = configmapFile;
 	}
 
 	public String getSubnet() {
@@ -148,6 +154,22 @@ public class Config {
 
 	public void setNamespacePrefix(String namespacePrefix) {
 		this.namespacePrefix = namespacePrefix;
+	}
+
+	public String getDeployFile() {
+		return deployFile;
+	}
+
+	public void setDeployFile(String deployFile) {
+		this.deployFile = deployFile;
+	}
+
+	public String getConfigmapFile() {
+		return configmapFile;
+	}
+
+	public void setConfigmapFile(String configmapFile) {
+		this.configmapFile = configmapFile;
 	}
 
 }

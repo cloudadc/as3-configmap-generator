@@ -7,5 +7,7 @@
   "appPerNamespace": 2,
   "appImage": "cloudadc/cafe:1.0",
   "appImageContainerPort": 8080,
-  "namespacePrefix": "cistest"
+  "namespacePrefix": "cistest",
+  "deployFile": "deploy.yaml",
+  "configmapFile": "cm.yaml"
 }

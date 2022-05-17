@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: Namespace
 metadata:
-  name: cistest1
+  name: cistest001
   labels:
     cis_scanner: cistest
 ---
@@ -11,7 +11,7 @@ metadata:
   labels:
     app: app-1
   name: app-1
-  namespace: cistest1
+  namespace: cistest001
 spec:
   replicas: 1
   selector:
@@ -33,11 +33,11 @@ kind: Service
 metadata:
   labels:
     app: app-1
-    cis.f5.com/as3-tenant: cistest1
+    cis.f5.com/as3-tenant: cistest001
     cis.f5.com/as3-app: app-1
     cis.f5.com/as3-pool: app-1_app_svc_pool
   name: app-svc-1
-  namespace: cistest1
+  namespace: cistest001
 spec:
   ports:
   - port: 80
@@ -54,7 +54,7 @@ metadata:
   labels:
     app: app-2
   name: app-2
-  namespace: cistest1
+  namespace: cistest001
 spec:
   replicas: 1
   selector:
@@ -76,11 +76,11 @@ kind: Service
 metadata:
   labels:
     app: app-2
-    cis.f5.com/as3-tenant: cistest1
+    cis.f5.com/as3-tenant: cistest001
     cis.f5.com/as3-app: app-2
     cis.f5.com/as3-pool: app-2_app_svc_pool
   name: app-svc-2
-  namespace: cistest1
+  namespace: cistest001
 spec:
   ports:
   - port: 80
@@ -94,7 +94,7 @@ spec:
 apiVersion: v1
 kind: Namespace
 metadata:
-  name: cistest3
+  name: cistest003
   labels:
     cis_scanner: cistest
 ---
@@ -104,7 +104,7 @@ metadata:
   labels:
     app: app-1
   name: app-1
-  namespace: cistest3
+  namespace: cistest003
 spec:
   replicas: 1
   selector:
@@ -126,11 +126,11 @@ kind: Service
 metadata:
   labels:
     app: app-1
-    cis.f5.com/as3-tenant: cistest3
+    cis.f5.com/as3-tenant: cistest003
     cis.f5.com/as3-app: app-1
     cis.f5.com/as3-pool: app-1_app_svc_pool
   name: app-svc-1
-  namespace: cistest3
+  namespace: cistest003
 spec:
   ports:
   - port: 80
