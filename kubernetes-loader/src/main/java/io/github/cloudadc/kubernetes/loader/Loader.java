@@ -11,22 +11,32 @@ import io.kubernetes.client.openapi.models.V1ConfigMap;
 import io.kubernetes.client.util.ClientBuilder;
 import io.kubernetes.client.util.KubeConfig;
 
+
 public class Loader {
+	
+	static {
+		System.setProperty("jdk.tls.client.protocols", "TLSv1.2");
+	}
 	
 	final CoreV1Api api;
 	
-	
 	protected Loader() throws  IOException {
+
 		String kubeConfigPath = System.getenv("HOME") + "/.kube/config";
 		ApiClient client = ClientBuilder.kubeconfig(KubeConfig.loadKubeConfig(new FileReader(kubeConfigPath))).build();
 		Configuration.setDefaultApiClient(client);
-		this.api = new CoreV1Api();
+		api = new CoreV1Api();
 	}
 	
-	public void loadConfigmap() throws ApiException {
-		V1ConfigMap cm = api.readNamespacedConfigMap("cm-cistest", "f5-hub-1", "true");
+	public CoreV1Api api() {
+		return api;
+	}
+
+	public void loadConfigmap() throws ApiException  {
 		
-		System.out.println(cm);
+		V1ConfigMap cm = api.readNamespacedConfigMap("cm-cistest", "f5-hub-1", null, null, null);
+		
+		System.out.println(cm.getData().get("template"));
 	}
 	
 	
@@ -34,22 +44,14 @@ public class Loader {
 	public static Loader create() throws IOException {
 		return new Loader();
 	}
-	
-	
+
 
 	public static void main(String[] args) throws IOException, ApiException {
 
-//		Loader loader = Loader.create();
-//		loader.loadConfigmap();
-		
-		String kubeConfigPath = System.getenv("HOME") + "/.kube/config";
-		ApiClient client = ClientBuilder.kubeconfig(KubeConfig.loadKubeConfig(new FileReader(kubeConfigPath))).build();
-		Configuration.setDefaultApiClient(client);
-		CoreV1Api api = new CoreV1Api();
-		V1ConfigMap cm = api.readNamespacedConfigMap("cm-cistest", "f5-hub-1", null);
-		
-		
-		//System.out.println();
+		Loader loader = Loader.create();
+		loader.loadConfigmap();
+	
+		System.out.println();
 	}
 
 }

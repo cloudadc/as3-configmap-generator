@@ -101,7 +101,7 @@
             <groupId>org.jsonschema2pojo</groupId>
             <artifactId>jsonschema2pojo-maven-plugin</artifactId>
             <configuration>
-              <sourceDirectory>${basedir}/src/main/resources/schema/3.18.0</sourceDirectory>
+              <sourceDirectory>${basedir}/src/main/resources/schema/3.36.0</sourceDirectory>
               <targetPackage>io.github.cloudadc.as3.pojo</targetPackage>
             </configuration>
             <executions>

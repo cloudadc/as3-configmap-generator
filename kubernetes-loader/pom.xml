@@ -16,7 +16,7 @@
 
     <properties>
         <java.version>11</java.version>
-        <io.kubernetes.version>15.0.1</io.kubernetes.version>
+        <io.kubernetes.version>10.0.1</io.kubernetes.version>
         <org.springdoc.version>1.6.8</org.springdoc.version>
     </properties>
 
@@ -30,6 +30,7 @@
             <artifactId>springdoc-openapi-ui</artifactId>
             <version>${org.springdoc.version}</version>
         </dependency>
+        
         <dependency>
             <groupId>io.kubernetes</groupId>
             <artifactId>client-java</artifactId>
