@@ -4,7 +4,7 @@
   <groupId>io.github.cloudadc</groupId>
   <artifactId>as3-pojo</artifactId>
   <packaging>jar</packaging>
-  <version>3.18.0-4</version>
+  <version>3.36.0-6</version>
   <name>as3-pojo</name>
   <url>http://cloudadc.github.io</url>
 
@@ -12,7 +12,8 @@
     <version.commons-lang>2.4</version.commons-lang>
     <version.jackson-databind>2.5.4</version.jackson-databind>
     <version.junit-bom>5.8.2</version.junit-bom>
-    <version.jsonschema2pojo-maven-plugin>1.1.1</version.jsonschema2pojo-maven-plugin>
+    <version.jsonschema2pojo-maven-plugin>1.1.2</version.jsonschema2pojo-maven-plugin>
+    <version.jsonschema2pojo-core>1.1.2</version.jsonschema2pojo-core>
     <version.maven-compiler-plugin>3.8.1</version.maven-compiler-plugin>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <java.version>11</java.version>
@@ -20,6 +21,11 @@
 
   <dependencyManagement>
     <dependencies>
+      <dependency>
+         <groupId>org.jsonschema2pojo</groupId>
+         <artifactId>jsonschema2pojo-core</artifactId>
+         <version>${version.jsonschema2pojo-core}</version>
+      </dependency>
       <dependency>
         <groupId>commons-lang</groupId>
         <artifactId>commons-lang</artifactId>
@@ -42,12 +48,8 @@
 
   <dependencies>
     <dependency>
-      <groupId>commons-lang</groupId>
-      <artifactId>commons-lang</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>com.fasterxml.jackson.core</groupId>
-      <artifactId>jackson-databind</artifactId>
+      <groupId>org.jsonschema2pojo</groupId>
+      <artifactId>jsonschema2pojo-core</artifactId>
     </dependency>
     <dependency>
       <groupId>org.junit.jupiter</groupId>
