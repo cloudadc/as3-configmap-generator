@@ -5,7 +5,7 @@ metadata:
     app: REPLACEMENT_APP_NAME
     cis.f5.com/as3-tenant: REPLACEMENT_NAMESPACE
     cis.f5.com/as3-app: REPLACEMENT_APP_NAME
-    cis.f5.com/as3-pool: REPLACEMENT_APP_NAME_app_svc_pool
+    cis.f5.com/as3-pool: REPLACEMENT_APP_NAME-pool
   name: REPLACEMENT_SERVICE_NAME
   namespace: REPLACEMENT_NAMESPACE
 spec:

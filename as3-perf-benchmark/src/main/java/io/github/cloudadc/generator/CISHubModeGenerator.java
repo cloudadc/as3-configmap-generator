@@ -53,13 +53,15 @@ public class CISHubModeGenerator extends AbstractGenerator {
 			boolean isAppFirst = true;
 			for (int j = 0 ; j < config.getAppPerNamespace() ; j ++) {
 				i++;
-				String app = "app-" + (j+1);
+				String svc_name = "app-svc-" + (j +1);
+				String app = svc_name + "-app";
 				String deployContent = app_deployment.replaceAll(REPLACEMENT_NAMESPACE, ns)
 						                             .replaceAll(REPLACEMENT_APP_NAME, app)
 						                             .replaceAll(REPLACEMENT_BACKEND_IMAGE, config.getAppImage())
 						                             .replaceAll(REPLACEMENT_BACKEND_PORT, String.valueOf(config.getAppImageContainerPort()));
 				deploymentBuffer.append(deployContent).append("\n").append("---").append("\n");
-				String svcContent = app_service.replaceAll(REPLACEMENT_NAMESPACE, ns).replaceAll(REPLACEMENT_APP_NAME, app).replaceAll(REPLACEMENT_SERVICE_NAME, "app-svc-" + (j +1));
+				
+				String svcContent = app_service.replaceAll(REPLACEMENT_NAMESPACE, ns).replaceAll(REPLACEMENT_APP_NAME, app).replaceAll(REPLACEMENT_SERVICE_NAME, svc_name);
 				deploymentBuffer.append(svcContent).append("\n").append("---").append("\n");
 				
 				String cm = hub_content.replaceAll(REPLACEMENT_NAMESPACE, ns)

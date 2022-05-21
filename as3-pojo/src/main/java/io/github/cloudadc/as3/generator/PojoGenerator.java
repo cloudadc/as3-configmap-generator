@@ -18,7 +18,8 @@ public class PojoGenerator {
 		
 		JCodeModel codeModel = new JCodeModel();
 		
-		URL source = PojoGenerator.class.getResource("/schema/3.36.0/as3-schema-3.36.0-6-cis.json");
+		//URL source = PojoGenerator.class.getResource("/schema/3.36.0/as3-schema-3.36.0-6-cis.json");
+		URL source = PojoGenerator.class.getResource("/schema/3.18.0/as3-schema-3.18.0-4-cis.json");
 		
 		GenerationConfig config = new DefaultGenerationConfig() {
 

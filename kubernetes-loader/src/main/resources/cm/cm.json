@@ -1,14 +1,4 @@
-kind: ConfigMap
-apiVersion: v1
-metadata:
-  name: cm-cistest
-  namespace: f5-hub-1
-  labels:
-    f5type: virtual-server
-    as3: "true"
-data:
-  template: |
-    {
+{
       "class": "AS3",
       "action": "deploy",
       "persist": true,
@@ -18,10 +8,10 @@ data:
         "id": "f5-hub01-a",
         "cistest001": {
           "class": "Tenant",
-          "app-svc-1-app": {
+          "app-1": {
             "class": "Application",
             "template": "generic",
-            "app-svc-1-app-vs": {
+            "app_svc_vs": {
               "class": "Service_HTTP",
               "persistenceMethods": [ "cookie" ],
               "virtualAddresses": [
@@ -29,9 +19,36 @@ data:
               ],
               "snat": "self",
               "virtualPort": 80,
-              "pool": "app-svc-1-app-pool"
+              "pool": "app-1_app_svc_pool"
             },
-            "app-svc-1-app-pool": {
+            "app-1_app_svc_pool": {
+              "class": "Pool",
+              "monitors": [
+                "tcp"
+              ],
+              "loadBalancingMode": "least-connections-member",
+              "members": [
+              {
+                "servicePort": 8080,
+                "serverAddresses": []
+              }
+              ]
+            }
+          },
+          "app-2": {
+            "class": "Application",
+            "template": "generic",
+            "app_svc_vs": {
+              "class": "Service_HTTP",
+              "persistenceMethods": [ "cookie" ],
+              "virtualAddresses": [
+                "10.10.10.2"
+              ],
+              "snat": "self",
+              "virtualPort": 80,
+              "pool": "app-2_app_svc_pool"
+            },
+            "app-2_app_svc_pool": {
               "class": "Pool",
               "monitors": [
                 "tcp"
@@ -46,22 +63,22 @@ data:
             }
           }
         },
-        "cistest002": {
+        "cistest003": {
           "class": "Tenant",
-          "app-svc-1-app": {
+          "app-1": {
             "class": "Application",
             "template": "generic",
-            "app-svc-1-app-vs": {
+            "app_svc_vs": {
               "class": "Service_HTTP",
               "persistenceMethods": [ "cookie" ],
               "virtualAddresses": [
-                "10.10.10.2"
+                "10.10.10.3"
               ],
               "snat": "self",
               "virtualPort": 80,
-              "pool": "app-svc-1-app-pool"
+              "pool": "app-1_app_svc_pool"
             },
-            "app-svc-1-app-pool": {
+            "app-1_app_svc_pool": {
               "class": "Pool",
               "monitors": [
                 "tcp"

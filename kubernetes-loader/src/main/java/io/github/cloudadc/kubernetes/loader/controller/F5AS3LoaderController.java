@@ -6,11 +6,14 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import io.github.cloudadc.kubernetes.loader.model.EntityK8SImage;
+import io.github.cloudadc.kubernetes.loader.K8SConfigmapLoader;
+import io.github.cloudadc.kubernetes.loader.model.ServiceAttribute;
+import io.github.cloudadc.kubernetes.loader.model.VirtualServerAttribute;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -21,27 +24,53 @@ import io.swagger.v3.oas.annotations.tags.Tag;
  *
  */
 @RestController
-@RequestMapping(produces = {"text/plain", "application/json"})
+@RequestMapping(
+		produces = {"application/json"}, 
+		consumes = {"application/json"}
+		)
 @Tag(name = "Kubernetes AS3 Loader", description = "Load F5 BIG-IP AS3 template to Kubernetes Configmap")
 public class F5AS3LoaderController {
 	
-	@RequestMapping(path = {"/generate/deployments"}, method = {RequestMethod.GET})
-	@Operation(summary = "Generate K8S/OpenShift Deployment YAML", description = "Returns Deployment YAML")
-	public String generateSvcLables(
-			@Parameter(description = "K8S/OpenShift cluster name", required = true, allowEmptyValue = true) String cluster, 
-			@Parameter(description = "K8S/OpenShift namespace name", required = true) String namespace, 
-			@Parameter(description = "K8S/OpenShift service name", required = true)String service, 
-			@Parameter(description = "K8S/OpenShift service port", required = true)int port,
-			@Parameter(description = "Docker Image", required = true)EntityK8SImage k8sImage) throws IOException {
+	@RequestMapping(path = {"/list"}, method = {RequestMethod.GET})
+	@Operation(summary = "List all Virtual Servers from all partitions", description = "Returns  all Virtual Servers from all partitions")
+	public Map<String, Object> listAllVirtualServers() throws Exception{
+				
+		return K8SConfigmapLoader.create().listAllVirtualServers();
+	}
+	
+	@RequestMapping(path = {"/list/{tenant}"}, method = {RequestMethod.GET})
+	@Operation(summary = "List all Virtual Servers from all partitions", description = "Returns  all Virtual Servers from all partitions")
+	public Map<String, Object> listAllVirtualServers(@Parameter(description = "F5 BIG-IP partition name", required = true) String tenant) throws Exception{
+				
+		return K8SConfigmapLoader.create().listAllVirtualServers(tenant);
+	}
+	
+	@RequestMapping(path = {"/add/service/labels"}, method = {RequestMethod.POST})
+	@Operation(summary = "Add Service lables to s K8S Services", description = "Returns as3 labels")
+	public Map<String, String> addSvcLables(
+			@io.swagger.v3.oas.annotations.parameters.RequestBody(description = "The service position, name, targetport", required = true)  @RequestBody ServiceAttribute attribute
+			) throws IOException {
 		
 		Map<String, String> map = new HashMap<>();
 		
-		map.put("cis.f5.com/as3-tenant", tenant(cluster, namespace));
-		map.put("cis.f5.com/as3-app", app(namespace, service));
-		map.put("cis.f5.com/as3-pool", pool(namespace, service, port));
+		map.put("cis.f5.com/as3-tenant", attribute.getNamespace());
+		map.put("cis.f5.com/as3-app", attribute.getService() + "-app");
+		map.put("cis.f5.com/as3-pool", attribute.getService() + "-app-pool");
 		
-		return generate(cluster, namespace, service, port, k8sImage);
+		return map;
 	}
+	
+	@RequestMapping(path = {"/add/l4/tcp"}, method = {RequestMethod.POST})
+	@Operation(summary = "Add L4 APP Declaration", description = "Add L4 APP Declaration")
+	public VirtualServerAttribute generateTCP(
+			@io.swagger.v3.oas.annotations.parameters.RequestBody(description = "The Virtual Server IP/Port, if hubmode enable, hub namespace, configmap name", required = true)  @RequestBody VirtualServerAttribute attribute) throws Exception {
+		
+		return K8SConfigmapLoader.create().appendConfigmap(attribute);
+	}
+	
+	
+	
+	
 
 	@RequestMapping(path = {"/generate/http"}, method = {RequestMethod.GET})
 	@Operation(summary = "HTTP {cookie persistence, least-connections-member, custom health monitor}", description = "Returns F5 CIS HTTP Service Configmap")
@@ -67,21 +96,6 @@ public class F5AS3LoaderController {
 		return generate(cluster, namespace, service, port, ip, vsPort, path, expected, tml_full);
 	}
 	
-	@RequestMapping(path = {"/generate/tcp"}, method = {RequestMethod.GET})
-	@Operation(summary = "TCP {fastL4}", description = "Returns F5 CIS TCP Service Configmap")
-	public String generateTCP(
-			@Parameter(description = "The name of K8S/OpenShift cluster", required = true, allowEmptyValue = true) String cluster, 
-			@Parameter(description = "The name of K8S/OpenShift namespace", required = true) String namespace, 
-			@Parameter(description = "The name of K8S/OpenShift service", required = true)String service, 
-			@Parameter(description = "The port number of K8S/OpenShift service", required = true)int port,
-			@Parameter(description = "The F5 Virtual Server IP", required = true)String ip,
-			@Parameter(description = "F5 Virtual Server Port", required = true)int vsPort) throws IOException {
-		
-//		if(!isCreateVS) {
-//			return generate(cluster, namespace, service, port, ip, vsPort, null, null, "no-vs-tcp.tml");
-//		} 
-		
-		return generate(cluster, namespace, service, port, ip, vsPort, null, null, "tcp.tml");
-	}
+	
 	
 }
