@@ -6,37 +6,35 @@ import java.io.IOException;
 
 import io.github.cloudadc.config.Config;
 
+public class CISHub291ModeGenerator extends CISHubModeGenerator {
 
-public class CISHubModeGenerator extends AbstractGenerator {
-	
-	
-
-	public CISHubModeGenerator(Config config) {
+	public CISHub291ModeGenerator(Config config) {
 		super(config);
 	}
-
+	
 	@Override
 	public void generateHeader() throws IOException {
 		
-		String hub_starter = load("cis-2.0-hub.starter");
+		String hub_starter = load("cis-2.9-hub.starter");
 		hub_starter = hub_starter.replaceAll(REPLACEMENT_CM_AS_VERSION, config.getAs3Version());
 		configmapBuffer.append(hub_starter).append("\n");
 	}
-
+	
 	@Override
 	public void generateContent() throws IOException {
 		
 		String app_namespace = load("app.namespace");
 		String app_deployment = load("app.deployment");
-		String app_service = load("app.service");
+		String app_service = load("app191.service");
 		String hub_content = load("cis-2.0-hub.content");
 		String hub_content_start = load("cis-2.0-hub.content.start");
 		String hub_content_end = load("cis-2.0-hub.content_end");
 
 		boolean isFirst = true;
+		int nsCount = 1;
 		for (int i = 0 ; i < config.getAppCount() ; i ++) {
 		
-			String ns = config.getNamespacePrefix() + appendpre((i +1));
+			String ns = config.getNamespacePrefix() + nsCount++ ;
 			
 			String nsContent = app_namespace.replaceAll(REPLACEMENT_NAMESPACE, ns).replaceAll(REPLACEMENT_ZONE, "cistest");
 			deploymentBuffer.append(nsContent).append("\n").append("---").append("\n");
@@ -82,24 +80,6 @@ public class CISHubModeGenerator extends AbstractGenerator {
 			configmapBuffer.append("\n").append(hub_content_end);
 			i--;
 		}
-	}
-
-	protected String appendpre(int value) {
-		String result = "";
-		String str = String.valueOf(value);
-		for (int i = 0 ; i < (3 - str.length()) ; i ++) {
-			result += "0";
-		}
-		
-		
-		return result + str;
-	}
-
-	@Override
-	public void generateFoot() throws IOException {
-
-		String hub_footer = load("cis-2.0-hub.footer");
-		configmapBuffer.append("\n").append(hub_footer);
 	}
 
 }

@@ -15,6 +15,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import io.github.cloudadc.config.Config;
 import io.github.cloudadc.config.ConfigBuilder;
 import io.github.cloudadc.generator.AS3Generator;
+import io.github.cloudadc.generator.CISHub291ModeGenerator;
 import io.github.cloudadc.generator.CISHubModeGenerator;
 import io.github.cloudadc.generator.Generator;
 
@@ -40,6 +41,10 @@ public class Main implements CommandLineRunner {
 		
 		Generator generator = null;
 		switch(config.getMode()) {
+		
+		    case CIS_291_AS_336_HUB:
+			    generator = new CISHub291ModeGenerator(config);
+		        break;
 		    case CIS_20_AS_318_HUB :
 			    generator = new CISHubModeGenerator(config);
 			    break;
