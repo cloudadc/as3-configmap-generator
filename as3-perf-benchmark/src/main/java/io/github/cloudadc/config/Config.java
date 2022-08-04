@@ -28,6 +28,8 @@ public class Config {
 	
 	private String namespacePrefix;
 	
+	private Boolean isNSPrecreated;
+	
 	private String deployFile;
 	
 	private String configmapFile;
@@ -37,7 +39,7 @@ public class Config {
 	}
 
 	public Config(String subnet, String memberSubnet, Mode mode, String as3Version, Integer appCount, Integer appPerNamespace,
-	        String appImage, Integer appImageContainerPort, String namespacePrefix, String deployFile, String configmapFile) {
+	        String appImage, Integer appImageContainerPort, String namespacePrefix, Boolean isNSPrecreated, String deployFile, String configmapFile) {
 		super();
 		this.subnet = subnet;
 		this.memberSubnet = memberSubnet;
@@ -47,6 +49,7 @@ public class Config {
 		this.appPerNamespace = appPerNamespace;
 		this.appImage = appImage;
 		this.appImageContainerPort = appImageContainerPort;
+		this.isNSPrecreated = isNSPrecreated ;
 		this.namespacePrefix = namespacePrefix;
 		this.deployFile = deployFile;
 		this.configmapFile = configmapFile;
@@ -154,6 +157,14 @@ public class Config {
 
 	public void setNamespacePrefix(String namespacePrefix) {
 		this.namespacePrefix = namespacePrefix;
+	}
+
+	public Boolean getIsNSPrecreated() {
+		return isNSPrecreated;
+	}
+
+	public void setIsNSPrecreated(Boolean isNSPrecreated) {
+		this.isNSPrecreated = isNSPrecreated;
 	}
 
 	public String getDeployFile() {

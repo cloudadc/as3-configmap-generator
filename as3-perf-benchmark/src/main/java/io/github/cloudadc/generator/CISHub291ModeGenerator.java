@@ -36,9 +36,11 @@ public class CISHub291ModeGenerator extends CISHubModeGenerator {
 		
 			String ns = config.getNamespacePrefix() + nsCount++ ;
 			
-			String nsContent = app_namespace.replaceAll(REPLACEMENT_NAMESPACE, ns).replaceAll(REPLACEMENT_ZONE, "cistest");
-			deploymentBuffer.append(nsContent).append("\n").append("---").append("\n");
-			
+			if(!config.getIsNSPrecreated()) {
+				String nsContent = app_namespace.replaceAll(REPLACEMENT_NAMESPACE, ns).replaceAll(REPLACEMENT_ZONE, "cistest");
+				deploymentBuffer.append(nsContent).append("\n").append("---").append("\n");
+			}
+
 			if(isFirst) {
 				isFirst = false;
 			} else {
