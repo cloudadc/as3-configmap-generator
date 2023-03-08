@@ -4,12 +4,18 @@ import static io.github.cloudadc.generator.FileLoader.load;
 
 import java.io.IOException;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import io.github.cloudadc.config.Config;
 
 public class CISHub291ModeGenerator extends CISHubModeGenerator {
+	
+	Logger log = LoggerFactory.getLogger(CISHub291ModeGenerator.class);
 
 	public CISHub291ModeGenerator(Config config) {
 		super(config);
+		log.info("start");
 	}
 	
 	@Override

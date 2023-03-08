@@ -99,9 +99,9 @@ public class ConfigBuilder {
 			throw new InvalidConfigExcaption("Configuration is not valid, 'memberSubnet' defined addresses less than the app count 'appCount'");
 		}
 		
-		if(this.config.getAppPerNamespace() > this.config.getAppCount()) {
-			throw new InvalidConfigExcaption("Configuration is not valid, app per namespace should less than the app count");
-		}
+		//if(this.config.getAppPerNamespace() > this.config.getAppCount()) {
+		//	throw new InvalidConfigExcaption("Configuration is not valid, app per namespace should less than the app count");
+		//}
 		
 		if(this.config.getAppPerNamespace() < 1) {
 			this.config.setAppPerNamespace(1);

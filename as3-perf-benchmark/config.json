@@ -1,14 +1,14 @@
 {
   "subnet": "197.20.222.0/24",
   "memberSubnet": "10.10.20.0/24",
-  "mode": "CIS_291_AS_336_HUB",
+  "mode": "AS_318",
   "as3Version": "3.36.0",
-  "appCount": 5,
-  "appPerNamespace": 2,
+  "appCount": 2,
+  "appPerNamespace": 1,
   "appImage": "artifactory.dev.example.cn:31345/net-docker-ver-local/bigip-ctlr/f5-demo-app:0221",
   "appImageContainerPort": 80,
   "namespacePrefix": "bigip-ctlr-ns-",
   "isNSPrecreated": true,
-  "deployFile": "deploy.yaml",
-  "configmapFile": "cm.yaml"
+  "deployFile": "deploy-250.yaml",
+  "configmapFile": "cm-250.yaml"
 }

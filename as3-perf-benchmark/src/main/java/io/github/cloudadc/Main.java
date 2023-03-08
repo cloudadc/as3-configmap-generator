@@ -39,7 +39,10 @@ public class Main implements CommandLineRunner {
 				
 		Config config = ConfigBuilder.instance().load(args).build();
 		
+		log.info("mode: " + config.getMode());
+		
 		Generator generator = null;
+		
 		switch(config.getMode()) {
 		
 		    case CIS_291_AS_336_HUB:

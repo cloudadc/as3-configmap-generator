@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>io.github.cloudadc</groupId>
 	<artifactId>as3-perf-benchmark</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>0.0.1</version>
 	<name>consuming-rest</name>
 	<description>Demo project for Spring Boot</description>
 
