@@ -1,5 +1,3 @@
-    "REPLACEMENT_AS3_TENANT": {
-      "class": "Tenant",
       "REPLACEMENT_AS3_APP": {
         "class": "Application",
         "template": "generic",
@@ -29,4 +27,3 @@
           ]
         }
       }
-    }

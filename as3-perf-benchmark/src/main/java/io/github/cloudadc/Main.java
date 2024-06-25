@@ -60,6 +60,9 @@ public class Main implements CommandLineRunner {
 		    case AS_318 :
 		    	generator = new AS3Generator(config);
 		    	break;
+		    case AS_336 :
+		    	generator = new AS3Generator(config);
+		    	break;
 			default:
 				generator = null;
 				break;
@@ -139,10 +142,6 @@ public class Main implements CommandLineRunner {
 
 		}
 		
-		
-		if(!net.endsWith(".0/24")) {
-			throw new RuntimeException("Current only support /24 network");
-		}
 		
 		String net_prefix = net.substring(0, net.length() - 5);
 		boolean first = true;

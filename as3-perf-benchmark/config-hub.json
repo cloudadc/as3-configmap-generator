@@ -3,12 +3,12 @@
   "memberSubnet": "10.10.20.0/21",
   "mode": "CIS_291_AS_336_HUB",
   "as3Version": "3.36.0",
-  "appCount": 201,
-  "appPerNamespace": 10,
-  "appImage": "cloudadc/cafe:1.0",
+  "appCount": 10,
+  "appPerNamespace": 4,
+  "appImage": "cloudadc/cafe:1.5-aarch64",
   "appImageContainerPort": 8080,
   "namespacePrefix": "bigip-ctlr-ns-",
   "isNSPrecreated": true,
-  "deployFile": "app-201.yaml",
-  "configmapFile": "cm-201.yaml"
+  "deployFile": "app-10.yaml",
+  "configmapFile": "cm-10.yaml"
 }

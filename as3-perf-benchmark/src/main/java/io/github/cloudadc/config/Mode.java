@@ -4,6 +4,8 @@ public enum Mode {
 	
 	AS_318,
 	
+	AS_336,
+	
 	CIS_280_AS_330_HUB,
 	
 	CIS_281_AS_330_HUB,

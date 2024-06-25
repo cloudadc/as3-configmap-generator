@@ -8,6 +8,8 @@ public interface Generator {
 	
 	public static final String REPLACEMENT_AS3_TENANT = "REPLACEMENT_AS3_TENANT";
 	
+	public static final String REPLACEMENT_AS3_APPLICATIONS = "REPLACEMENT_AS3_APPLICATIONS";
+	
 	public static final String REPLACEMENT_AS3_APP = "REPLACEMENT_AS3_APP";
 	
 	public static final String REPLACEMENT_AS3_VS_IP = "REPLACEMENT_AS3_VS_IP";
